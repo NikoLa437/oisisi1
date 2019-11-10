@@ -2,7 +2,8 @@ package rs.ac.uns.ftn.dn;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Label;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,8 +17,14 @@ public class MainFrame extends JFrame {
 
 	public MainFrame() {
 		super();
-		this.setSize(700,450);
+		
+		Toolkit kit = Toolkit.getDefaultToolkit(); 
+		Dimension dimension = kit.getScreenSize();
+		this.setSize(dimension.width*3/4,dimension.height*3/4);
+		this.setLocationRelativeTo(null);
 
+		ToolBar toolbar = new ToolBar();
+		this.add(toolbar, BorderLayout.NORTH);
         
 		MenuBar myMenuBar= new MenuBar();
 		this.setJMenuBar(myMenuBar);
