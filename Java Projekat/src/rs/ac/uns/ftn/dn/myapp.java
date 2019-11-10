@@ -1,4 +1,4 @@
-package com.uns.acs.ftn.dnp;
+package rs.ac.uns.ftn.dn;
 
 import java.text.SimpleDateFormat;
 

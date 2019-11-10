@@ -1,4 +1,4 @@
-package com.uns.acs.ftn.dnp;
+package rs.ac.uns.ftn.dn;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
