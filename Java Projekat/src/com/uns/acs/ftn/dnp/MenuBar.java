@@ -11,7 +11,7 @@ import javax.swing.KeyStroke;
 public class MenuBar extends JMenuBar{
 	
 	/**
-	 *  JOS AKCIJE DA SE DODAJU
+	 *  JOS AKCIJE DA SE DODAJU , DIZAJN ZAVRSEN
 	 */
 	private static final long serialVersionUID = 1L;
 
