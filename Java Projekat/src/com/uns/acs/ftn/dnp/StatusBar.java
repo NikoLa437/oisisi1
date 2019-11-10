@@ -13,8 +13,7 @@ import javax.swing.Timer;
 
 public class StatusBar extends JPanel{
 	/**
-	 * ZAVRSEN
-	 */
+	 * ZAVRSEN	 */
 	private static final long serialVersionUID = 1L;
 
 	public StatusBar() {
