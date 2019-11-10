@@ -16,7 +16,7 @@ public class MainFrame extends JFrame {
 
 	public MainFrame() {
 		super();
-		this.setSize(600,450);
+		this.setSize(700,450);
 
         
 		MenuBar myMenuBar= new MenuBar();
