@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.dn;
+package rs.ac.uns.ftn.projekat.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -7,6 +7,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+
+import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
 
 public class MenuBar extends JMenuBar{
 	

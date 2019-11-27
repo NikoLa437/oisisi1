@@ -1,4 +1,6 @@
-package rs.ac.uns.ftn.dn;
+package rs.ac.uns.ftn.projekat.mainapp;
+
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 
 public class myapp {
 

@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.dn;
+package rs.ac.uns.ftn.projekat.additionalclass;
 
 import java.awt.Image;
 

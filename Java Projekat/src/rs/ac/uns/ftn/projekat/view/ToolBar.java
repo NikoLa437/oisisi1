@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.dn;
+package rs.ac.uns.ftn.projekat.view;
 
 import java.awt.Dimension;
 import java.awt.Insets;
@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
+
+import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
 
 public class ToolBar extends JToolBar {
 
