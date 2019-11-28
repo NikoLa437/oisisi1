@@ -75,7 +75,7 @@ public class DodajStudenta extends JDialog{
 		
 		panelS.add(bOdustanak);
 		panelS.add(bPotvrda);
-		
+		//test
 		add(panelC,BorderLayout.NORTH);
 		add(panelS,BorderLayout.SOUTH);
 		
