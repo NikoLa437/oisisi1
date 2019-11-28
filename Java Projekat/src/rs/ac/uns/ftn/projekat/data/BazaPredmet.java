@@ -40,7 +40,7 @@ public class BazaPredmet {
 		predmeti.add(new Predmet("as87", "Baze Podataka 1",3,2));
 	}
 	
-	public List<Predmet> getIgraci() {
+	public List<Predmet> getPredmeti() {
 		return predmeti;
 	}
 

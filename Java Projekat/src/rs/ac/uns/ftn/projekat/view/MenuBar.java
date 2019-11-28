@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import rs.ac.uns.ftn.projekat.actions.CreateEntityAction;
 import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
 
 public class MenuBar extends JMenuBar{
@@ -27,8 +28,11 @@ public class MenuBar extends JMenuBar{
 		
 		JMenu help = new JMenu("Help");
 		help.setMnemonic(KeyEvent.VK_H);
-	
-		JMenuItem miNew = new JMenuItem("New",ScaleIcon.ScaleIconSize("icon/addperson.png"));
+		CreateEntityAction ac = new CreateEntityAction();
+		JMenuItem miNew = new JMenuItem();
+		miNew.setAction(ac);
+		miNew.setText("New");
+		miNew.setIcon(ScaleIcon.ScaleIconSize("icon/addperson.png"));
 		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 		JMenuItem miClose = new JMenuItem("Close",ScaleIcon.ScaleIconSize("icon/exit.png"));
 		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));

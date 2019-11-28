@@ -16,8 +16,7 @@ public class JTabbedPaneTabele extends JTabbedPane {
 
 
 	private static final long serialVersionUID = 6359401644771337741L;
-
-
+	public static int selektovan_tab = 0;
 	public JTabbedPaneTabele() {
 		
 		
@@ -32,7 +31,7 @@ public class JTabbedPaneTabele extends JTabbedPane {
 		
 		JScrollPane scrollPanePr = new JScrollPane(tabelaPredmet);
 		
-		scrollPanePr.setBorder(new EmptyBorder(50, 20, 10, 20));
+		scrollPanePr.setBorder(new EmptyBorder(30, 20, 10, 20));
 		
 		this.addTab("Student", null,p,"Student");
 		this.addTab("Profesor", null,p1,"Profesor");
@@ -46,8 +45,8 @@ public class JTabbedPaneTabele extends JTabbedPane {
 			public void stateChanged(ChangeEvent evt) {
 
 			    JTabbedPane tabbedPane = (JTabbedPane)evt.getSource();
-			    
-			    if(tabbedPane.getSelectedIndex() == 2) {
+			    selektovan_tab = tabbedPane.getSelectedIndex();
+			    if(selektovan_tab == 2) {
 			    	ToolBar.setStudVisible();
 			    }
 			    else

@@ -2,10 +2,15 @@ package rs.ac.uns.ftn.projekat.view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.util.ArrayList;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 
 public class PredmetJTable extends JTable {
@@ -18,6 +23,21 @@ public class PredmetJTable extends JTable {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelPredmet());
 		new ButtonColumnPredmet(this, 6);
+		this.getTableHeader().setReorderingAllowed(false);
+		this.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		
+		
+		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
+		this.setRowSorter(sorter);
+		ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
+		 
+		int columnIndexToSort = 1;
+		sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+		 
+		sorter.setSortKeys(sortKeys);
+		sorter.sort();
+		
+		sorter.setSortable(6, false);
 	}
 
 	
@@ -31,5 +51,7 @@ public class PredmetJTable extends JTable {
 		}
 		return c;
 	}
+	
+	
 
 }

@@ -9,7 +9,27 @@ public class Profesor {
 	private Date datum_rodjenja;
 	private ArrayList<Predmet> predmeti;
 	
+	public Profesor() {
+		
+		predmeti = new ArrayList<Predmet>();
+	}
 	
+	public Profesor(String ime, String prezime, String adresa_stanovanja, String br_telefona, String mail,
+			String adresa_kancelarije, String br_licne, String titula, String zvanje, Date datum_rodjenja) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+		this.adresa_stanovanja = adresa_stanovanja;
+		this.br_telefona = br_telefona;
+		this.mail = mail;
+		this.adresa_kancelarije = adresa_kancelarije;
+		this.br_licne = br_licne;
+		this.titula = titula;
+		this.zvanje = zvanje;
+		this.datum_rodjenja = datum_rodjenja;
+		predmeti = new ArrayList<Predmet>();
+
+	}
 	public String getIme() {
 		return ime;
 	}

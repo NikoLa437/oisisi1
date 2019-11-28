@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import rs.ac.uns.ftn.projekat.actions.CreateEntityAction;
 import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
 
 public class ToolBar extends JToolBar {
@@ -31,7 +32,9 @@ public class ToolBar extends JToolBar {
 		
 		textField.setToolTipText("Unesite kriterijum pretrage");
         
-		JButton addbtn = new JButton();
+		
+		CreateEntityAction act = new CreateEntityAction();
+		JButton addbtn = new JButton(act);
 		addbtn.setIcon(ScaleIcon.ScaleIconSize("icon/addperson.png"));
 		addbtn.setToolTipText("Add");
 		addbtn.setMargin(new Insets(0, 0, 0, 0));
