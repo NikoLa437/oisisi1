@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 
 public class MainFrame extends JFrame {
@@ -28,12 +29,18 @@ public class MainFrame extends JFrame {
         
 		MenuBar myMenuBar= new MenuBar();
 		this.setJMenuBar(myMenuBar);
-		JPanel jp= new JPanel();
-		jp.setBackground(Color.white);
-		this.add(jp,BorderLayout.CENTER);
+		
+		
+//		JPanel jp= new JPanel();
+//		jp.setBackground(Color.white);
+//		this.add(jp,BorderLayout.CENTER);
 		
 		StatusBar myStatusBar= new StatusBar();
 		this.add(myStatusBar,BorderLayout.SOUTH);
+		
+		
+		JTabbedPaneTabele tabovi = new JTabbedPaneTabele();
+		this.add(tabovi, BorderLayout.CENTER);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

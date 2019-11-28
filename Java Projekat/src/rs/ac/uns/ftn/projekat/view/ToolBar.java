@@ -18,7 +18,9 @@ public class ToolBar extends JToolBar {
 	 * 
 	 */
 	private static final long serialVersionUID = 4227338301683108746L;
-	
+	static JButton studbtn;
+	static JButton profbtn;
+
 	ToolBar (){
 		super(SwingConstants.HORIZONTAL);
 				
@@ -36,6 +38,21 @@ public class ToolBar extends JToolBar {
 		addbtn.setBorder(null);
 		addbtn.setOpaque(false);
 		
+		studbtn = new JButton();
+		studbtn.setIcon(ScaleIcon.ScaleIconSize("icon/addperson.png"));
+		studbtn.setToolTipText("Add Student");
+		studbtn.setMargin(new Insets(0, 0, 0, 0));
+		studbtn.setBorder(null);
+		studbtn.setOpaque(false);
+		studbtn.setVisible(false);
+		
+		profbtn = new JButton();
+		profbtn.setIcon(ScaleIcon.ScaleIconSize("icon/proficon.png"));
+		profbtn.setToolTipText("Add Profesor");
+		profbtn.setMargin(new Insets(0, 0, 0, 0));
+		profbtn.setBorder(null);
+		profbtn.setOpaque(false);
+		profbtn.setVisible(false);
 		
 		JButton editbtn = new JButton();
 		editbtn.setIcon(ScaleIcon.ScaleIconSize("icon/penicon.png"));
@@ -65,6 +82,10 @@ public class ToolBar extends JToolBar {
 		this.add(editbtn);
 		this.add(Box.createHorizontalStrut(10));
 		this.add(deletebtn);
+		this.add(Box.createHorizontalStrut(10));
+		this.add(studbtn);
+		this.add(Box.createHorizontalStrut(10));
+		this.add(profbtn);
 		this.add(Box.createHorizontalGlue());
 
 		this.add(textField);
@@ -72,6 +93,15 @@ public class ToolBar extends JToolBar {
 
 		this.add(searchbtn);
 		this.setFloatable(false);
+	}
+	
+	public static void setStudVisible() {
+		studbtn.setVisible(true);
+		profbtn.setVisible(true);
+	}
+	public static void setStudUnvisible() {
+		studbtn.setVisible(false);
+		profbtn.setVisible(false);
 	}
 
 }
