@@ -18,9 +18,12 @@ import javax.swing.JTextField;
 
 public class DodajStudenta extends JDialog{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public DodajStudenta(JFrame parent) {
 		super(parent,"Dodavanje novog studenta",true);
-		this.pack();
 		
 		this.setSize(400,350);
 		this.setLayout(new BorderLayout());
@@ -79,7 +82,7 @@ public class DodajStudenta extends JDialog{
 		add(panelC,BorderLayout.NORTH);
 		add(panelS,BorderLayout.SOUTH);
 		
-		
+		this.setResizable(false);
 		this.setLocationRelativeTo(parent);
 		this.setVisible(true);
 
