@@ -6,15 +6,28 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import rs.ac.uns.ftn.projekat.classes.Student;
+import rs.ac.uns.ftn.projekat.classes.Student.Status;
+import rs.ac.uns.ftn.projekat.data.BazaStudent;
+import rs.ac.uns.ftn.projekat.view.AbstractTableModelStudent;
+import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
 public class DodajStudenta extends JDialog{
 	
@@ -48,13 +61,15 @@ public class DodajStudenta extends JDialog{
 		
 		String[] sGodStud = { "I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)" };
 		JComboBox cbGodStud = new JComboBox(sGodStud);
-		
+	
 		JRadioButton rbBudzet = new JRadioButton("Budzet");
 		JRadioButton rbSamof = new JRadioButton("Samofinansiranje");
 
 		ButtonGroup btnGroup1 = new ButtonGroup();
 		btnGroup1.add(rbBudzet);
 		btnGroup1.add(rbSamof);
+
+		rbBudzet.setSelected(true);
 	
 		panelC.add(lblIme, gbclbl(0,0));
 		panelC.add(txtIme, gbctxt(1,0));
@@ -75,6 +90,64 @@ public class DodajStudenta extends JDialog{
 		
 		Button bPotvrda = new Button("Potvrda");
 		Button bOdustanak = new Button("Odustanak");
+		
+		bOdustanak.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+			}
+		});
+		
+		bPotvrda.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Student s= new Student();
+
+				if(txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtAdresa.getText().isEmpty() || txtBrojTel.getText().isEmpty() || txtBrojInd.getText().isEmpty())
+					JOptionPane.showMessageDialog(null, "Pogresan unos podataka!", "Error", JOptionPane.ERROR_MESSAGE );
+				else {
+					try {
+						SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
+						Date date = formatter.parse(txtDatumRodj.getText());
+						s.setDatum_rodjenja(date);
+						
+						s.setIme(txtIme.getText());
+						s.setPrezime(txtPrezime.getText());
+						s.setAdresa_stanovanja(txtAdresa.getText());
+						s.setKontakt_telefon(txtBrojTel.getText());
+						s.setIndeks(txtBrojInd.getText());
+						String g_s = cbGodStud.getSelectedItem().toString();
+						
+						if(g_s.equals("I (prva)")){
+							s.setGod_studija(1);
+						}else if(g_s.equals("II (druga)")){
+							s.setGod_studija(2);
+						}else if(g_s.equals("III (treca)")){
+							s.setGod_studija(3);
+						}else {
+							s.setGod_studija(4);
+						}
+						
+						if(rbSamof.isSelected()) {
+							s.setStatus(Status.S);
+						}else {
+							s.setStatus(Status.B);
+						}
+						
+						
+						}catch(Exception e1) {
+							JOptionPane.showMessageDialog(null, "Datum mora biti u formatu: dd.MM.yyyy.", "Error", JOptionPane.ERROR_MESSAGE );
+						}
+				}
+				BazaStudent.getInstance().dodajStudenta(s.getIme(), s.getPrezime(), s.getAdresa_stanovanja(), s.getKontakt_telefon(), "e-adresa", s.getIndeks(), s.getDatum_rodjenja(), s.getDatum_rodjenja(), s.getGod_studija(), 13.3,s.getStatus());
+				dispose();
+				StudentJTable.osvezi();
+			}
+		});
+		
+		
 		
 		panelS.add(bOdustanak);
 		panelS.add(bPotvrda);
