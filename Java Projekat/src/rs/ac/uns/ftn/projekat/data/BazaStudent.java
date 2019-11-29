@@ -100,8 +100,8 @@ public class BazaStudent {
 	}
 	
 	public void izmeniStudenta(String indeks_studenta, String ime,String prz,String a_s,String k_t,
-			String e_a,String ind,Date dr,Date du,int g_s,
-			double p_o) {
+			String e_a,Date dr,Date du,int g_s,
+			double p_o,Status ss) {
 		for (Student s : studenti) {
 			if (s.getIndeks().equals(indeks_studenta)) {
 				s.setIme(ime);
@@ -114,6 +114,7 @@ public class BazaStudent {
 				s.setDatum_upisa(du);
 				s.setGod_studija(g_s);
 				s.setProsecna_ocena(p_o);
+				s.setStatus(ss);
 			}
 		}
 	}
