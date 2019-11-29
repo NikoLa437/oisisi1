@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import rs.ac.uns.ftn.projekat.actions.CreateEditAction;
 import rs.ac.uns.ftn.projekat.actions.CreateEntityAction;
 import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
 
@@ -37,8 +38,13 @@ public class MenuBar extends JMenuBar{
 		JMenuItem miClose = new JMenuItem("Close",ScaleIcon.ScaleIconSize("icon/exit.png"));
 		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
 		
-		JMenuItem miEdit = new JMenuItem("Edit",ScaleIcon.ScaleIconSize("icon/penicon.png"));
+		CreateEditAction ed= new CreateEditAction();
+		JMenuItem miEdit = new JMenuItem();
+		miEdit.setAction(ed);
+		miEdit.setText("Edit");
+		miEdit.setIcon(ScaleIcon.ScaleIconSize("icon/penicon.png"));
 		miEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		
 		JMenuItem miDelete = new JMenuItem("Delete",new ImageIcon("icon/deleteicon.png"));
 		miDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 
