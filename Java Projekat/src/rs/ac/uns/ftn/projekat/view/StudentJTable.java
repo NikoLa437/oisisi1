@@ -23,6 +23,7 @@ public class StudentJTable extends JTable {
 	private static final long serialVersionUID = 1L;
 
 	static TableModel model;
+	static int selRow;
 	
 	public StudentJTable() {
 		this.setRowSelectionAllowed(true);
@@ -37,6 +38,11 @@ public class StudentJTable extends JTable {
 		ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
 		
 	    model = this.getModel();
+		selRow= this.getSelectedRow();
+		
+		if(selRow==-1) {
+			selRow=1;
+		}
 		
 		int columnIndexToSort = 1;
 		sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
@@ -49,6 +55,10 @@ public class StudentJTable extends JTable {
 	
 	public static void osvezi() {
 		((AbstractTableModel) model).fireTableDataChanged();
+	}
+	
+	public static int getSelRow() {
+		return selRow;
 	}
 	
 	@Override
