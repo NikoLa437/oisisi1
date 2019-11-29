@@ -2,10 +2,9 @@ package rs.ac.uns.ftn.projekat.classes;
 
 import java.util.Date;
 
-enum Status { B, S }
-
 public class Student {
 
+		public enum Status{ B, S }
 		private String ime,prezime;
 		private String adresa_stanovanja, kontakt_telefon;
 		private String email_adresa,indeks;
