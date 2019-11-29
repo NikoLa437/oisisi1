@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
+
 
 public class BazaStudent {
 	
@@ -58,10 +60,15 @@ public class BazaStudent {
 	}
 	
 	public Student getRow(int rowIndex) { // vraca studenta u odredjenoj vrsti
+		//TableModel tm= StudentJTable.getTM();
+		//StudentJTable sjt= StudentJTable.
 		return this.studenti.get(rowIndex);
+		//TableModel tm= StudentJTable.getTM();
 	}
 	
+	
 	public String getValueAt(int row, int column) {
+		//StudentJTable.jt.convertRowIndexToModel(row)
 		Student stud = this.studenti.get(row);
 		switch (column) {
 		case 0:
