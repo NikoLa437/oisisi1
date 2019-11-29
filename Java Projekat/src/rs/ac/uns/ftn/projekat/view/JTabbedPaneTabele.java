@@ -22,7 +22,6 @@ public class JTabbedPaneTabele extends JTabbedPane {
 		
 			
 		super();
-		JPanel p = new JPanel();
 		JPanel p1 = new JPanel();
 
 		
@@ -33,7 +32,11 @@ public class JTabbedPaneTabele extends JTabbedPane {
 		
 		scrollPanePr.setBorder(new EmptyBorder(30, 20, 10, 20));
 		
-		this.addTab("Student", null,p,"Student");
+		StudentJTable tabelaStudent = new StudentJTable();
+		JScrollPane scroolPaneSt = new JScrollPane(tabelaStudent);
+		scroolPaneSt.setBorder(new EmptyBorder(30,20,10,20));
+		
+		this.addTab("Student", null,scroolPaneSt,"Student");
 		this.addTab("Profesor", null,p1,"Profesor");
 		this.addTab("Predmet", null,scrollPanePr,"Predmet");
 
