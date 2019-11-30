@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
+import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
@@ -28,8 +29,8 @@ public class IzmeniPredmet extends JDialog{
 	public IzmeniPredmet(JFrame parent) {
 		super(parent,"Izmena predmeta",true);
 		
-		Predmet p = BazaPredmet.getInstance().getRow(PredmetJTable.getSelRow());
-		
+		Predmet p = BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow);
+		Profesor pr = p.getProfesor();
 		this.setSize(400,250);
 		this.setLayout(new BorderLayout());
 		
@@ -50,10 +51,11 @@ public class IzmeniPredmet extends JDialog{
 		JComboBox cbSemestar = new JComboBox(sSemestar);
 		
 		txtSifra.setText(p.getSifra_predmeta());
+		txtSifra.setEditable(false);
 		txtNaziv.setText(p.getNaziv());
 		
-		cbGodStud.setSelectedItem(p.getGodina_studija());
-		cbSemestar.setSelectedItem(p.getSemestar());
+		cbGodStud.setSelectedIndex(p.getGodina_studija() - 1);
+		cbSemestar.setSelectedIndex(p.getSemestar() - 1);
 		
 		panelC.add(lblSifra, gbclbl(0,0));
 		panelC.add(txtSifra, gbctxt(1,0));
@@ -100,7 +102,7 @@ public class IzmeniPredmet extends JDialog{
 						p.setNaziv(txtNaziv.getText());
 						p.setSemestar(cbSemestar.getSelectedIndex() + 1);
 						p.setGodina_studija(cbGodStud.getSelectedIndex()+1);
-						BazaPredmet.getInstance().izmeniPredmet(p.getSifra_predmeta(), p.getNaziv(), p.getSemestar(), p.getGodina_studija());
+						BazaPredmet.getInstance().izmeniPredmet(p.getSifra_predmeta(),pr, p.getNaziv(), p.getSemestar(), p.getGodina_studija());
 					
 				}
 				dispose();
