@@ -6,13 +6,20 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import rs.ac.uns.ftn.projekat.classes.Predmet;
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class DodajPredmet extends JDialog{
 
@@ -51,6 +58,47 @@ public class DodajPredmet extends JDialog{
 		
 		Button bPotvrda = new Button("Potvrda");
 		Button bOdustanak = new Button("Odustanak");
+		
+		bOdustanak.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		bPotvrda.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Predmet p= new Predmet();
+				int err = -1;
+
+				if(cbGodStud.getSelectedIndex() == 0) 
+					if(!(cbSemestar.getSelectedIndex() == 0 || cbSemestar.getSelectedIndex() == 1))
+						err = 1;
+				if(cbGodStud.getSelectedIndex() == 1) 
+					if(!(cbSemestar.getSelectedIndex() == 2 || cbSemestar.getSelectedIndex() == 3))
+						err = 1;
+				if(cbGodStud.getSelectedIndex() == 2) 
+					if(!(cbSemestar.getSelectedIndex() == 4 || cbSemestar.getSelectedIndex() == 5))
+						err = 1;
+				if(cbGodStud.getSelectedIndex() == 3) 
+					if(!(cbSemestar.getSelectedIndex() == 6 || cbSemestar.getSelectedIndex() == 7))
+						err = 1;
+				if(txtSifra.getText().isEmpty() || txtNaziv.getText().isEmpty() || err == 1)
+					JOptionPane.showMessageDialog(null, "Pogresan unos podataka!", "Error", JOptionPane.ERROR_MESSAGE );
+				else {
+						p.setSifra_predmeta(txtSifra.getText());
+						p.setNaziv(txtNaziv.getText());
+						p.setSemestar(cbSemestar.getSelectedIndex() + 1);
+						p.setGodina_studija(cbGodStud.getSelectedIndex()+1);
+						BazaPredmet.getInstance().dodajPredmet(p.getSifra_predmeta(), p.getNaziv(), p.getSemestar(), p.getGodina_studija());
+					
+				}
+				dispose();
+				PredmetJTable.osvezi();
+			}
+		});
 		
 		panelS.add(bOdustanak);
 		panelS.add(bPotvrda);
