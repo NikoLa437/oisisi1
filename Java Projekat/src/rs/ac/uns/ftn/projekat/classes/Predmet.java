@@ -9,7 +9,10 @@ public class Predmet {
 	private Profesor profesor;
 	private ArrayList<Student> studenti;
 	
-	
+	public Predmet() {
+		this.profesor = new Profesor();
+		this.studenti = new ArrayList<Student>();
+	}
 	
 	public Predmet(String sifra_predmeta, String naziv, int semestar, int godina_studija) {
 		super();

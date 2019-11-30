@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -16,7 +17,10 @@ import javax.swing.table.TableRowSorter;
 public class PredmetJTable extends JTable {
 
 	private static final long serialVersionUID = -6843496177536627282L;
-	
+	static int selRow;
+	static TableModel model;
+
+
 	public PredmetJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
@@ -26,6 +30,12 @@ public class PredmetJTable extends JTable {
 		this.getTableHeader().setReorderingAllowed(false);
 		this.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		
+		model = this.getModel();
+		selRow= this.getSelectedRow();
+		
+		if(selRow==-1) {
+			selRow=1;
+		}
 		
 		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
 		this.setRowSorter(sorter);
@@ -40,7 +50,13 @@ public class PredmetJTable extends JTable {
 		sorter.setSortable(6, false);
 	}
 
+	public static int getSelRow() {
+		return selRow;
+	}
 	
+	public static void osvezi() {
+		((AbstractTableModel) model).fireTableDataChanged();
+	}
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 		Component c = super.prepareRenderer(renderer, row, column);
