@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
@@ -92,9 +93,18 @@ public class BazaStudent {
 	public void dodajStudenta(String i,String p,String a_s,String k_t,
 			String e_a,String ind,Date dr,Date du,int g_s,
 			double p_o,Status ss) {
+			this.studenti.add(new Student(i, p, a_s, k_t,e_a,ind,dr,du,g_s,p_o,ss));
 		
-		this.studenti.add(new Student(i, p, a_s, k_t,e_a,ind,dr,du,g_s,p_o,ss));
 		
+	}
+	
+	public boolean postoji(String indeks) {
+		boolean pronadjen=false;
+		for(Student s : studenti) {
+			if(s.getIndeks().equals(indeks))
+				pronadjen=true;
+		}
+		return pronadjen;
 	}
 	
 	public void izbrisiStudenta(String indeks_studenta) {
