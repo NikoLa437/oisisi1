@@ -6,12 +6,23 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import rs.ac.uns.ftn.projekat.classes.Predmet;
+import rs.ac.uns.ftn.projekat.classes.Profesor;
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class DodajProfesoraNaPredmet extends JDialog{
 
@@ -21,8 +32,9 @@ public class DodajProfesoraNaPredmet extends JDialog{
 	public DodajProfesoraNaPredmet(JFrame parent) {
 		super(parent,"Dodavanje profesora na predmet",true);
 		
-		
-		this.setSize(400,150);
+		Predmet pr = BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow);
+
+		this.setSize(400,120);
 		this.setLayout(new BorderLayout());
 		
 		JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 
@@ -52,6 +64,42 @@ public class DodajProfesoraNaPredmet extends JDialog{
 		
 		Button bPotvrda = new Button("Potvrda");
 		Button bOdustanak = new Button("Odustanak");
+		
+		bOdustanak.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		bPotvrda.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				List<Profesor> profesori = BazaProfesor.getInstance().getProfesori();
+				Profesor prof = new Profesor();
+				boolean nasao = false;
+				for(Profesor p1: profesori) {
+					if(txtLicna.getText().equals(p1.getBr_licne())) {
+						prof = p1;
+						nasao = true;
+						break;
+					}
+				}	
+				if(txtLicna.getText().isEmpty())
+					JOptionPane.showMessageDialog(null, "Podaci se moraju uneti!", "Error", JOptionPane.ERROR_MESSAGE );
+				else if(nasao == false)
+					JOptionPane.showMessageDialog(null, "Unet pogresan broj licne karte!", "Error", JOptionPane.ERROR_MESSAGE );
+				else {
+						
+							
+						BazaPredmet.getInstance().izmeniPredmet(pr.getSifra_predmeta(),prof, pr.getNaziv(), pr.getSemestar(), pr.getGodina_studija());
+					
+				}
+				dispose();
+				PredmetJTable.osvezi();
+			}
+		});
 		
 		panelS.add(bOdustanak);
 		panelS.add(bPotvrda);
