@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -35,9 +36,10 @@ public class IzmeniStudenta extends JDialog{
 	private static final long serialVersionUID = 1L;
 	public IzmeniStudenta(JFrame parent) {
 		super(parent,"Izmena studenta",true);
-
-		Student s= BazaStudent.getInstance().getRow(StudentJTable.getSelRow());
-
+		
+		Student s= new Student();
+		s=BazaStudent.getInstance().getRow(StudentJTable.selectedRow);
+	
 		this.setSize(400,350);
 		this.setLayout(new BorderLayout());
 		
@@ -71,7 +73,11 @@ public class IzmeniStudenta extends JDialog{
 	
 		txtIme.setText(s.getIme());
 		txtPrezime.setText(s.getPrezime());
-		txtDatumRodj.setText(s.getDatum_rodjenja().toString());
+		//datum rodjenja
+		Date date=s.getDatum_rodjenja();
+		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
+		txtDatumRodj.setText(dateFormat.format(date));
+		//
 		txtAdresa.setText(s.getAdresa_stanovanja());
 		txtBrojTel.setText(s.getKontakt_telefon());
 		txtBrojInd.setText(s.getIndeks());

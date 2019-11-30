@@ -2,30 +2,33 @@ package rs.ac.uns.ftn.projekat.view;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
-import javax.swing.table.TableCellRenderer;
+
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
 
 public class StudentJTable extends JTable {
 
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 
-	static TableModel model;
-	static int selRow;
+	public static TableModel model;
+	public static int selectedRow=0;
+	public static JTable jt = null;
 	
 	public StudentJTable() {
+	
+		
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // ?
@@ -33,33 +36,31 @@ public class StudentJTable extends JTable {
 		this.getTableHeader().setReorderingAllowed(false);
 		this.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		
+		// sortiranje
 		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
 		this.setRowSorter(sorter);
-		ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
 		
+		jt=this;
 	    model = this.getModel();
-		selRow= this.getSelectedRow();
-		
-		if(selRow==-1) {
-			selRow=1;
-		}
-		
-		int columnIndexToSort = 1;
-		sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
-		
-		sorter.setSortKeys(sortKeys);
-		sorter.sort();
-		
-		//sorter.setSortable(6, false);
+	    
+	    this.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseReleased(MouseEvent e) {
+	        	JTable jt = (JTable)e.getComponent();
+	            selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
+	            System.out.print(selectedRow);
+	        }
+	    });
+	    
 	}
 	
 	public static void osvezi() {
 		((AbstractTableModel) model).fireTableDataChanged();
 	}
+
+
 	
-	public static int getSelRow() {
-		return selRow;
-	}
+	
 	
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
