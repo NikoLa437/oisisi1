@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
 
@@ -42,6 +43,16 @@ public class BazaStudent {
 		this.studenti = new ArrayList<Student>();
 		studenti.add(new Student("Nikola","Kolovic","Kraljevo","062490393","nikoladskv@hotmail.rs","RA133-2017",new Date(1998,04,03),new Date(98,04,03),3,9.76,Status.B));
 		studenti.add(new Student("Dusan","Petrovic","Sabac","0624905435","dusanchinaa@hotmail.rs","RA122-2017",new Date(1998,12,12),new Date(07,04,03),3,9.76,Status.B));
+	}
+	
+	public Student getStudentInd(String idx) {
+		Student s= null;
+		for(Student p : studenti) {
+			if(p.getIndeks().equals(idx))
+				s=p;
+				break;
+		}
+		return s;
 	}
 	
 	public List<Student> getStudenti() { // vraca listu studenata
@@ -95,7 +106,7 @@ public class BazaStudent {
 			double p_o,Status ss) {
 			this.studenti.add(new Student(i, p, a_s, k_t,e_a,ind,dr,du,g_s,p_o,ss));
 		
-		
+			
 	}
 	
 	public boolean postoji(String indeks) {
@@ -132,6 +143,14 @@ public class BazaStudent {
 				s.setGod_studija(g_s);
 				s.setProsecna_ocena(p_o);
 				s.setStatus(ss);
+			}
+		}
+	}
+	
+	public void dodajPredmet(String indeks_studenta, Predmet p) {
+		for (Student s : studenti) {
+			if (s.getIndeks().equals(indeks_studenta)) {
+				s.getPredmeti().add(p);
 			}
 		}
 	}
