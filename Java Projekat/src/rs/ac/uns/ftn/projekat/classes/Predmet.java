@@ -9,6 +9,7 @@ public class Predmet {
 	private Profesor profesor;
 	private ArrayList<Student> studenti;
 	
+	
 	public Predmet() {
 		this.profesor = new Profesor();
 		this.studenti = new ArrayList<Student>();
