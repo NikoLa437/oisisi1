@@ -21,12 +21,14 @@ import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
-public class DodajPredmet extends JDialog{
+public class IzmeniPredmet extends JDialog{
 
-	private static final long serialVersionUID = -5495281142892800228L;
+	private static final long serialVersionUID = 8968815004285653671L;
 
-	public DodajPredmet(JFrame parent) {
-		super(parent,"Dodavanje novog predmeta",true);
+	public IzmeniPredmet(JFrame parent) {
+		super(parent,"Izmena predmeta",true);
+		
+		Predmet p = BazaPredmet.getInstance().getRow(PredmetJTable.getSelRow());
 		
 		this.setSize(400,250);
 		this.setLayout(new BorderLayout());
@@ -46,6 +48,12 @@ public class DodajPredmet extends JDialog{
 		JComboBox cbGodStud = new JComboBox(sGodStud);
 		String[] sSemestar = { "I (prvi)", "II (drugi)", "III (treci)", "IV (cetvrti)", "V (peti)", "VI (sesti)", "VII (sedmi)", "VIII (osmi)" };
 		JComboBox cbSemestar = new JComboBox(sSemestar);
+		
+		txtSifra.setText(p.getSifra_predmeta());
+		txtNaziv.setText(p.getNaziv());
+		
+		cbGodStud.setSelectedItem(p.getGodina_studija());
+		cbSemestar.setSelectedItem(p.getSemestar());
 		
 		panelC.add(lblSifra, gbclbl(0,0));
 		panelC.add(txtSifra, gbctxt(1,0));
@@ -92,13 +100,15 @@ public class DodajPredmet extends JDialog{
 						p.setNaziv(txtNaziv.getText());
 						p.setSemestar(cbSemestar.getSelectedIndex() + 1);
 						p.setGodina_studija(cbGodStud.getSelectedIndex()+1);
-						BazaPredmet.getInstance().dodajPredmet(p.getSifra_predmeta(), p.getNaziv(), p.getSemestar(), p.getGodina_studija());
+						BazaPredmet.getInstance().izmeniPredmet(p.getSifra_predmeta(), p.getNaziv(), p.getSemestar(), p.getGodina_studija());
 					
 				}
 				dispose();
 				PredmetJTable.osvezi();
 			}
 		});
+		
+		
 		
 		panelS.add(bOdustanak);
 		panelS.add(bPotvrda);
@@ -111,7 +121,6 @@ public class DodajPredmet extends JDialog{
 		this.setVisible(true);
 
 	}
-	
 	
 	private GridBagConstraints gbclbl(int x,int y) {
 		GridBagConstraints gbc= new GridBagConstraints();

@@ -17,19 +17,17 @@ public class JTabbedPaneTabele extends JTabbedPane {
 
 	private static final long serialVersionUID = 6359401644771337741L;
 	public static int selektovan_tab = 0;
+	
 	public JTabbedPaneTabele() {
-		
-		
-			
+					
 		super();
-		JPanel p1 = new JPanel();
+		ProfesorJTable tabelaProfesor = new ProfesorJTable();
+		JScrollPane scrollPaneProf = new JScrollPane(tabelaProfesor);
+		scrollPaneProf.setBorder(new EmptyBorder(30, 20, 10, 20));
 
 		
-		
-		PredmetJTable tabelaPredmet= new PredmetJTable();
-		
-		JScrollPane scrollPanePr = new JScrollPane(tabelaPredmet);
-		
+		PredmetJTable tabelaPredmet= new PredmetJTable();		
+		JScrollPane scrollPanePr = new JScrollPane(tabelaPredmet);		
 		scrollPanePr.setBorder(new EmptyBorder(30, 20, 10, 20));
 		
 		StudentJTable tabelaStudent = new StudentJTable();
@@ -37,7 +35,7 @@ public class JTabbedPaneTabele extends JTabbedPane {
 		scroolPaneSt.setBorder(new EmptyBorder(30,20,10,20));
 		
 		this.addTab("Student", null,scroolPaneSt,"Student");
-		this.addTab("Profesor", null,p1,"Profesor");
+		this.addTab("Profesor", null,scrollPaneProf,"Profesor");
 		this.addTab("Predmet", null,scrollPanePr,"Predmet");
 
 		this.addChangeListener(new ChangeListener() {

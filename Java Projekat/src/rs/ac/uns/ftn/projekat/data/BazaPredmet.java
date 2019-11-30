@@ -87,7 +87,7 @@ public class BazaPredmet {
 
 	public void izbrisiPredmet(String sifra_pr) {
 		for (Predmet p : predmeti) {
-			if (p.getSifra_predmeta() == sifra_pr) {
+			if (p.getSifra_predmeta().equals(sifra_pr)) {
 				predmeti.remove(p);
 				break;
 			}

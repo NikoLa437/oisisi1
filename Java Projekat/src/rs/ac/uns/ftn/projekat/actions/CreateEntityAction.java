@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 
 import rs.ac.uns.ftn.projekat.dialogs.DodajPredmet;
+import rs.ac.uns.ftn.projekat.dialogs.DodajProfesora;
 import rs.ac.uns.ftn.projekat.dialogs.DodajStudenta;
 import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
 
@@ -26,6 +27,8 @@ public class CreateEntityAction extends AbstractAction{
 	public void actionPerformed(ActionEvent arg0) {
 		if(JTabbedPaneTabele.selektovan_tab == 2) {
 			DodajPredmet dp = new DodajPredmet(new JFrame());
+		}else if(JTabbedPaneTabele.selektovan_tab == 1) {
+			DodajProfesora dp = new DodajProfesora(new JFrame());
 		}else if(JTabbedPaneTabele.selektovan_tab == 0) {
 			DodajStudenta ds = new DodajStudenta(new JFrame());
 		}
