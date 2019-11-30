@@ -2,6 +2,8 @@ package rs.ac.uns.ftn.projekat.view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
@@ -17,8 +19,9 @@ import javax.swing.table.TableRowSorter;
 public class PredmetJTable extends JTable {
 
 	private static final long serialVersionUID = -6843496177536627282L;
-	static int selRow;
-	static TableModel model;
+	public static TableModel model;
+	public static int selectedRow=0;
+	public static JTable jt = null;
 
 
 	public PredmetJTable() {
@@ -30,12 +33,17 @@ public class PredmetJTable extends JTable {
 		this.getTableHeader().setReorderingAllowed(false);
 		this.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		
-		model = this.getModel();
-		selRow= this.getSelectedRow();
-		
-		if(selRow==-1) {
-			selRow=1;
-		}
+		jt=this;
+	    model = this.getModel();
+	    
+	    this.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseReleased(MouseEvent e) {
+	        	JTable jt = (JTable)e.getComponent();
+	            selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
+	            System.out.print(selectedRow);
+	        }
+	    });
 		
 		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
 		this.setRowSorter(sorter);
@@ -50,9 +58,7 @@ public class PredmetJTable extends JTable {
 		sorter.setSortable(6, false);
 	}
 
-	public static int getSelRow() {
-		return selRow;
-	}
+
 	
 	public static void osvezi() {
 		((AbstractTableModel) model).fireTableDataChanged();

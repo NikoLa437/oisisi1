@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
+import rs.ac.uns.ftn.projekat.classes.Profesor;
 
 public class BazaPredmet {
 
@@ -71,8 +72,13 @@ public class BazaPredmet {
 			return Integer.toString(predmet.getSemestar());
 		case 3:
 			return Integer.toString(predmet.getGodina_studija());
-		case 4:
-			return "";//(predmet.getProfesor().getIme() + " " + predmet.getProfesor().getPrezime());
+		case 4: {
+			if (predmet.getProfesor().getIme() == null)
+					return "";
+			else 			
+				return predmet.getProfesor().getIme() + " " + predmet.getProfesor().getPrezime();
+
+		}
 		case 5:
 			return Integer.toString(0);
 			
@@ -94,10 +100,11 @@ public class BazaPredmet {
 		}
 	}
 
-	public void izmeniPredmet(String sifra_predmeta, String naziv, int semestar, int godina_studija) {
+	public void izmeniPredmet(String sifra_predmeta, Profesor profesor,String naziv, int semestar, int godina_studija) {
 		for (Predmet p : predmeti) {
-			if (p.getSifra_predmeta() == sifra_predmeta) {
+			if (p.getSifra_predmeta().equals(sifra_predmeta)) {
 				p.setNaziv(naziv);
+				p.setProfesor(profesor);
 				p.setSemestar(semestar);
 				p.setGodina_studija(godina_studija);
 			}

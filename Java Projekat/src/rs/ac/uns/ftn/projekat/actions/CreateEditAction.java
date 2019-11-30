@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 
 import rs.ac.uns.ftn.projekat.dialogs.DodajPredmet;
+import rs.ac.uns.ftn.projekat.dialogs.IzmeniPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.IzmeniStudenta;
 import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
 
@@ -20,7 +21,9 @@ public class CreateEditAction extends AbstractAction {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(JTabbedPaneTabele.selektovan_tab == 2) {
+			 IzmeniPredmet ip = new IzmeniPredmet(new JFrame());
+		}
 		if(JTabbedPaneTabele.selektovan_tab == 0) {
 			 IzmeniStudenta is = new IzmeniStudenta(new JFrame());
 		}

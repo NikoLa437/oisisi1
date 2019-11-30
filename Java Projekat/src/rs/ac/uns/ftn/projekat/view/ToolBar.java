@@ -2,16 +2,22 @@ package rs.ac.uns.ftn.projekat.view;
 
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import rs.ac.uns.ftn.projekat.actions.CreateDeleteAction;
+import rs.ac.uns.ftn.projekat.actions.CreateEditAction;
 import rs.ac.uns.ftn.projekat.actions.CreateEntityAction;
 import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
+import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
 
 public class ToolBar extends JToolBar {
 
@@ -57,15 +63,26 @@ public class ToolBar extends JToolBar {
 		profbtn.setOpaque(false);
 		profbtn.setVisible(false);
 		
-		JButton editbtn = new JButton();
+		
+		profbtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		
+				DodajProfesoraNaPredmet dpnp = new DodajProfesoraNaPredmet(new JFrame());
+			}
+		});
+		
+		CreateEditAction edit_act = new CreateEditAction();
+		JButton editbtn = new JButton(edit_act);
 		editbtn.setIcon(ScaleIcon.ScaleIconSize("icon/penicon.png"));
 		editbtn.setToolTipText("Edit");
 		editbtn.setMargin(new Insets(0, 0, 0, 0));
 		editbtn.setBorder(null);
 		editbtn.setOpaque(false);
 
-		
-		JButton deletebtn = new JButton();
+		CreateDeleteAction del_act = new CreateDeleteAction();
+		JButton deletebtn = new JButton(del_act);
 		deletebtn.setIcon(new ImageIcon("icon/deleteicon.png"));
 		deletebtn.setToolTipText("Delete");
 		deletebtn.setMargin(new Insets(0, 0, 0, 0));
