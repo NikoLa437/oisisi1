@@ -1,6 +1,8 @@
 package rs.ac.uns.ftn.projekat.classes;
 
+import java.util.ArrayList;
 import java.util.Date;
+
 
 public class Student {
 
@@ -12,9 +14,10 @@ public class Student {
 		private int god_studija;
 		private double prosecna_ocena;
 		private Status status;
-		//ArrayList<Predmet> predmeti;
+		ArrayList<Predmet> predmeti;
 		
 		public Student() {}
+	
 		
 		public Student(String i,String p,String a_s,String k_t,
 				String e_a,String ind,Date dr,Date du,int g_s,
@@ -30,6 +33,7 @@ public class Student {
 			this.god_studija= g_s;
 			this.prosecna_ocena=p_o;
 			this.status=ss;
+			this.predmeti=new ArrayList<Predmet>();
 		}
 
 		public String getIme() {
@@ -119,5 +123,15 @@ public class Student {
 		public void setStatus(Status status) {
 			this.status = status;
 		}
+
+		public ArrayList<Predmet> getPredmeti() {
+			return predmeti;
+		}
+
+		public void setPredmeti(ArrayList<Predmet> predmeti) {
+			this.predmeti = predmeti;
+		}
+		
+		
 			
 }
