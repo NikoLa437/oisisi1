@@ -6,12 +6,26 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import javax.swing.JTextField;
+
+import rs.ac.uns.ftn.projekat.classes.Profesor;
+import rs.ac.uns.ftn.projekat.classes.Student;
+import rs.ac.uns.ftn.projekat.classes.Student.Status;
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.data.BazaStudent;
+import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
 public class DodajProfesora extends JDialog{
 	/**
@@ -76,6 +90,78 @@ public class DodajProfesora extends JDialog{
 		
 		Button bPotvrda = new Button("Potvrda");
 		Button bOdustanak = new Button("Odustanak");
+		
+		bOdustanak.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+			}
+		});
+		
+		
+		bPotvrda.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Profesor p= new Profesor();
+				
+				
+				if(!txtIme.getText().isEmpty()) {
+					p.setIme(txtIme.getText());
+					if(!txtPrezime.getText().isEmpty()) {
+						p.setPrezime(txtPrezime.getText());
+							if(!txtAdresaStan.getText().isEmpty()) {
+								p.setAdresa_stanovanja(txtAdresaStan.getText());
+								if(!txtKtkTel.getText().isEmpty()) {
+									p.setBr_telefona(txtKtkTel.getText());
+										if(!txtBrojLicne.getText().isEmpty() ) {//&&!BazaStudent.getInstance().postoji(txtBrojInd.getText())) {
+											p.setBr_licne(txtBrojLicne.getText());
+												if(!txtEAdresa.getText().isEmpty()) {
+													p.setMail(txtEAdresa.getText());
+													if(!txtTitula.getText().isEmpty()) {
+														p.setTitula(txtTitula.getText());
+														if(!txtZvanje.getText().isEmpty()) {
+															p.setTitula(txtZvanje.getText());
+															try {
+																	SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
+																	Date date = formatter.parse(txtDatumRodj.getText());
+																	p.setDatum_rodjenja(date);
+																	BazaProfesor.getInstance().dodajProfesora(p.getIme(), p.getPrezime(), p.getAdresa_stanovanja(), p.getBr_telefona(), p.getMail(), p.getAdresa_kancelarije(), p.getBr_licne(), p.getTitula(), p.getZvanje(), p.getDatum_rodjenja());
+																	
+																	dispose();
+																	StudentJTable.osvezi();	
+																
+															}catch(Exception e1) {
+																JOptionPane.showMessageDialog(null, "Pogresan unos datuma!", "Error", JOptionPane.ERROR_MESSAGE );
+															}
+														}else {
+															JOptionPane.showMessageDialog(null, "Pogresan unos zvanja!", "Error", JOptionPane.ERROR_MESSAGE );
+														}
+													}else {
+														JOptionPane.showMessageDialog(null, "Pogresan unos titule!", "Error", JOptionPane.ERROR_MESSAGE );
+													}
+												}else {
+													JOptionPane.showMessageDialog(null, "Pogresan unos e-mail adrese!", "Error", JOptionPane.ERROR_MESSAGE );
+												}
+											}else {
+												JOptionPane.showMessageDialog(null, "Pogresan unos broja licne karte (broj licne karte mora biti jedinstven)!", "Error", JOptionPane.ERROR_MESSAGE );
+											}
+										}else {
+											JOptionPane.showMessageDialog(null, "Pogresan unos broja telefona!", "Error", JOptionPane.ERROR_MESSAGE );
+										}
+								}else {
+									JOptionPane.showMessageDialog(null, "Pogresan unos adrese stanovanja!", "Error", JOptionPane.ERROR_MESSAGE );
+								}
+							}else {
+								JOptionPane.showMessageDialog(null, "Pogresan unos prezimena!", "Error", JOptionPane.ERROR_MESSAGE );
+							}
+					}else {
+						JOptionPane.showMessageDialog(null, "Pogresan unos imena!", "Error", JOptionPane.ERROR_MESSAGE );
+					}
+		}
+		});
+		
 		
 		panelS.add(bOdustanak);
 		panelS.add(bPotvrda);
