@@ -5,6 +5,7 @@ import java.util.List;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
+import rs.ac.uns.ftn.projekat.classes.Student;
 
 public class BazaPredmet {
 
@@ -111,5 +112,12 @@ public class BazaPredmet {
 		}
 	}
 
+	public void dodajStudenta(String sifra_predmeta, Student s) {
+		for (Predmet pr : predmeti) {
+			if (pr.getSifra_predmeta().equals(sifra_predmeta)) {
+				pr.getStudenti().add(s);
+			}
+		}
+	}
 	
 }
