@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.projekat.mainapp;
 import javax.swing.JFrame;
 
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
+import rs.ac.uns.ftn.projekat.dialogs.IzmeniStudenta;
 import rs.ac.uns.ftn.projekat.view.MainFrame;
 
 public class myapp {
@@ -20,6 +21,8 @@ public class myapp {
 
 		MainFrame mf= new MainFrame();
 		mf.setVisible(true);
+		
+	//	IzmeniStudenta is=new IzmeniStudenta(mf);
 		
 	
 	}
