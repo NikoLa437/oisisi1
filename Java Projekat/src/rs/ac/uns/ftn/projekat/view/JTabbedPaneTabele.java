@@ -44,7 +44,7 @@ public class JTabbedPaneTabele extends JTabbedPane {
 
 			@Override
 			public void stateChanged(ChangeEvent evt) {
-
+				
 			    JTabbedPane tabbedPane = (JTabbedPane)evt.getSource();
 			    selektovan_tab = tabbedPane.getSelectedIndex();
 			    if(selektovan_tab == 2) {

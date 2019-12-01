@@ -81,7 +81,7 @@ public class BazaPredmet {
 
 		}
 		case 5:
-			return Integer.toString(0);
+			return Integer.toString(0);//uraditi
 			
 		default:
 			return null;

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 
 import rs.ac.uns.ftn.projekat.dialogs.ObrisiPredmet;
+import rs.ac.uns.ftn.projekat.dialogs.ObrisiProfesora;
 import rs.ac.uns.ftn.projekat.dialogs.ObrisiStudenta;
 import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
 
@@ -26,7 +27,9 @@ public class CreateDeleteAction extends AbstractAction{
 		if(JTabbedPaneTabele.selektovan_tab == 2) {
 			ObrisiPredmet op = new ObrisiPredmet(new JFrame());
 		}
-		
+		if(JTabbedPaneTabele.selektovan_tab == 1) {
+			ObrisiProfesora op = new ObrisiProfesora(new JFrame());
+		}
 		if(JTabbedPaneTabele.selektovan_tab == 0) {
 			 ObrisiStudenta os= new ObrisiStudenta(new JFrame());
 		}

@@ -33,6 +33,7 @@ public class PredmetJTable extends JTable {
 		this.getTableHeader().setReorderingAllowed(false);
 		this.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		
+
 		jt=this;
 	    model = this.getModel();
 	    
@@ -41,19 +42,12 @@ public class PredmetJTable extends JTable {
 	        public void mouseReleased(MouseEvent e) {
 	        	JTable jt = (JTable)e.getComponent();
 	            selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
-	            System.out.print(selectedRow);
 	        }
 	    });
 		
+	    //sortiranje
 		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
 		this.setRowSorter(sorter);
-		ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
-		 
-		int columnIndexToSort = 1;
-		sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
-		 
-		sorter.setSortKeys(sortKeys);
-		sorter.sort();
 		
 		sorter.setSortable(6, false);
 	}

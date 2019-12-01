@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import rs.ac.uns.ftn.projekat.actions.CreateDeleteAction;
 import rs.ac.uns.ftn.projekat.actions.CreateEditAction;
 import rs.ac.uns.ftn.projekat.actions.CreateEntityAction;
+import rs.ac.uns.ftn.projekat.additionalclass.PretragaPredmeta;
 import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
 
@@ -95,6 +96,18 @@ public class ToolBar extends JToolBar {
 		searchbtn.setMargin(new Insets(0, 0, 0, 0));
 		searchbtn.setBorder(null);
 		searchbtn.setOpaque(false);
+		
+		searchbtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String tekst = textField.getText();
+				if(JTabbedPaneTabele.selektovan_tab == 2) {
+					PretragaPredmeta pp = new PretragaPredmeta(tekst);
+				}
+
+			}
+		});
 		
 		
 		this.add(addbtn);
