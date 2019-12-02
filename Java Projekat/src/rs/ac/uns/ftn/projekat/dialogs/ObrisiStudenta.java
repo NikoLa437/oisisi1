@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import rs.ac.uns.ftn.projekat.classes.Student;
@@ -25,11 +26,15 @@ public class ObrisiStudenta extends JDialog{
 	public ObrisiStudenta(JFrame parent) {
 		super(parent,"Brisanje studenata",true);
 		
+		if(BazaStudent.getInstance().getStudenti().size()==0) {
+			JOptionPane.showMessageDialog(null, "Ne postoji ili nije selektovan ni jedan student", "Error", JOptionPane.ERROR_MESSAGE );
+	        dispose();
+		}else {
+		
 		this.setSize(400,200);
 		this.setLayout(new BorderLayout());
 		
 		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		
 		JLabel lblTxt = new JLabel("Da li ste sigurni da zelite da izbrisete izabranog studenta?");
 		
 		add(lblTxt,BorderLayout.CENTER);
@@ -50,11 +55,10 @@ public class ObrisiStudenta extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				Student s= BazaStudent.getInstance().getRow(StudentJTable.selectedRow);
-				BazaStudent.getInstance().izbrisiStudenta(s.getIndeks());
-				
-				dispose();
-				StudentJTable.osvezi();
+					Student s= BazaStudent.getInstance().getRow(StudentJTable.selectedRow);
+					BazaStudent.getInstance().izbrisiStudenta(s.getIndeks());
+					dispose();
+					StudentJTable.osvezi();
 			}
 		});
 		
@@ -66,5 +70,6 @@ public class ObrisiStudenta extends JDialog{
 		this.setResizable(false);
 		this.setLocationRelativeTo(parent);
 		this.setVisible(true);
+		}
 	}
 }
