@@ -44,11 +44,10 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 			this.editorButton = new JButton("Prikazi");
 
 //			this.editorButton.addActionListener(new ActionListener() {
-//				// mozemo odavde pozvati nas kontroler da se nesto smisleno odradi
 //				@Override
 //				public void actionPerformed(ActionEvent e) {
-//					fireEditingStopped();
-//					JOptionPane.showMessageDialog(table, "Selektovan je igrac u redu: " + table.getSelectedRow());
+//				
+//					//za prikaz studenata
 //				}
 //			});
 

@@ -81,7 +81,7 @@ public class BazaPredmet {
 
 		}
 		case 5:
-			return Integer.toString(0);//predmet.getStudenti().size();(kada Nikola uradi dodavanje studenata na predmet)
+			return Integer.toString(predmet.getStudenti().size());
 		default:
 			return null;
 		}
@@ -112,6 +112,14 @@ public class BazaPredmet {
 	}
 
 	public void dodajStudenta(String sifra_predmeta, Student s) {
+		for (Predmet pr : predmeti) {
+			if (pr.getSifra_predmeta().equals(sifra_predmeta)) {
+				pr.getStudenti().add(s);
+			}
+		}
+	}
+	
+	public void obrisiStudenta(String sifra_predmeta, Student s) {
 		for (Predmet pr : predmeti) {
 			if (pr.getSifra_predmeta().equals(sifra_predmeta)) {
 				pr.getStudenti().add(s);
