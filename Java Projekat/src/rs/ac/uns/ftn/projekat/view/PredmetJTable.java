@@ -31,7 +31,6 @@ public class PredmetJTable extends JTable {
 		this.setModel(new AbstractTableModelPredmet());
 		new ButtonColumnPredmet(this, 6);
 		this.getTableHeader().setReorderingAllowed(false);
-		this.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		
 
 		jt=this;

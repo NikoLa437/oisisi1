@@ -81,8 +81,7 @@ public class BazaPredmet {
 
 		}
 		case 5:
-			return Integer.toString(0);//uraditi
-			
+			return Integer.toString(0);//predmet.getStudenti().size();(kada Nikola uradi dodavanje studenata na predmet)
 		default:
 			return null;
 		}

@@ -94,8 +94,4 @@ public class PretragaPredmeta {
 		}
 		
 	}
-
-	public void setSvi_predmeti(List<Predmet> svi_predmeti) {
-		this.svi_predmeti = svi_predmeti;
-	}
 }

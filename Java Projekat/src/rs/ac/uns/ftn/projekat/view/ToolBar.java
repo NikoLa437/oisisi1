@@ -19,6 +19,7 @@ import rs.ac.uns.ftn.projekat.actions.CreateEntityAction;
 import rs.ac.uns.ftn.projekat.additionalclass.PretragaPredmeta;
 import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
+import rs.ac.uns.ftn.projekat.dialogs.DodajStudentaNaPredmet;
 
 public class ToolBar extends JToolBar {
 
@@ -55,6 +56,15 @@ public class ToolBar extends JToolBar {
 		studbtn.setBorder(null);
 		studbtn.setOpaque(false);
 		studbtn.setVisible(false);
+		
+		studbtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		
+				DodajStudentaNaPredmet dpnp = new DodajStudentaNaPredmet(new JFrame());
+			}
+		});
 		
 		profbtn = new JButton();
 		profbtn.setIcon(ScaleIcon.ScaleIconSize("icon/proficon.png"));
