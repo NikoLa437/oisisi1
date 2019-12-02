@@ -48,9 +48,10 @@ public class BazaStudent {
 	public Student getStudentInd(String idx) {
 		Student s= null;
 		for(Student p : studenti) {
-			if(p.getIndeks().equals(idx))
+			if(p.getIndeks().equals(idx)) {
 				s=p;
 				break;
+			}
 		}
 		return s;
 	}
@@ -153,6 +154,15 @@ public class BazaStudent {
 				s.getPredmeti().add(p);
 			}
 		}
+	}
+	
+	public ArrayList<String> getIndekse(){
+		ArrayList<String> lista = new ArrayList<String>();
+		
+		for(Student s : studenti) {
+			lista.add(s.getIndeks());
+		}	
+		return lista;
 	}
 	
 }
