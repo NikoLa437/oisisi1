@@ -1,0 +1,145 @@
+package rs.ac.uns.ftn.projekat.dialogs;
+
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import rs.ac.uns.ftn.projekat.classes.Predmet;
+import rs.ac.uns.ftn.projekat.classes.Student;
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.data.BazaStudent;
+import rs.ac.uns.ftn.projekat.view.PredmetJTable;
+
+public class ListaStudenataNaPredmetu extends JDialog{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static String selRow = "";
+	
+	public ListaStudenataNaPredmetu(JFrame parent) {
+		super(parent,"Lista studenata",true);
+		
+		//String selektovaniIndeks="";
+		this.setSize(300,200);
+		this.setLayout(new BorderLayout());
+
+		JPanel p1= new JPanel();
+		p1.setPreferredSize(new Dimension(30,20));
+		JPanel p2= new JPanel();
+		p2.setPreferredSize(new Dimension(30,20));
+		JPanel panelC = new JPanel(new FlowLayout(FlowLayout.CENTER));  // panel za unos 
+		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  // panel za button-e
+		
+		Button bPotvrda=new Button("Potvrda");
+		Button bOdustani=new Button("Odustani");
+		
+		///////////////////////////////////////////////////////////////
+		DefaultListModel<String> listModel = new DefaultListModel<>();
+		
+		Predmet p = BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow);
+		ArrayList<Student> listaStudenata= new ArrayList<Student>();
+		listaStudenata= p.getStudenti();
+		ArrayList<String> listaIndeksa= new ArrayList<String>();
+		
+		for(Student s : listaStudenata) {
+			listaIndeksa.add(s.getIndeks());
+		}
+		
+			listaIndeksa.add("RA133-2017");
+			listaIndeksa.add("RA-122-2017");
+			listaIndeksa.add("RA133-2017");
+			listaIndeksa.add("RA-122-2017");
+			listaIndeksa.add("RA133-2017");
+			listaIndeksa.add("RA-122-2017");
+			listaIndeksa.add("RA133-2017");
+			listaIndeksa.add("RA-122-2017");
+			listaIndeksa.add("RA133-2017");
+			listaIndeksa.add("RA-122-2017");
+			listaIndeksa.add("RA133-2017");
+			listaIndeksa.add("RA-122-2017");
+			listaIndeksa.add("RA133-2017");
+			listaIndeksa.add("RA-122-2017");
+			listaIndeksa.add("RA133-2017");
+			listaIndeksa.add("RA-122-2017");
+			
+		
+		listModel.addAll(listaIndeksa);
+		
+		JList<String> lista = new JList<>(listModel);
+		
+		lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		lista.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		lista.setVisibleRowCount(5);
+		////////////////////////////////////////////////////////////////
+		
+		lista.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				if (!e.getValueIsAdjusting()) {
+					selRow = lista.getSelectedValue();
+	             }
+			}
+			
+		});
+		
+		
+
+		
+		bOdustani.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		bPotvrda.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listaIndeksa.remove(selRow);
+				listModel.removeAllElements();
+				listModel.addAll(listaIndeksa);
+				lista.updateUI();
+				
+			}
+		});
+		
+		panelC.add(new JScrollPane(lista));
+		panelC.add(lista);
+		
+		panelC.add(new JScrollPane(lista));
+		
+		panelS.add(bOdustani);
+		panelS.add(bPotvrda);
+		
+		this.add(p1,BorderLayout.NORTH);
+		this.add(panelC,BorderLayout.CENTER);
+		
+		this.add(panelS,BorderLayout.SOUTH);
+		this.setTitle("Lista studenata");  
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}	
+}
