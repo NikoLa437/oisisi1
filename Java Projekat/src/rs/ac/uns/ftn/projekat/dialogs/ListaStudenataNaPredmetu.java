@@ -81,7 +81,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 			listaIndeksa.add("RA133-2017");
 			listaIndeksa.add("RA-122-2017");
 			
-		
+		//zaducuuu
 		listModel.addAll(listaIndeksa);
 		
 		JList<String> lista = new JList<>(listModel);
