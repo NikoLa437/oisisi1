@@ -37,6 +37,11 @@ public class IzmeniStudenta extends JDialog{
 	public IzmeniStudenta(JFrame parent) {
 		super(parent,"Izmena studenta",true);
 		
+		if(BazaStudent.getInstance().getStudenti().size()==0) {
+			JOptionPane.showMessageDialog(null, "Ne postoji ili nije selektovan ni jedan student", "Error", JOptionPane.ERROR_MESSAGE );
+	        dispose();
+		}else {
+		
 		Student s= new Student();
 		s=BazaStudent.getInstance().getRow(StudentJTable.selectedRow);
 	
@@ -281,7 +286,7 @@ public class IzmeniStudenta extends JDialog{
 		this.setResizable(false);
 		this.setLocationRelativeTo(parent);
 		this.setVisible(true);
-
+		}
 	}
 	
 	
