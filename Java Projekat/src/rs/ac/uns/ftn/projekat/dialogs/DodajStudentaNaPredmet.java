@@ -27,6 +27,11 @@ import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class DodajStudentaNaPredmet extends JDialog{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public DodajStudentaNaPredmet(JFrame parent) {
 		super(parent,"Dodavanje studenta na predmet",true);
 		
@@ -81,6 +86,7 @@ public class DodajStudentaNaPredmet extends JDialog{
 						if(s.getGod_studija()==pr.getGodina_studija()) {
 							BazaStudent.getInstance().dodajPredmet(s.getIndeks(), pr);
 							BazaPredmet.getInstance().dodajStudenta(pr.getSifra_predmeta(), s);
+							dispose();
 						}else {
 							JOptionPane.showMessageDialog(null, "Nije moguce dodati studenta na predmet koji su razlicitih godina", "Error", JOptionPane.ERROR_MESSAGE );
 						}
@@ -94,8 +100,16 @@ public class DodajStudentaNaPredmet extends JDialog{
 				
 			}
 		});
+		
+		panelS.add(bOdustanak);
+		panelS.add(bPotvrda);
+		
+		this.add(panelC,BorderLayout.CENTER);
+		this.add(panelS,BorderLayout.SOUTH);
+		
+		this.setResizable(false);
+		this.setLocationRelativeTo(parent);
+		this.setVisible(true);
 
-		
-		
 	}
 }
