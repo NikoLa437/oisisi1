@@ -122,8 +122,8 @@ public class BazaPredmet {
 	public void obrisiStudenta(String sifra_predmeta, Student s) {
 		for (Predmet pr : predmeti) {
 			if (pr.getSifra_predmeta().equals(sifra_predmeta)) {
-				pr.getStudenti().add(s);
-			}
+				pr.getStudenti().remove(s)	;
+				}
 		}
 	}
 	
