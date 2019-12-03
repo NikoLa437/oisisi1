@@ -58,34 +58,15 @@ public class ListaStudenataNaPredmetu extends JDialog{
 		Predmet p = BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow);
 		ArrayList<Student> listaStudenata= new ArrayList<Student>();
 		listaStudenata= p.getStudenti();
-		ArrayList<String> listaIndeksa= new ArrayList<String>();
+		
 		
 		for(Student s : listaStudenata) {
-			listaIndeksa.add(s.getIndeks());
+			listModel.addElement(s.getIndeks());
 		}
-		
-			listaIndeksa.add("RA133-2017");
-			listaIndeksa.add("RA-122-2017");
-			listaIndeksa.add("RA133-2017");
-			listaIndeksa.add("RA-122-2017");
-			listaIndeksa.add("RA133-2017");
-			listaIndeksa.add("RA-122-2017");
-			listaIndeksa.add("RA133-2017");
-			listaIndeksa.add("RA-122-2017");
-			listaIndeksa.add("RA133-2017");
-			listaIndeksa.add("RA-122-2017");
-			listaIndeksa.add("RA133-2017");
-			listaIndeksa.add("RA-122-2017");
-			listaIndeksa.add("RA133-2017");
-			listaIndeksa.add("RA-122-2017");
-			listaIndeksa.add("RA133-2017");
-			listaIndeksa.add("RA-122-2017");
-			
-		//zaducuuu
-		listModel.addAll(listaIndeksa);
-		
+
+
 		JList<String> lista = new JList<>(listModel);
-		
+		lista.setFixedCellWidth(100);
 		lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		lista.setBorder(BorderFactory.createLineBorder(Color.black));
 		
@@ -117,11 +98,11 @@ public class ListaStudenataNaPredmetu extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				listaIndeksa.remove(selRow);
-				listModel.removeAllElements();
-				listModel.addAll(listaIndeksa);
+				Student s=BazaStudent.getInstance().getStudentInd(selRow);
+				listModel.removeElement(selRow);
+
+				BazaPredmet.getInstance().obrisiStudenta(p.getSifra_predmeta(), s);
 				lista.updateUI();
-				
 			}
 		});
 		
@@ -141,5 +122,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		
+		
 	}	
 }
