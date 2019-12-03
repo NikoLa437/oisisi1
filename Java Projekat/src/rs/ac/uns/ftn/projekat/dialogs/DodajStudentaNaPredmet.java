@@ -101,6 +101,8 @@ public class DodajStudentaNaPredmet extends JDialog{
 			}
 		});
 		
+		
+		
 		panelS.add(bOdustanak);
 		panelS.add(bPotvrda);
 		
