@@ -98,11 +98,18 @@ public class ListaStudenataNaPredmetu extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(listModel.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Ne postoji student na predmetu kojeg mozete izbrisati", "Error", JOptionPane.ERROR_MESSAGE );
+					dispose();
+					}
+				else {
 				Student s=BazaStudent.getInstance().getStudentInd(selRow);
 				listModel.removeElement(selRow);
 
 				BazaPredmet.getInstance().obrisiStudenta(p.getSifra_predmeta(), s);
 				lista.updateUI();
+				PredmetJTable.osvezi();
+				}
 			}
 		});
 		
