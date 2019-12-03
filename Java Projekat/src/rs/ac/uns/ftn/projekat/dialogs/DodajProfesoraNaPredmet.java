@@ -1,16 +1,15 @@
 package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -62,8 +61,8 @@ public class DodajProfesoraNaPredmet extends JDialog{
 		panelC.add(txtLicna, gbcT);
 		
 		
-		Button bPotvrda = new Button("Potvrda");
-		Button bOdustanak = new Button("Odustanak");
+		JButton bPotvrda = new JButton("Potvrda");
+		JButton bOdustanak = new JButton("Odustanak");
 		
 		bOdustanak.addActionListener(new ActionListener(){
 			@Override

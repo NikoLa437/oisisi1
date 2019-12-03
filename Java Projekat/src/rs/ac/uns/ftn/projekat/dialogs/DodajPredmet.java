@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,6 +8,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -56,8 +56,8 @@ public class DodajPredmet extends JDialog{
 		panelC.add(lblGodina,gbclbl(0,3));
 		panelC.add(cbGodStud,gbctxt(1,3));
 		
-		Button bPotvrda = new Button("Potvrda");
-		Button bOdustanak = new Button("Odustanak");
+		JButton bPotvrda = new JButton("Potvrda");
+		JButton bOdustanak = new JButton("Odustanak");
 		
 		bOdustanak.addActionListener(new ActionListener(){
 			@Override
