@@ -5,6 +5,7 @@ import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -53,8 +54,14 @@ public class ObrisiProfesora extends JDialog{
 			
 				Profesor p= BazaProfesor.getInstance().getRow(ProfesorJTable.selectedRow);
 				BazaProfesor.getInstance().izbrisiProfesora(p.getBr_licne());
-				
+				ArrayList<Predmet> predmeti = (ArrayList<Predmet>) BazaPredmet.getInstance().getPredmeti();
+				for(Predmet pr: predmeti) {
+					if(pr.getProfesor().getBr_licne() != null)
+						if(pr.getProfesor().getBr_licne().equals(p.getBr_licne()))
+							BazaPredmet.getInstance().izmeniPredmet(pr.getSifra_predmeta(), new Profesor(), pr.getNaziv(), pr.getSemestar(), pr.getGodina_studija());
+				}
 				dispose();
+				PredmetJTable.osvezi();
 				ProfesorJTable.osvezi();
 			}
 		});

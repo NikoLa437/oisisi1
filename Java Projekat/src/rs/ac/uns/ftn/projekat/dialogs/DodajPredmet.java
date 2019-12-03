@@ -72,7 +72,15 @@ public class DodajPredmet extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				Predmet p= new Predmet();
 				int err = -1;
-
+				int err1 = -1;
+				for(Predmet prr: BazaPredmet.getInstance().getPredmeti()) {
+					if(prr.getSifra_predmeta().equals(txtSifra.getText())) {
+						err1=1;
+						break;
+					}
+				}
+				
+				
 				if(cbGodStud.getSelectedIndex() == 0) 
 					if(!(cbSemestar.getSelectedIndex() == 0 || cbSemestar.getSelectedIndex() == 1))
 						err = 1;
@@ -85,17 +93,20 @@ public class DodajPredmet extends JDialog{
 				if(cbGodStud.getSelectedIndex() == 3) 
 					if(!(cbSemestar.getSelectedIndex() == 6 || cbSemestar.getSelectedIndex() == 7))
 						err = 1;
-				if(txtSifra.getText().isEmpty() || txtNaziv.getText().isEmpty() || err == 1)
-					JOptionPane.showMessageDialog(null, "Pogresan unos podataka!", "Error", JOptionPane.ERROR_MESSAGE );
+				if(txtSifra.getText().isEmpty() || txtNaziv.getText().isEmpty())
+					JOptionPane.showMessageDialog(null, "Sifra i naziv predmeta moraju biti popunjeni!", "Error", JOptionPane.ERROR_MESSAGE );
+				else if(err == 1)
+					JOptionPane.showMessageDialog(null, "Neodgovarajuci semestar za izabranu godinu!", "Error", JOptionPane.ERROR_MESSAGE );
+				else if(err1 != -1)
+					JOptionPane.showMessageDialog(null, "Sifra predmeta mora biti jedinstvena!", "Error", JOptionPane.ERROR_MESSAGE );
 				else {
 						p.setSifra_predmeta(txtSifra.getText());
 						p.setNaziv(txtNaziv.getText());
 						p.setSemestar(cbSemestar.getSelectedIndex() + 1);
 						p.setGodina_studija(cbGodStud.getSelectedIndex()+1);
 						BazaPredmet.getInstance().dodajPredmet(p.getSifra_predmeta(), p.getNaziv(), p.getSemestar(), p.getGodina_studija());
-					
+						dispose();			
 				}
-				dispose();
 				PredmetJTable.osvezi();
 			}
 		});

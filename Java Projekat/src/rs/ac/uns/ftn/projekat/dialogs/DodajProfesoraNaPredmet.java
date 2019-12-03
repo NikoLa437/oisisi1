@@ -85,15 +85,15 @@ public class DodajProfesoraNaPredmet extends JDialog{
 						nasao = true;
 						break;
 					}
-				}	
+				}
 				if(txtLicna.getText().isEmpty())
 					JOptionPane.showMessageDialog(null, "Podaci se moraju uneti!", "Error", JOptionPane.ERROR_MESSAGE );
 				else if(nasao == false)
 					JOptionPane.showMessageDialog(null, "Unet pogresan broj licne karte!", "Error", JOptionPane.ERROR_MESSAGE );
-				else {
-						
-							
+				
+				else {				
 						BazaPredmet.getInstance().izmeniPredmet(pr.getSifra_predmeta(),prof, pr.getNaziv(), pr.getSemestar(), pr.getGodina_studija());
+						prof.addPredmet(pr);
 					
 				}
 				dispose();

@@ -95,17 +95,18 @@ public class IzmeniPredmet extends JDialog{
 				if(cbGodStud.getSelectedIndex() == 3) 
 					if(!(cbSemestar.getSelectedIndex() == 6 || cbSemestar.getSelectedIndex() == 7))
 						err = 1;
-				if(txtSifra.getText().isEmpty() || txtNaziv.getText().isEmpty() || err == 1)
-					JOptionPane.showMessageDialog(null, "Pogresan unos podataka!", "Error", JOptionPane.ERROR_MESSAGE );
+				if(txtNaziv.getText().isEmpty())
+					JOptionPane.showMessageDialog(null, "Naziv predmeta ne sme biti prazan!", "Error", JOptionPane.ERROR_MESSAGE );
+				else if(err ==1)
+					JOptionPane.showMessageDialog(null, "Neodgovarajuci semestar za izabranu godinu!", "Error", JOptionPane.ERROR_MESSAGE );
 				else {
 						p.setSifra_predmeta(txtSifra.getText());
 						p.setNaziv(txtNaziv.getText());
 						p.setSemestar(cbSemestar.getSelectedIndex() + 1);
 						p.setGodina_studija(cbGodStud.getSelectedIndex()+1);
 						BazaPredmet.getInstance().izmeniPredmet(p.getSifra_predmeta(),pr, p.getNaziv(), p.getSemestar(), p.getGodina_studija());
-					
+						dispose();
 				}
-				dispose();
 				PredmetJTable.osvezi();
 			}
 		});

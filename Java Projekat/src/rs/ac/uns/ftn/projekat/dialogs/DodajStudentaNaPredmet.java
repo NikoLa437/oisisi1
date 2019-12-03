@@ -87,6 +87,8 @@ public class DodajStudentaNaPredmet extends JDialog{
 							BazaStudent.getInstance().dodajPredmet(s.getIndeks(), pr);
 							BazaPredmet.getInstance().dodajStudenta(pr.getSifra_predmeta(), s);
 							dispose();
+							PredmetJTable.osvezi();
+
 						}else {
 							JOptionPane.showMessageDialog(null, "Nije moguce dodati studenta na predmet koji su razlicitih godina", "Error", JOptionPane.ERROR_MESSAGE );
 						}

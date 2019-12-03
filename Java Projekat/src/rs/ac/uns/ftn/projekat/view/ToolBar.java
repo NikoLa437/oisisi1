@@ -18,8 +18,10 @@ import rs.ac.uns.ftn.projekat.actions.CreateEditAction;
 import rs.ac.uns.ftn.projekat.actions.CreateEntityAction;
 import rs.ac.uns.ftn.projekat.additionalclass.PretragaPredmeta;
 import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.DodajStudentaNaPredmet;
+import rs.ac.uns.ftn.projekat.dialogs.UklanjanjeProfesoraNaPredmetu;
 
 public class ToolBar extends JToolBar {
 
@@ -79,8 +81,12 @@ public class ToolBar extends JToolBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		
+			if(BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow).getProfesor().getBr_licne() != null) {
+				UklanjanjeProfesoraNaPredmetu ep = new UklanjanjeProfesoraNaPredmetu(new JFrame());
+			}				
+			else {
 				DodajProfesoraNaPredmet dpnp = new DodajProfesoraNaPredmet(new JFrame());
+			}
 			}
 		});
 		
