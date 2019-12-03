@@ -56,7 +56,7 @@ public class JTabbedPaneTabele extends JTabbedPane {
 			    }
 
 			}
-
+ 
 		
 		    });
 		

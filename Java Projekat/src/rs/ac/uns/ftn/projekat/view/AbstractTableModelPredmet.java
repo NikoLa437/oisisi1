@@ -33,6 +33,11 @@ public class AbstractTableModelPredmet extends AbstractTableModel{
 		} 
 		return null;
 	}
+	
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return columnIndex == 6;
+	}
 
 	@Override
 	public String getColumnName(int column) {

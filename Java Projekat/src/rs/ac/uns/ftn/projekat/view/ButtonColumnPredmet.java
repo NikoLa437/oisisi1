@@ -8,10 +8,13 @@ import java.awt.event.MouseListener;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+
+import rs.ac.uns.ftn.projekat.dialogs.ListaStudenataNaPredmetu;
 
 
 public class ButtonColumnPredmet extends AbstractCellEditor
@@ -42,14 +45,21 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 			// dugme koje ce biti iscrtavanp
 			this.renderButton = new JButton("Prikazi");
 			this.editorButton = new JButton("Prikazi");
-
-//			this.editorButton.addActionListener(new ActionListener() {
-//				@Override
-//				public void actionPerformed(ActionEvent e) {
-//				
-//					//za prikaz studenata
-//				}
-//			});
+			
+			this.renderButton.setToolTipText("Prikazi Studente");
+			this.renderButton.setBorder(null);
+			this.renderButton.setOpaque(false);
+			this.renderButton.setContentAreaFilled(false);
+			this.renderButton.setBorderPainted(false);
+			
+			
+			this.editorButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					fireEditingStopped();
+					ListaStudenataNaPredmetu lsnp = new ListaStudenataNaPredmetu(new JFrame());
+				}
+			});
 
 			this.isEditorActive = false;
 		}
