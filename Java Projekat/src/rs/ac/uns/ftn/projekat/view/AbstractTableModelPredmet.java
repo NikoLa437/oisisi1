@@ -20,7 +20,10 @@ public class AbstractTableModelPredmet extends AbstractTableModel{
 
 	@Override
 	public int getRowCount() {
-		return BazaPredmet.getInstance().getPredmeti().size();
+		if(BazaPredmet.indikator == 0)
+			return BazaPredmet.getInstance().getPredmeti().size();
+		else
+			return BazaPredmet.getInstance().getFilterPredmeti().size();
 	}
 
 	@Override

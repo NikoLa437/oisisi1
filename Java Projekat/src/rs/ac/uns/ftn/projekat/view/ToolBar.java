@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +17,6 @@ import javax.swing.SwingConstants;
 import rs.ac.uns.ftn.projekat.actions.CreateDeleteAction;
 import rs.ac.uns.ftn.projekat.actions.CreateEditAction;
 import rs.ac.uns.ftn.projekat.actions.CreateEntityAction;
-import rs.ac.uns.ftn.projekat.additionalclass.PretragaPredmeta;
 import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
@@ -34,7 +34,8 @@ public class ToolBar extends JToolBar {
 
 	ToolBar (){
 		super(SwingConstants.HORIZONTAL);
-				
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS)); // zbog look and feel-a (menja se default layout)
+		
 		JTextField textField = new JTextField();
 		textField.setPreferredSize(new Dimension(150, textField.getPreferredSize().height));
 		textField.setMaximumSize( 
@@ -119,7 +120,7 @@ public class ToolBar extends JToolBar {
 			public void actionPerformed(ActionEvent e) {
 				String tekst = textField.getText();
 				if(JTabbedPaneTabele.selektovan_tab == 2) {
-					PretragaPredmeta pp = new PretragaPredmeta(tekst);
+					BazaPredmet.getInstance().PretraziPredmet(tekst);		
 				}
 
 			}

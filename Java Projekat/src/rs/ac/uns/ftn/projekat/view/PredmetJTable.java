@@ -40,7 +40,9 @@ public class PredmetJTable extends JTable {
 	        @Override
 	        public void mouseReleased(MouseEvent e) {
 	        	JTable jt = (JTable)e.getComponent();
-	            selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
+	        	
+	            if (jt.getSelectedRow() != -1)
+	            	selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
 	        }
 	    });
 		
