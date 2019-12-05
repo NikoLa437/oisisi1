@@ -71,7 +71,7 @@ public class ToolBar extends JToolBar {
 		
 		profbtn = new JButton();
 		profbtn.setIcon(ScaleIcon.ScaleIconSize("icon/proficon.png"));
-		profbtn.setToolTipText("Add Profesor");
+		profbtn.setToolTipText("Add/Delete Profesor");
 		profbtn.setMargin(new Insets(0, 0, 0, 0));
 		profbtn.setBorder(null);
 		profbtn.setOpaque(false);
