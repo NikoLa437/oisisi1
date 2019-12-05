@@ -3,9 +3,12 @@ package rs.ac.uns.ftn.projekat.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
+import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class BazaPredmet {
 
@@ -19,12 +22,14 @@ public class BazaPredmet {
 	}
 	
 	private List<Predmet> predmeti;
+	private List<Predmet> filter_predmet;
 	private List<String> kolone;
+	public static int indikator = 0;
 	
 	private BazaPredmet() {
 	
 		initPredmet();
-
+		filter_predmet = new ArrayList<Predmet>();
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Sifra");
 		this.kolone.add("Naziv");
@@ -43,9 +48,13 @@ public class BazaPredmet {
 	}
 	
 	public List<Predmet> getPredmeti() {
-		return predmeti;
+		return this.predmeti;
 	}
-
+	
+	public List<Predmet> getFilterPredmeti() {
+		return this.filter_predmet;
+	}
+	
 	public void setPredmeti(List<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
@@ -61,9 +70,13 @@ public class BazaPredmet {
 	public Predmet getRow(int rowIndex) {
 		return this.predmeti.get(rowIndex);
 	}
-
+	
 	public String getValueAt(int row, int column) {
-		Predmet predmet = this.predmeti.get(row);
+		Predmet predmet = new Predmet();
+		if(indikator == 0)
+			predmet = this.predmeti.get(row);
+		else
+			predmet = this.filter_predmet.get(row);
 		switch (column) {
 		case 0:
 			return predmet.getSifra_predmeta();
@@ -81,7 +94,7 @@ public class BazaPredmet {
 
 		}
 		case 5:
-			return Integer.toString(predmet.getStudenti().size());
+				return Integer.toString(predmet.getStudenti().size());
 		default:
 			return null;
 		}
@@ -126,5 +139,85 @@ public class BazaPredmet {
 				}
 		}
 	}
+	
+	public void PretraziPredmet(String kriterijum) {
+			ArrayList<Predmet> pretraga = new ArrayList<Predmet>();
+
+			if(!kriterijum.equals("")) {
+				try{
+					String[] podeljeno = kriterijum.split(";");
+					String[] kolone = new String[4];
+					String[] kriter = new String[4];
+					int brojac = 0;
+					for(String s: podeljeno)
+					{
+						String[] pom = s.split(":");
+						kolone[brojac] = pom[0];
+						kriter[brojac] = pom[1];
+						brojac++;
+					}
+					
+					if(!kolone[0].equals("naziv") && !kolone[0].equals("sifra") && !kolone[0].equals("semestar") && !kolone[0].equals("godina"))
+						JOptionPane.showMessageDialog(null, "Pogresan unos podataka!", "Error", JOptionPane.ERROR_MESSAGE );
+					else {
+						
+						for(Predmet p: predmeti)
+						{
+							boolean za_prikazati = false;
+							for(int i = 0; i < brojac; i++)
+							{
+								if(kolone[i].equals("naziv")) {
+									if(kriter[i].equals(p.getNaziv())) {
+										za_prikazati = true;
+									}else {
+										za_prikazati = false;
+										break;
+									}
+								}
+								if(kolone[i].equals("sifra")) {
+									if(kriter[i].equals(p.getSifra_predmeta())) {
+										za_prikazati = true;
+									}else {
+										za_prikazati = false;
+										break;
+									}
+								}
+								if(kolone[i].equals("semestar")) {
+									if(kriter[i].equals(Integer.toString(p.getSemestar()))) {
+										za_prikazati = true;
+									}else {
+										za_prikazati = false;
+										break;
+									}
+								}
+								if(kolone[i].equals("godina")) {
+									if(kriter[i].equals(Integer.toString(p.getGodina_studija()))) {
+										za_prikazati = true;
+									}else {
+										za_prikazati = false;
+										break;
+									}
+								}
+							}
+							if(za_prikazati== true) {
+								pretraga.add(p);
+							}
+								
+						}
+						indikator = 1;
+						filter_predmet = pretraga;
+						PredmetJTable.osvezi();
+					}
+				}catch(Exception e)
+				{
+					JOptionPane.showMessageDialog(null, "Pogresan unos podataka!", "Error", JOptionPane.ERROR_MESSAGE );
+				}
+			}
+			else
+			{
+				indikator = 0;
+				PredmetJTable.osvezi();
+			}			
+		}
 	
 }
