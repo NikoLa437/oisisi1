@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
+import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
@@ -68,11 +69,8 @@ public class UklanjanjeProfesoraNaPredmetu extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Profesor p = pr.getProfesor();
-				BazaPredmet.getInstance().izmeniPredmet(pr.getSifra_predmeta(), new Profesor(), pr.getNaziv(), pr.getSemestar(), pr.getGodina_studija());
-				p.removePredmet(pr);
+				PredmetController.getInstance().uklanjanjeProfesoraSaPredmet(pr);
 				dispose();
-				PredmetJTable.osvezi();
 			}
 		});
 		

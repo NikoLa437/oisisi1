@@ -18,12 +18,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
+import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class DodajPredmet extends JDialog{
 
 	private static final long serialVersionUID = -5495281142892800228L;
+	
+	public static JTextField txtSifra;
+	public static JTextField txtNaziv;
+	public static JComboBox cbGodStud;
+	public static JComboBox cbSemestar;
+
+
 
 	public DodajPredmet(JFrame parent) {
 		super(parent,"Dodavanje novog predmeta",true);
@@ -39,13 +47,13 @@ public class DodajPredmet extends JDialog{
 		JLabel lblSemestar= new JLabel("Semestar*");
 		JLabel lblGodina = new JLabel("Godina Studija*");
 		
-		JTextField txtSifra = new JTextField();
-		JTextField txtNaziv = new JTextField();
+		txtSifra = new JTextField();
+		txtNaziv = new JTextField();
 		
 		String[] sGodStud = { "I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)" };
-		JComboBox cbGodStud = new JComboBox(sGodStud);
+		cbGodStud = new JComboBox(sGodStud);
 		String[] sSemestar = { "I (prvi)", "II (drugi)", "III (treci)", "IV (cetvrti)", "V (peti)", "VI (sesti)", "VII (sedmi)", "VIII (osmi)" };
-		JComboBox cbSemestar = new JComboBox(sSemestar);
+		cbSemestar = new JComboBox(sSemestar);
 		
 		panelC.add(lblSifra, gbclbl(0,0));
 		panelC.add(txtSifra, gbctxt(1,0));
@@ -70,44 +78,8 @@ public class DodajPredmet extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Predmet p= new Predmet();
-				int err = -1;
-				int err1 = -1;
-				for(Predmet prr: BazaPredmet.getInstance().getPredmeti()) {
-					if(prr.getSifra_predmeta().equals(txtSifra.getText())) {
-						err1=1;
-						break;
-					}
-				}
-				
-				
-				if(cbGodStud.getSelectedIndex() == 0) 
-					if(!(cbSemestar.getSelectedIndex() == 0 || cbSemestar.getSelectedIndex() == 1))
-						err = 1;
-				if(cbGodStud.getSelectedIndex() == 1) 
-					if(!(cbSemestar.getSelectedIndex() == 2 || cbSemestar.getSelectedIndex() == 3))
-						err = 1;
-				if(cbGodStud.getSelectedIndex() == 2) 
-					if(!(cbSemestar.getSelectedIndex() == 4 || cbSemestar.getSelectedIndex() == 5))
-						err = 1;
-				if(cbGodStud.getSelectedIndex() == 3) 
-					if(!(cbSemestar.getSelectedIndex() == 6 || cbSemestar.getSelectedIndex() == 7))
-						err = 1;
-				if(txtSifra.getText().isEmpty() || txtNaziv.getText().isEmpty())
-					JOptionPane.showMessageDialog(null, "Sifra i naziv predmeta moraju biti popunjeni!", "Error", JOptionPane.ERROR_MESSAGE );
-				else if(err == 1)
-					JOptionPane.showMessageDialog(null, "Neodgovarajuci semestar za izabranu godinu!", "Error", JOptionPane.ERROR_MESSAGE );
-				else if(err1 != -1)
-					JOptionPane.showMessageDialog(null, "Sifra predmeta mora biti jedinstvena!", "Error", JOptionPane.ERROR_MESSAGE );
-				else {
-						p.setSifra_predmeta(txtSifra.getText());
-						p.setNaziv(txtNaziv.getText());
-						p.setSemestar(cbSemestar.getSelectedIndex() + 1);
-						p.setGodina_studija(cbGodStud.getSelectedIndex()+1);
-						BazaPredmet.getInstance().dodajPredmet(p.getSifra_predmeta(), p.getNaziv(), p.getSemestar(), p.getGodina_studija());
-						dispose();			
-				}
-				PredmetJTable.osvezi();
+				if(PredmetController.getInstance().dodajPredmet() == 1)
+					dispose();
 			}
 		});
 		

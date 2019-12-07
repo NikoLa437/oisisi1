@@ -18,6 +18,7 @@ import rs.ac.uns.ftn.projekat.actions.CreateDeleteAction;
 import rs.ac.uns.ftn.projekat.actions.CreateEditAction;
 import rs.ac.uns.ftn.projekat.actions.CreateEntityAction;
 import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
+import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
@@ -125,7 +126,7 @@ public class ToolBar extends JToolBar {
 				}
 				
 				if(JTabbedPaneTabele.selektovan_tab == 2) {
-					BazaPredmet.getInstance().PretraziPredmet(tekst);		
+					PredmetController.getInstance().PretraziPredmet(tekst);		
 				}
 
 			}

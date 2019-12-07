@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
+import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
@@ -27,6 +28,8 @@ public class DodajProfesoraNaPredmet extends JDialog{
 
 
 	private static final long serialVersionUID = -4852567883901855950L;
+	
+	public static JTextField txtLicna;
 	
 	public DodajProfesoraNaPredmet(JFrame parent) {
 		super(parent,"Dodavanje profesora na predmet",true);
@@ -40,7 +43,7 @@ public class DodajProfesoraNaPredmet extends JDialog{
 		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  // panel za button-e
 		
 		JLabel lblLicna = new JLabel("Broj licne karte profesora*");
-		JTextField txtLicna = new JTextField();
+		txtLicna = new JTextField();
 		
 		
 		GridBagConstraints gbcL= new GridBagConstraints();
@@ -75,28 +78,8 @@ public class DodajProfesoraNaPredmet extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				List<Profesor> profesori = BazaProfesor.getInstance().getProfesori();
-				Profesor prof = new Profesor();
-				boolean nasao = false;
-				for(Profesor p1: profesori) {
-					if(txtLicna.getText().equals(p1.getBr_licne())) {
-						prof = p1;
-						nasao = true;
-						break;
-					}
-				}
-				if(txtLicna.getText().isEmpty())
-					JOptionPane.showMessageDialog(null, "Podaci se moraju uneti!", "Error", JOptionPane.ERROR_MESSAGE );
-				else if(nasao == false)
-					JOptionPane.showMessageDialog(null, "Unet pogresan broj licne karte!", "Error", JOptionPane.ERROR_MESSAGE );
-				
-				else {				
-						BazaPredmet.getInstance().izmeniPredmet(pr.getSifra_predmeta(),prof, pr.getNaziv(), pr.getSemestar(), pr.getGodina_studija());
-						prof.addPredmet(pr);
-					
-				}
-				dispose();
-				PredmetJTable.osvezi();
+				if(PredmetController.getInstance().dodajProfesoraNaPredmet(pr) == 1)
+					dispose();
 			}
 		});
 		
