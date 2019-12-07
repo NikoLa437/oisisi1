@@ -25,7 +25,6 @@ public class ProfesorJTable extends JTable{
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelProfesor());
 		this.getTableHeader().setReorderingAllowed(false);
-		this.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		
 		// sortiranje edit Nikola
 			TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());

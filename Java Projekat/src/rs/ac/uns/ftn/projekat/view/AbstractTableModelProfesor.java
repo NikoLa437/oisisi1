@@ -15,7 +15,10 @@ public class AbstractTableModelProfesor  extends AbstractTableModel{
 
 	@Override
 	public int getRowCount() {
-		return  BazaProfesor.getInstance().getProfesori().size();
+		if(BazaProfesor.indikator == 0)
+			return  BazaProfesor.getInstance().getProfesori().size();
+		else
+			return BazaProfesor.getInstance().getFilterProfesori().size();
 	}
 
 	@Override

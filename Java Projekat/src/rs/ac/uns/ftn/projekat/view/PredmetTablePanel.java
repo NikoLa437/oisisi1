@@ -29,12 +29,7 @@ public class PredmetTablePanel  extends JPanel{
 		this();
 		leftPanel.setPreferredSize(new Dimension(leftGap, leftGap));
 		rightPanel.setPreferredSize(new Dimension(leftGap, leftGap));
-//		JButton b = (JButton) c;
-//		b.setToolTipText("Prikazi Studente");
-//		b.setBorder(null);
-//		b.setOpaque(false);
-//		b.setContentAreaFilled(false);
-//		b.setBorderPainted(false);
+
 		add(c, BorderLayout.CENTER);
 			
 	}

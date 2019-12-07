@@ -23,7 +23,7 @@ public class MainFrame extends JFrame {
 		Dimension dimension = kit.getScreenSize();
 		this.setSize(dimension.width*3/4,dimension.height*3/4);
 		this.setLocationRelativeTo(null);
-		this.setTitle("Studentska sluzba");
+		this.setTitle("Studentska služba");
 		ToolBar toolbar = new ToolBar();
 		this.add(toolbar, BorderLayout.NORTH);
         
