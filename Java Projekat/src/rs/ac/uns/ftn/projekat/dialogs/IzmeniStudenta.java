@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -25,6 +26,7 @@ import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
+import rs.ac.uns.ftn.projekat.controllers.StudentController;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
@@ -33,6 +35,19 @@ public class IzmeniStudenta extends JDialog{
 	/**
 	 * 
 	 */
+	public static JTextField txtIme;
+	public static JTextField txtPrezime;
+	public static JTextField txtDatumRodj;
+	public static JTextField txtAdresa;
+	public static JTextField txtBrojTel;
+	public static JTextField txtBrojInd;
+	public static JTextField txteadresa;
+	public static JTextField txtdatumUpisa;
+	public static JTextField txtprosecnaOcena;
+	public static JComboBox cbGodStud;
+	public static JRadioButton rbBudzet;
+	public static JRadioButton rbSamof;
+	
 	private static final long serialVersionUID = 1L;
 	public IzmeniStudenta(JFrame parent) {
 		super(parent,"Izmena studenta",true);
@@ -62,21 +77,21 @@ public class IzmeniStudenta extends JDialog{
 		JLabel lbldatumUpisa = new JLabel("Datum upisa*");
 		JLabel lblprosecnaOcena = new JLabel("Prosecna ocena*");
 		
-		JTextField txtIme = new JTextField();
-		JTextField txtPrezime = new JTextField();
-		JTextField txtDatumRodj = new JTextField();
-		JTextField txtAdresa = new JTextField();
-		JTextField txtBrojTel = new JTextField();
-		JTextField txtBrojInd = new JTextField();
-		JTextField txteadresa = new JTextField();
-		JTextField txtdatumUpisa = new JTextField();
-		JTextField txtprosecnaOcena = new JTextField();
+		 txtIme = new JTextField();
+		 txtPrezime = new JTextField();
+		 txtDatumRodj = new JTextField();
+		 txtAdresa = new JTextField();
+		 txtBrojTel = new JTextField();
+		 txtBrojInd = new JTextField();
+		 txteadresa = new JTextField();
+		 txtdatumUpisa = new JTextField();
+		 txtprosecnaOcena = new JTextField();
 		
 		String[] sGodStud = { "I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)" };
 		JComboBox cbGodStud = new JComboBox(sGodStud);
 	
-		JRadioButton rbBudzet = new JRadioButton("Budzet");
-		JRadioButton rbSamof = new JRadioButton("Samofinansiranje");
+		 rbBudzet = new JRadioButton("Budzet");
+		 rbSamof = new JRadioButton("Samofinansiranje");
 
 		ButtonGroup btnGroup1 = new ButtonGroup();
 		btnGroup1.add(rbBudzet);
@@ -127,8 +142,8 @@ public class IzmeniStudenta extends JDialog{
 		panelC.add(rbBudzet,gbclbl(0,10));
 		panelC.add(rbSamof,gbclbl(0,11));
 		
-		Button bPotvrda = new Button("Potvrda");
-		Button bOdustanak = new Button("Odustanak");
+		JButton bPotvrda = new JButton("Potvrda");
+		JButton bOdustanak = new JButton("Odustanak");
 		
 		bOdustanak.addActionListener(new ActionListener(){
 			@Override
@@ -142,87 +157,8 @@ public class IzmeniStudenta extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Student s= new Student();
-				
-				
-				if(!txtIme.getText().isEmpty()) {
-					s.setIme(txtIme.getText());
-					if(!txtPrezime.getText().isEmpty()) {
-						s.setPrezime(txtPrezime.getText());
-							if(!txtAdresa.getText().isEmpty()) {
-								s.setAdresa_stanovanja(txtAdresa.getText());
-								if(!txtBrojTel.getText().isEmpty()) {
-									s.setKontakt_telefon(txtBrojTel.getText());
-											if(!txteadresa.getText().isEmpty()) {
-												s.setEmail_adresa(txteadresa.getText());
-												s.setIndeks(txtBrojInd.getText());
-												try {
-													double p_o= Double.parseDouble(txtprosecnaOcena.getText());
-													s.setProsecna_ocena(p_o);
-													//try catch za datum upisa 
-														try {
-															SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
-															Date date = formatter.parse(txtdatumUpisa.getText());
-															s.setDatum_upisa(date);
-															//try catch za datum studenta
-																try {
-																	date = formatter.parse(txtDatumRodj.getText());
-																	s.setDatum_rodjenja(date);
-																	String g_s = cbGodStud.getSelectedItem().toString(); // godina studija	
-																	if(g_s.equals("I (prva)")){
-																		s.setGod_studija(1);
-																	}else if(g_s.equals("II (druga)")){
-																		s.setGod_studija(2);
-																	}else if(g_s.equals("III (treca)")){
-																		s.setGod_studija(3);
-																	}else {
-																		s.setGod_studija(4);
-																	}
-																	// status
-																	if(rbSamof.isSelected()) {
-																		s.setStatus(Status.S);
-																	}else {
-																		s.setStatus(Status.B);
-																	}
-																	//
-																	// dodavanje studenta ako je proslo sve
-																	BazaStudent.getInstance().izmeniStudenta(s.getIndeks(),s.getIme(), s.getPrezime(), s.getAdresa_stanovanja(), s.getKontakt_telefon(), s.getEmail_adresa(), s.getDatum_rodjenja(), s.getDatum_upisa(), s.getGod_studija(), s.getProsecna_ocena(),s.getStatus());
-																	dispose();
-																	StudentJTable.osvezi();
-																}catch(Exception ee) {
-																	JOptionPane.showMessageDialog(null, "Pogresan format datuma(datum mora biti u formatu dd.MM.yyyy.", "Error", JOptionPane.ERROR_MESSAGE );
-																}
-																// ako prodje i ovaj try catch znaci da je sve uredu i mozemo napraviti studenta
-															
-														
-														}catch(Exception e1) {
-															JOptionPane.showMessageDialog(null, "Pogresan unos datuma upisa! ( Format : yyyy. )", "Error", JOptionPane.ERROR_MESSAGE );
-														}
-													
-												}catch(Exception e1) {
-													JOptionPane.showMessageDialog(null, "Pogresan unos prosecne ocene!", "Error", JOptionPane.ERROR_MESSAGE );
-												}
-											
-											}else {
-												JOptionPane.showMessageDialog(null, "Pogresan unos e-mail adrese!", "Error", JOptionPane.ERROR_MESSAGE );
-											}
-								}else {
-									JOptionPane.showMessageDialog(null, "Pogresan unos broja telefona!", "Error", JOptionPane.ERROR_MESSAGE );
-								}
-							}else {
-								JOptionPane.showMessageDialog(null, "Pogresan unos adrese!", "Error", JOptionPane.ERROR_MESSAGE );
-							}
-					}else {
-						JOptionPane.showMessageDialog(null, "Pogresan unos prezimena!", "Error", JOptionPane.ERROR_MESSAGE );
-					}
-					
-				}else {
-					JOptionPane.showMessageDialog(null, "Pogresan unos imena!", "Error", JOptionPane.ERROR_MESSAGE );
-				}
-					
-					
-				//dispose();
-				//StudentJTable.osvezi();	
+				if(StudentController.getInstance().izmeniStudenta()==1)
+					dispose();	
 			}
 		});
 		
