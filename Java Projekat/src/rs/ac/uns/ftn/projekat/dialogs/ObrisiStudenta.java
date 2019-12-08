@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import rs.ac.uns.ftn.projekat.classes.Student;
+import rs.ac.uns.ftn.projekat.controllers.StudentController;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
@@ -54,11 +55,8 @@ public class ObrisiStudenta extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
-					Student s= BazaStudent.getInstance().getRow(StudentJTable.selectedRow);
-					BazaStudent.getInstance().izbrisiStudenta(s.getIndeks());
-					dispose();
-					StudentJTable.osvezi();
+				StudentController.getInstance().obrisiStudenta();
+				dispose();	
 			}
 		});
 		
