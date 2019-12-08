@@ -24,6 +24,7 @@ import javax.swing.event.ListSelectionListener;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Student;
+import rs.ac.uns.ftn.projekat.controllers.StudentController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
@@ -33,7 +34,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static String selRow = "";
+	public static String selRow = "";
 	
 	public ListaStudenataNaPredmetu(JFrame parent) {
 		super(parent,"Lista studenata",true);
@@ -49,7 +50,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 		JPanel panelC = new JPanel(new FlowLayout(FlowLayout.CENTER));  // panel za unos 
 		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  // panel za button-e
 		
-		Button bPotvrda=new Button("Potvrda");
+		Button bObrisi=new Button("Obrisi");
 		Button bOdustani=new Button("Odustani");
 		
 		///////////////////////////////////////////////////////////////
@@ -85,8 +86,6 @@ public class ListaStudenataNaPredmetu extends JDialog{
 		});
 		
 		
-
-		
 		bOdustani.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -94,19 +93,18 @@ public class ListaStudenataNaPredmetu extends JDialog{
 			}
 		});
 		
-		bPotvrda.addActionListener(new ActionListener() {
+		bObrisi.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(listModel.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Ne postoji student na predmetu kojeg mozete izbrisati", "Error", JOptionPane.ERROR_MESSAGE );
-					dispose();
+					//dispose();
 					}
 				else {
-				Student s=BazaStudent.getInstance().getStudentInd(selRow);
+					
+				StudentController.getInstance().brisanjeStudentaSaPredmeta(p);
 				listModel.removeElement(selRow);
-
-				BazaPredmet.getInstance().obrisiStudenta(p.getSifra_predmeta(), s);
 				lista.updateUI();
 				PredmetJTable.osvezi();
 				}
@@ -119,7 +117,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 		panelC.add(new JScrollPane(lista));
 		
 		panelS.add(bOdustani);
-		panelS.add(bPotvrda);
+		panelS.add(bObrisi);
 		
 		this.add(p1,BorderLayout.NORTH);
 		this.add(panelC,BorderLayout.CENTER);
