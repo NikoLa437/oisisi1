@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
+import rs.ac.uns.ftn.projekat.controllers.StudentController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
@@ -30,6 +31,7 @@ public class DodajStudentaNaPredmet extends JDialog{
 	/**
 	 * 
 	 */
+	public static JTextField txtIndeks;
 	private static final long serialVersionUID = 1L;
 
 	public DodajStudentaNaPredmet(JFrame parent) {
@@ -37,14 +39,13 @@ public class DodajStudentaNaPredmet extends JDialog{
 		
 		this.setSize(400,120);
 		this.setLayout(new BorderLayout());
-		
 		Predmet pr = BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow);
 	
 		JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 
 		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  // panel za button-e
 		
 		JLabel lblIndeks = new JLabel("Indeks studenta*");
-		JTextField txtIndeks = new JTextField();
+		 txtIndeks = new JTextField();
 		
 		GridBagConstraints gbcL= new GridBagConstraints();
 		gbcL.gridx = 0;
@@ -77,29 +78,9 @@ public class DodajStudentaNaPredmet extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Student s= new Student();
 				
-				if(!txtIndeks.getText().isEmpty()) {
-					String idx= txtIndeks.getText();
-					// provera da li postoji student sa tim indeksom
-					if((s= BazaStudent.getInstance().getStudentInd(idx)) != null) {
-						if(s.getGod_studija()==pr.getGodina_studija()) {
-							BazaStudent.getInstance().dodajPredmet(s.getIndeks(), pr);
-							BazaPredmet.getInstance().dodajStudenta(pr.getSifra_predmeta(), s);
-							dispose();
-							PredmetJTable.osvezi();
-
-						}else {
-							JOptionPane.showMessageDialog(null, "Nije moguce dodati studenta na predmet koji su razlicitih godina", "Error", JOptionPane.ERROR_MESSAGE );
-						}
-						
-					}else {
-						JOptionPane.showMessageDialog(null, "Ne postoji student sa tim brojem indeksa!", "Error", JOptionPane.ERROR_MESSAGE );
-					}
-				}else {
-					JOptionPane.showMessageDialog(null, "Podaci se moraju uneti!", "Error", JOptionPane.ERROR_MESSAGE );
-				}
-				
+				if(StudentController.getInstance().dodajStudentaNaPredmet(pr)==1)
+					dispose();	
 			}
 		});
 		
