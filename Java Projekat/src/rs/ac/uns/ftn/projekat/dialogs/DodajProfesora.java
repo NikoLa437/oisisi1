@@ -23,6 +23,8 @@ import javax.swing.JTextField;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
+import rs.ac.uns.ftn.projekat.controllers.ProfesorController;
+import rs.ac.uns.ftn.projekat.controllers.StudentController;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
@@ -32,6 +34,16 @@ public class DodajProfesora extends JDialog{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public static JTextField txtIme;
+	public static JTextField txtPrezime ;
+	public static JTextField txtDatumRodj ;
+	public static JTextField txtAdresaStan;
+	public static JTextField txtKtkTel ;
+	public static JTextField txtEAdresa ;
+	public static JTextField txtAdresaKanc ;
+	public static JTextField txtBrojLicne ;
+	public static JTextField txtTitula ;
+	public static JTextField txtZvanje ;
 	
 	public DodajProfesora(JFrame parent) {
 		super(parent,"Dodavanje novog profesora",true);
@@ -56,16 +68,16 @@ public class DodajProfesora extends JDialog{
 		JLabel lblZvanje = new JLabel("Zvanje*");
 		
 		//text field za profesora
-		JTextField txtIme = new JTextField();
-		JTextField txtPrezime = new JTextField();
-		JTextField txtDatumRodj = new JTextField();
-		JTextField txtAdresaStan = new JTextField();
-		JTextField txtKtkTel = new JTextField();
-		JTextField txtEAdresa = new JTextField();
-		JTextField txtAdresaKanc = new JTextField();
-		JTextField txtBrojLicne = new JTextField();
-		JTextField txtTitula = new JTextField();
-		JTextField txtZvanje = new JTextField();
+		 txtIme = new JTextField();
+		 txtPrezime = new JTextField();
+		 txtDatumRodj = new JTextField();
+		 txtAdresaStan = new JTextField();
+		 txtKtkTel = new JTextField();
+		 txtEAdresa = new JTextField();
+		 txtAdresaKanc = new JTextField();
+		 txtBrojLicne = new JTextField();
+		 txtTitula = new JTextField();
+		 txtZvanje = new JTextField();
 	
 		panelC.add(lblIme, gbclbl(0,0));
 		panelC.add(txtIme, gbctxt(1,0));
@@ -104,61 +116,8 @@ public class DodajProfesora extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Profesor p= new Profesor();
-				
-				
-				if(!txtIme.getText().isEmpty()) {
-					p.setIme(txtIme.getText());
-					if(!txtPrezime.getText().isEmpty()) {
-						p.setPrezime(txtPrezime.getText());
-							if(!txtAdresaStan.getText().isEmpty()) {
-								p.setAdresa_stanovanja(txtAdresaStan.getText());
-								if(!txtKtkTel.getText().isEmpty()) {
-									p.setBr_telefona(txtKtkTel.getText());
-										if(!txtBrojLicne.getText().isEmpty() ) {//&&!BazaStudent.getInstance().postoji(txtBrojInd.getText())) {
-											p.setBr_licne(txtBrojLicne.getText());
-												if(!txtEAdresa.getText().isEmpty()) {
-													p.setMail(txtEAdresa.getText());
-													if(!txtTitula.getText().isEmpty()) {
-														p.setTitula(txtTitula.getText());
-														if(!txtZvanje.getText().isEmpty()) {
-															p.setTitula(txtZvanje.getText());
-															try {
-																	SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
-																	Date date = formatter.parse(txtDatumRodj.getText());
-																	p.setDatum_rodjenja(date);
-																	BazaProfesor.getInstance().dodajProfesora(p.getIme(), p.getPrezime(), p.getAdresa_stanovanja(), p.getBr_telefona(), p.getMail(), p.getAdresa_kancelarije(), p.getBr_licne(), p.getTitula(), p.getZvanje(), p.getDatum_rodjenja());
-																	
-																	dispose();
-																	StudentJTable.osvezi();	
-																
-															}catch(Exception e1) {
-																JOptionPane.showMessageDialog(null, "Pogresan unos datuma!", "Error", JOptionPane.ERROR_MESSAGE );
-															}
-														}else {
-															JOptionPane.showMessageDialog(null, "Pogresan unos zvanja!", "Error", JOptionPane.ERROR_MESSAGE );
-														}
-													}else {
-														JOptionPane.showMessageDialog(null, "Pogresan unos titule!", "Error", JOptionPane.ERROR_MESSAGE );
-													}
-												}else {
-													JOptionPane.showMessageDialog(null, "Pogresan unos e-mail adrese!", "Error", JOptionPane.ERROR_MESSAGE );
-												}
-											}else {
-												JOptionPane.showMessageDialog(null, "Pogresan unos broja licne karte (broj licne karte mora biti jedinstven)!", "Error", JOptionPane.ERROR_MESSAGE );
-											}
-										}else {
-											JOptionPane.showMessageDialog(null, "Pogresan unos broja telefona!", "Error", JOptionPane.ERROR_MESSAGE );
-										}
-								}else {
-									JOptionPane.showMessageDialog(null, "Pogresan unos adrese stanovanja!", "Error", JOptionPane.ERROR_MESSAGE );
-								}
-							}else {
-								JOptionPane.showMessageDialog(null, "Pogresan unos prezimena!", "Error", JOptionPane.ERROR_MESSAGE );
-							}
-					}else {
-						JOptionPane.showMessageDialog(null, "Pogresan unos imena!", "Error", JOptionPane.ERROR_MESSAGE );
-					}
+				if(ProfesorController.getInstance().dodajProfesora()==1)
+					dispose();	
 		}
 		});
 		
