@@ -28,13 +28,13 @@ public class StudentJTable extends JTable {
 	
 	public StudentJTable() {
 	
-		
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
-		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // ?
-		this.setModel(new AbstractTableModelStudent()); //
+		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.setModel(new AbstractTableModelStudent());
 		this.getTableHeader().setReorderingAllowed(false);
-		this.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+	
+
 		
 		// sortiranje
 		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
@@ -48,7 +48,6 @@ public class StudentJTable extends JTable {
 	        public void mouseReleased(MouseEvent e) {
 	        	JTable jt = (JTable)e.getComponent();
 	            selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
-	            System.out.print(selectedRow);
 	        }
 	    });
 	    
