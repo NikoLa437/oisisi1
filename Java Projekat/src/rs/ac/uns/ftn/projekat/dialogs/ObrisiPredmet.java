@@ -49,7 +49,8 @@ public class ObrisiPredmet extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PredmetController.getInstance().obrisiPredmet(BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow));				
+				if(PredmetJTable.selectedRow != -1)
+					PredmetController.getInstance().obrisiPredmet(BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow));				
 				dispose();
 			}
 		});
