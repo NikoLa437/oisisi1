@@ -9,14 +9,25 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+
 
 public class MainFrame extends JFrame {
+	
+	private static MainFrame instance = null;
+	
+	public static MainFrame getInstance() {
+		if (instance == null) {
+			instance = new MainFrame();
+		}
+		return instance;
+	}
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public MainFrame() {
+	private MainFrame() {
 		super();
 		
 		Toolkit kit = Toolkit.getDefaultToolkit(); 
@@ -59,5 +70,8 @@ public class MainFrame extends JFrame {
                 }
 			  }
 			});
+		
+		this.setVisible(true);
+
 	}
 }

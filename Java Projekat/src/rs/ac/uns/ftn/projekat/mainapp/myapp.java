@@ -19,8 +19,8 @@ public class myapp {
 //    }
 //		
 
-		MainFrame mf= new MainFrame();
-		mf.setVisible(true);
+		MainFrame.getInstance();
+	
 		
 	//	IzmeniStudenta is=new IzmeniStudenta(mf);
 		
