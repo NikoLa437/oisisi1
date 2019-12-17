@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.projekat.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -125,6 +126,94 @@ public class ProfesorController {
 		}
 		
 		return ret;	
+	}
+	
+	public void pretraziProfesora(String kriterijum) {
+		ArrayList<Profesor> pretraga = new ArrayList<Profesor>();
+
+		if(!kriterijum.equals("")) {
+			try{
+				String[] podeljeno = kriterijum.split(";");
+				String[] kolone = new String[4];
+				String[] kriter = new String[4];
+				int brojac = 0;
+				for(String s: podeljeno)
+				{
+					String[] pom = s.split(":");
+					kolone[brojac] = pom[0];
+					kriter[brojac] = pom[1];
+					brojac++;
+				}
+				boolean err = false;
+				for(int k = 0; k < kolone.length; k++) {
+				 if(kolone[k] != null) 
+					if(!kolone[k].equals("ime") && !kolone[k].equals("prezime") && !kolone[k].equals("brojlicnekarte") && !kolone[k].equals("zvanje")) {
+						JOptionPane.showMessageDialog(null,
+								"Pogresan unos podataka!\nPretraga se vrsi u formatu '[ime:'ime';][prezime:'prezime';][brojlicnekarte:'broj';][zvanje:'zvanje']'",
+								"Error", JOptionPane.ERROR_MESSAGE );
+						err = true;
+						break;
+					}
+				}
+				if(!err) {
+					
+					for(Profesor p: BazaProfesor.getInstance().getProfesori())
+					{
+						boolean za_prikazati = false;
+						for(int i = 0; i < brojac; i++)
+						{
+							if(kolone[i].equals("ime")) {
+								if(kriter[i].equals(p.getIme())) {
+									za_prikazati = true;
+								}else {
+									za_prikazati = false;
+									break;
+								}
+							}
+							if(kolone[i].equals("prezime")) {
+								if(kriter[i].equals(p.getPrezime())) {
+									za_prikazati = true;
+								}else {
+									za_prikazati = false;
+									break;
+								}
+							}
+							if(kolone[i].equals("brojlicnekarte")) {
+								if(kriter[i].equals(p.getBr_licne())) {
+									za_prikazati = true;
+								}else {
+									za_prikazati = false;
+									break;
+								}
+							}
+							if(kolone[i].equals("zvanje")) {
+								if(kriter[i].equals(p.getZvanje())) {
+									za_prikazati = true;
+								}else {
+									za_prikazati = false;
+									break;
+								}
+							}
+						}
+						if(za_prikazati== true) {
+							pretraga.add(p);
+						}
+							
+					}
+					BazaProfesor.indikator = 1;
+					BazaProfesor.getInstance().setFilterProfesori(pretraga);
+					ProfesorJTable.osvezi();
+				}
+			}catch(Exception e)
+			{
+				JOptionPane.showMessageDialog(null, "Pogresan unos podataka!", "Error", JOptionPane.ERROR_MESSAGE );
+			}
+		}
+		else
+		{
+			BazaProfesor.indikator = 0;
+			ProfesorJTable.osvezi();
+		}	
 	}
 	
 }

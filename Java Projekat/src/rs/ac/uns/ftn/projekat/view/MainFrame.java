@@ -54,7 +54,6 @@ public class MainFrame extends JFrame {
 		this.add(tabovi, BorderLayout.CENTER);
 		
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		addWindowListener(new WindowAdapter() {
 			  public void windowClosing(WindowEvent e) {
 				  String[] options = {"Da", "Ne"};

@@ -159,12 +159,18 @@ public class PredmetController {
 					kriter[brojac] = pom[1];
 					brojac++;
 				}
-				
-				if(!kolone[0].equals("naziv") && !kolone[0].equals("sifra") && !kolone[0].equals("semestar") && !kolone[0].equals("godina"))
-					JOptionPane.showMessageDialog(null,
-							"Pogresan unos podataka!\nPretraga se vrsi u formatu: '[naziv:'naziv';][sifra:'sifra'];[semestar:'semstar'];[godina:'godina']'",
-							"Error", JOptionPane.ERROR_MESSAGE );
-				else {
+				boolean err = false;
+				for(int k = 0; k < kolone.length; k++) {
+				 if(kolone[k] != null) 
+					if(!kolone[0].equals("naziv") && !kolone[0].equals("sifra") && !kolone[0].equals("semestar") && !kolone[0].equals("godina")) {
+						JOptionPane.showMessageDialog(null,
+								"Pogresan unos podataka!\nPretraga se vrsi u formatu: '[naziv:'naziv';][sifra:'sifra'];[semestar:'semstar'];[godina:'godina']'",
+								"Error", JOptionPane.ERROR_MESSAGE );
+						err = true;
+						break;
+					}
+				}
+				if(!err) {
 					
 					for(Predmet p: BazaPredmet.getInstance().getPredmeti())
 					{
