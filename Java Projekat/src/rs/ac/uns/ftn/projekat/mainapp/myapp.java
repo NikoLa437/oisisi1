@@ -1,9 +1,8 @@
 package rs.ac.uns.ftn.projekat.mainapp;
 
-import javax.swing.JFrame;
-
-import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.IzmeniStudenta;
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.view.MainFrame;
 
 public class myapp {
@@ -18,7 +17,9 @@ public class myapp {
 //       // handle exception
 //    }
 //		
-
+		BazaStudent.getInstance().deserialize();
+		BazaProfesor.getInstance().deserialize();
+		BazaPredmet.getInstance().deserialize();
 		MainFrame.getInstance();
 	
 		

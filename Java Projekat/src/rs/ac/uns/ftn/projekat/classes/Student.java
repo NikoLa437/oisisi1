@@ -1,10 +1,16 @@
 package rs.ac.uns.ftn.projekat.classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 
-public class Student {
+public class Student implements Serializable{
+
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7298611130586699009L;
 
 		public enum Status{ B, S }
 		private String ime,prezime;

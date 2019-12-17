@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.data.BazaStudent;
 
 
 public class MainFrame extends JFrame {
@@ -56,21 +58,28 @@ public class MainFrame extends JFrame {
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			  public void windowClosing(WindowEvent e) {
-				  String[] options = {"Da", "Ne"};
-			    int confirmed = JOptionPane.showOptionDialog(null, 
-			        "Da li ste sigurni da zelite da ugasite program?", "Napustanje programa",
-			        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
-
-			    if (confirmed == JOptionPane.YES_OPTION) {
-			    	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			    }
-			    else{
-                    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                }
+				 MainFrame.getInstance().appTurnOff();
 			  }
 			});
 		
 		this.setVisible(true);
 
+	}
+	
+	public void appTurnOff() {
+		 String[] options = {"Da", "Ne"};
+		    int confirmed = JOptionPane.showOptionDialog(null, 
+		        "Da li ste sigurni da zelite da ugasite program?", "Napustanje programa",
+		        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
+
+		    if (confirmed == JOptionPane.YES_OPTION) {
+		    	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		    	BazaPredmet.getInstance().serialize();
+		    	BazaStudent.getInstance().serialize();
+		    	BazaProfesor.getInstance().serialize();
+		    }
+		    else{
+             setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+         }
 	}
 }

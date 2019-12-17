@@ -1,9 +1,16 @@
 package rs.ac.uns.ftn.projekat.data;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 
 public class BazaProfesor {
@@ -130,6 +137,33 @@ public class BazaProfesor {
 				p.setZvanje(zvanje);
 				p.setDatum_rodjenja(datum_rodjenja);
 			}
+		}
+	}
+	
+	public void serialize() {
+		try { ObjectOutputStream out = new ObjectOutputStream(
+		          new FileOutputStream("./datafiles/profesoriFile.txt"));
+		      out.writeObject(this.getProfesori());
+		      out.close();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void deserialize() {
+		try {  ObjectInputStream in = new ObjectInputStream(
+		          new FileInputStream("./datafiles/profesoriFile.txt"));
+			this.setProfesori((ArrayList<Profesor>)in.readObject());
+			in.close();
+		}catch(FileNotFoundException e) {
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

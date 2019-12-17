@@ -1,9 +1,14 @@
 package rs.ac.uns.ftn.projekat.classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Predmet {
+public class Predmet implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8870428215661918924L;
 	private String sifra_predmeta, naziv;
 	private int semestar, godina_studija;
 	private Profesor profesor;

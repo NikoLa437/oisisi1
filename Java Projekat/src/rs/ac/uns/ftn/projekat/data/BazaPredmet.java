@@ -1,5 +1,12 @@
 package rs.ac.uns.ftn.projekat.data;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -141,6 +148,33 @@ public class BazaPredmet {
 			if (pr.getSifra_predmeta().equals(sifra_predmeta)) {
 				pr.getStudenti().remove(s)	;
 				}
+		}
+	}
+	
+	public void serialize() {
+		try { ObjectOutputStream out = new ObjectOutputStream(
+		          new FileOutputStream("./datafiles/predmetiFile.txt"));
+		      out.writeObject(this.getPredmeti());
+		      out.close();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void deserialize() {
+		try {  ObjectInputStream in = new ObjectInputStream(
+		          new FileInputStream("./datafiles/predmetiFile.txt"));
+			this.setPredmeti((ArrayList<Predmet>)in.readObject());
+			in.close();
+		}catch(FileNotFoundException e) {
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

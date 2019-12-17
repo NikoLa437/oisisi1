@@ -1,5 +1,11 @@
 package rs.ac.uns.ftn.projekat.data;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,6 +13,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
+import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
 
@@ -163,6 +170,33 @@ public class BazaStudent {
 			lista.add(s.getIndeks());
 		}	
 		return lista;
+	}
+	
+	public void serialize() {
+		try { ObjectOutputStream out = new ObjectOutputStream(
+		          new FileOutputStream("./datafiles/studentiFile.txt"));
+		      out.writeObject(this.getStudenti());
+		      out.close();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void deserialize() {
+		try {  ObjectInputStream in = new ObjectInputStream(
+		          new FileInputStream("./datafiles/studentiFile.txt"));
+			this.setStudenti((ArrayList<Student>)in.readObject());
+			in.close();
+		}catch(FileNotFoundException e) {
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

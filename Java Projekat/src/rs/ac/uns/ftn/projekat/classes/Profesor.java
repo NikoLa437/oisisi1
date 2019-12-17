@@ -1,10 +1,15 @@
 package rs.ac.uns.ftn.projekat.classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Profesor {
+public class Profesor implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2558848616368820819L;
 	private String ime, prezime, adresa_stanovanja, br_telefona, mail, adresa_kancelarije, br_licne, titula, zvanje;
 	private Date datum_rodjenja;
 	private ArrayList<Predmet> predmeti;
