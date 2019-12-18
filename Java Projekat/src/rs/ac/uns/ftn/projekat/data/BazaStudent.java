@@ -31,6 +31,8 @@ public class BazaStudent {
 	 
 	private List<Student> studenti;  // lista studenata
 	private List<String> kolone; // kolone tabele
+	private List<Student> pretrazeni_studenti;
+	public static int indikator = 0;
 	
 	private BazaStudent() {  // konstruktor klase Baza Studenata
 		
@@ -48,6 +50,7 @@ public class BazaStudent {
 	@SuppressWarnings("deprecation")
 	private void initStudent() { // inicijalizovace studente u listu
 		this.studenti = new ArrayList<Student>();
+		this.pretrazeni_studenti = new ArrayList<Student>();
 		studenti.add(new Student("Nikola","Kolovic","Kraljevo","062490393","nikoladskv@hotmail.rs","RA133-2017",new Date(1998,04,03),new Date(98,04,03),3,9.76,Status.B));
 		studenti.add(new Student("Dusan","Petrovic","Sabac","0624905435","dusanchinaa@hotmail.rs","RA122-2017",new Date(1998,12,12),new Date(07,04,03),3,9.76,Status.B));
 	}
@@ -61,6 +64,14 @@ public class BazaStudent {
 			}
 		}
 		return s;
+	}
+	
+	public List<Student> getPretrazeni() {
+		return this.pretrazeni_studenti;
+	}
+	
+	public void setPretrazeni(List<Student> pretrazeni) {
+		this.pretrazeni_studenti = pretrazeni;
 	}
 	
 	public List<Student> getStudenti() { // vraca listu studenata
@@ -89,7 +100,13 @@ public class BazaStudent {
 	
 	public String getValueAt(int row, int column) {
 		//StudentJTable.jt.convertRowIndexToModel(row)
-		Student stud = this.studenti.get(row);
+		Student stud = new Student();
+		if(indikator == 0)
+			stud = this.studenti.get(row);
+		else
+			stud = this.pretrazeni_studenti.get(row);
+		
+		
 		switch (column) {
 		case 0:
 			return stud.getIndeks();

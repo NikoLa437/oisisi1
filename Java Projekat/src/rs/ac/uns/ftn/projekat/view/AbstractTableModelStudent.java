@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.projekat.view;
 
 import javax.swing.table.AbstractTableModel;
 
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
 
 public class AbstractTableModelStudent extends AbstractTableModel{
@@ -14,7 +15,10 @@ public class AbstractTableModelStudent extends AbstractTableModel{
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return BazaStudent.getInstance().getStudenti().size();
+		if(BazaStudent.indikator == 0)
+			return  BazaStudent.getInstance().getStudenti().size();
+		else
+			return BazaStudent.getInstance().getPretrazeni().size();
 	}
 
 	@Override

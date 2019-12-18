@@ -1,11 +1,14 @@
 package rs.ac.uns.ftn.projekat.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Vector;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
@@ -21,6 +24,7 @@ import rs.ac.uns.ftn.projekat.dialogs.DodajStudentaNaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.IzmeniStudenta;
 import rs.ac.uns.ftn.projekat.dialogs.ListaStudenataNaPredmetu;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
+import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
 public class StudentController {
@@ -250,6 +254,112 @@ public class StudentController {
 		Student s=BazaStudent.getInstance().getStudentInd(ListaStudenataNaPredmetu.selRow);
 		BazaPredmet.getInstance().obrisiStudenta(pr.getSifra_predmeta(), s);
 		}
+	
+	public void pretraziStudente(String kriterijum) {
+
+		if(!kriterijum.equals("")) {
+			try {
+				
+			ArrayList<Student> studenti= new ArrayList<Student>();
+			// po ime prezime indeks status god studija
+			String[] deo= kriterijum.split(";");
+			String[] kolona= new String [5];
+			String[] kolonakrit= new String[5];
+			int brojac = 0;
+			
+			for(int i=0; i<deo.length;i++) {
+				String[] pom= deo[i].split(":");
+				kolona[i]=pom[0];
+				kolonakrit[i]=pom[1];
+				brojac++;
+			}
+			
+
+			
+			boolean error=false;
+			
+			for(int i=0;i<deo.length;i++) {
+				if(!kolona[i].equals("status") && !kolona[i].equals("ime") && !kolona[i].equals("prezime") && !kolona[i].equals("brojindeksa") && !kolona[i].equals("godinastudija")) {
+					JOptionPane.showMessageDialog(null,
+							"Pogresan unos podataka!\nPretraga se vrsi u formatu '[ime:'ime';][prezime:'prezime';][brojindeksa:'broj';][status: 'status';][godinastudija:'godina']'",
+							"Error", JOptionPane.ERROR_MESSAGE );
+					error = true;
+					break;
+				}
+			}
+		
+			if(!error) {
+				
+				for(Student s : BazaStudent.getInstance().getStudenti()) {
+					boolean za_prikazati=false;
+					
+					for(int i=0;i<deo.length;i++) {
+						
+						
+						if(kolona[i].equals("ime")) {
+							if(kolonakrit[i].equals(s.getIme())) {
+								za_prikazati = true;
+							}else {
+								za_prikazati = false;
+								break;
+							}
+						}
+						if(kolona[i].equals("prezime")) {
+							if(kolonakrit[i].equals(s.getPrezime())) {
+								za_prikazati = true;
+							}else {
+								za_prikazati = false;
+								break;
+							}
+						}
+						if(kolona[i].equals("brojindeksa")) {
+							if(kolonakrit[i].equals(s.getIndeks())) {
+								za_prikazati = true;
+							}else {
+								za_prikazati = false;
+								break;
+							}
+						}
+						if(kolona[i].equals("godinastudija")) {
+							if(Integer.parseInt(kolonakrit[i]) == s.getGod_studija()) {
+								za_prikazati = true;
+							}else {
+								za_prikazati = false;
+								break;
+							}
+						}
+						if(kolona[i].equals("status")) {
+							if(kolonakrit[i] == s.getStatus().toString()) {
+								za_prikazati = true;
+							}else {
+								za_prikazati = false;
+								break;
+							}
+						}
+					}
+					if(za_prikazati== true) {
+						System.out.println(s.getIndeks());
+						studenti.add(s);
+					}
+				}
+				
+				BazaStudent.indikator=1;
+				BazaStudent.getInstance().setPretrazeni(studenti);
+				StudentJTable.osvezi();
+			}
+			}catch(Exception e)
+			{
+				JOptionPane.showMessageDialog(null, "Pogresan unos podataka!", "Error", JOptionPane.ERROR_MESSAGE );
+			}
+		}else {
+			BazaStudent.indikator=0;
+			StudentJTable.osvezi();
+		}
+		
+		
+		
+		
+	}
 	
 }
 
