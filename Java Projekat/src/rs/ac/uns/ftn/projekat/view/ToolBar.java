@@ -20,6 +20,7 @@ import rs.ac.uns.ftn.projekat.actions.CreateEntityAction;
 import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
 import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.controllers.ProfesorController;
+import rs.ac.uns.ftn.projekat.controllers.StudentController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.DodajStudentaNaPredmet;
@@ -121,6 +122,9 @@ public class ToolBar extends JToolBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String tekst = textField.getText();
+				if(JTabbedPaneTabele.selektovan_tab == 0) {
+					StudentController.getInstance().pretraziStudente(tekst);
+				}
 				if(JTabbedPaneTabele.selektovan_tab == 1) {
 					ProfesorController.getInstance().pretraziProfesora(tekst);
 				}
