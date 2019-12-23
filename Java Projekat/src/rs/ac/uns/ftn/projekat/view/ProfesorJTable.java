@@ -24,6 +24,9 @@ public class ProfesorJTable extends JTable{
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelProfesor());
+		new ButtonColumnDetaljiProfesora(this, 6);
+		new ButtonColumnPredmetiProfesora(this, 7);
+
 		this.getTableHeader().setReorderingAllowed(false);
 		
 		// sortiranje edit Nikola
@@ -31,6 +34,10 @@ public class ProfesorJTable extends JTable{
 			this.setRowSorter(sorter);
 			jt= this;
 			model= this.getModel();
+			
+			sorter.setSortable(6, false);
+			sorter.setSortable(7, false);
+
 			
 			this.addMouseListener(new MouseAdapter() {
 		        @Override

@@ -106,9 +106,10 @@ public class Profesor implements Serializable{
 	}
 	public void removePredmet(Predmet predmet) {
 		for(Predmet p: predmeti) {
-			if(p.getSifra_predmeta().equals(predmet.getSifra_predmeta()))
+			if(p.getSifra_predmeta().equals(predmet.getSifra_predmeta())) {
 				predmeti.remove(p);
 				break;
+			}
 		}
 	}
 	

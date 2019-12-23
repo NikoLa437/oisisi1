@@ -10,6 +10,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.data.BazaStudent;
+
 
 
 public class JTabbedPaneTabele extends JTabbedPane {
@@ -33,17 +37,26 @@ public class JTabbedPaneTabele extends JTabbedPane {
 		StudentJTable tabelaStudent = new StudentJTable();
 		JScrollPane scroolPaneSt = new JScrollPane(tabelaStudent);
 		scroolPaneSt.setBorder(new EmptyBorder(30,20,10,20));
-		
+
 		this.addTab("Student", null,scroolPaneSt,"Student");
 		this.addTab("Profesor", null,scrollPaneProf,"Profesor");
 		this.addTab("Predmet", null,scrollPanePr,"Predmet");
 
 		this.addChangeListener(new ChangeListener() {
+			
 
 			// This method is called whenever the selected tab changes
-
+			
 			@Override
 			public void stateChanged(ChangeEvent evt) {
+				
+				BazaPredmet.indikator = 0;
+				BazaProfesor.indikator = 0;
+				BazaStudent.indikator = 0;
+				ToolBar.textField.setText("");
+				PredmetJTable.osvezi();
+				ProfesorJTable.osvezi();
+				StudentJTable.osvezi();
 				
 			    JTabbedPane tabbedPane = (JTabbedPane)evt.getSource();
 			    selektovan_tab = tabbedPane.getSelectedIndex();

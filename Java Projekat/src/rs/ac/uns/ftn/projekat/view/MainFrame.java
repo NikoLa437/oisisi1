@@ -73,7 +73,7 @@ public class MainFrame extends JFrame {
 		        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
 
 		    if (confirmed == JOptionPane.YES_OPTION) {
-		    	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    	BazaPredmet.getInstance().serialize();
 		    	BazaStudent.getInstance().serialize();
 		    	BazaProfesor.getInstance().serialize();

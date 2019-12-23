@@ -51,6 +51,7 @@ public class PredmetJTable extends JTable {
 		this.setRowSorter(sorter);
 		
 		sorter.setSortable(6, false);
+
 	}
 
 

@@ -41,7 +41,8 @@ public class BazaProfesor {
 		this.kolone.add("Mail");
 		this.kolone.add("Adresa kancelarije");
 		this.kolone.add("Broj licne karte");
-		this.kolone.add("Zvanje");
+		this.kolone.add("Detalji");
+		this.kolone.add("Predmeti");
 
 	}
 	@SuppressWarnings("deprecation")
@@ -71,7 +72,7 @@ public class BazaProfesor {
 	}
 
 	public int getColumnCount() {
-		return 7;
+		return 8;
 	}
 
 	public String getColumnName(int index) {
@@ -101,8 +102,6 @@ public class BazaProfesor {
 			return profesor.getAdresa_kancelarije();
 		case 5:
 			return profesor.getBr_licne();		
-		case 6:
-			return profesor.getZvanje();
 		default:
 			return null;
 		}

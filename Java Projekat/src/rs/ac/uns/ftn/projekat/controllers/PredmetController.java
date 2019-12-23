@@ -13,6 +13,7 @@ import rs.ac.uns.ftn.projekat.dialogs.DodajPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.IzmeniPredmet;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
+import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 
 public class PredmetController {
 	
@@ -107,6 +108,7 @@ public class PredmetController {
 		BazaPredmet.getInstance().izbrisiPredmet(p.getSifra_predmeta());
 		prof.removePredmet(p);
 		PredmetJTable.osvezi();
+		ProfesorJTable.osvezi();
 	}
 	
 	public int dodajProfesoraNaPredmet(Predmet pr) {
