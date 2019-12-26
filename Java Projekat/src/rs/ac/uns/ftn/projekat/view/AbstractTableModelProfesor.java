@@ -3,7 +3,6 @@ package rs.ac.uns.ftn.projekat.view;
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
-import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 
 public class AbstractTableModelProfesor  extends AbstractTableModel{

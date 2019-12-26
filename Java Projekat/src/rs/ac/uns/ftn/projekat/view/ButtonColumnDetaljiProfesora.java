@@ -57,7 +57,8 @@ public class ButtonColumnDetaljiProfesora extends AbstractCellEditor
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						fireEditingStopped();
-						DetaljiProfesor dp = new DetaljiProfesor(new JFrame());
+						@SuppressWarnings("unused")
+						DetaljiProfesor dp = new DetaljiProfesor(new JFrame(), table.getSelectedRow());
 					}
 				});
 

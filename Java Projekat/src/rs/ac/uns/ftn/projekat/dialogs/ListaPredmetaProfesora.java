@@ -17,13 +17,10 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
-import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 
 public class ListaPredmetaProfesora extends JDialog{
 
@@ -31,22 +28,20 @@ public class ListaPredmetaProfesora extends JDialog{
 	 * 
 	 */
 	private static final long serialVersionUID = 4543268701897695684L;
-	public static String selRow = "";
 
-	public ListaPredmetaProfesora(JFrame parent) {
+	public ListaPredmetaProfesora(JFrame parent, int selected) {
 		super(parent,"Lista studenata",true);
 		
 		this.setSize(300,200);
 		this.setLayout(new BorderLayout());
 
-		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  // panel za button-e
+		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  
 		
 		Button bIzlaz=new Button("Izlaz");
 		
-		///////////////////////////////////////////////////////////////
 		DefaultListModel<String> listModel = new DefaultListModel<>();
 		
-		Profesor p = BazaProfesor.getInstance().getRow(ProfesorJTable.selectedRow);
+		Profesor p = BazaProfesor.getInstance().getRow(selected);
 		ArrayList<Predmet> listaPredmeta= new ArrayList<Predmet>();
 		listaPredmeta= p.getPredmeti();
 		
@@ -62,20 +57,7 @@ public class ListaPredmetaProfesora extends JDialog{
 		lista.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		lista.setVisibleRowCount(5);
-		////////////////////////////////////////////////////////////////
-		
-		lista.addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
-				if (!e.getValueIsAdjusting()) {
-					selRow = lista.getSelectedValue();
-	             }
-			}
 			
-		});
-		
-		
 		bIzlaz.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {

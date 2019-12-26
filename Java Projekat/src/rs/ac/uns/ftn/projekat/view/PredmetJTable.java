@@ -4,12 +4,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
@@ -42,9 +39,12 @@ public class PredmetJTable extends JTable {
 	        	JTable jt = (JTable)e.getComponent();
 	        	
 	            if (jt.getSelectedRow() != -1)
-	            	selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
+	            	selectedRow = jt.getSelectedRow();
+//	            	selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
+	        	 
 	        }
 	    });
+	   
 		
 	    //sortiranje
 		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
@@ -53,7 +53,6 @@ public class PredmetJTable extends JTable {
 		sorter.setSortable(6, false);
 
 	}
-
 
 	
 	public static void osvezi() {

@@ -1,6 +1,5 @@
 package rs.ac.uns.ftn.projekat.data;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,12 +9,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
-import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class BazaPredmet {
 

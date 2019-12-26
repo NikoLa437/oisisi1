@@ -57,7 +57,8 @@ public class ButtonColumnPredmetiProfesora extends AbstractCellEditor
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fireEditingStopped();
-				ListaPredmetaProfesora lpp = new ListaPredmetaProfesora(new JFrame());
+				@SuppressWarnings("unused")
+				ListaPredmetaProfesora lpp = new ListaPredmetaProfesora(new JFrame(), table.getSelectedRow());
 			}
 		});
 

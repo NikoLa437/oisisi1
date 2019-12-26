@@ -22,7 +22,6 @@ import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
-import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 
 public class DetaljiProfesor extends JDialog{
 
@@ -42,7 +41,7 @@ public class DetaljiProfesor extends JDialog{
 	private JTextField txtTitula ;
 	private JTextField txtZvanje ;
 
-	public DetaljiProfesor(JFrame parent) {
+	public DetaljiProfesor(JFrame parent, int selected) {
 		super(parent,"Izmena profesora",true);
 		
 		if(BazaProfesor.getInstance().getProfesori().size()==0) {
@@ -56,7 +55,7 @@ public class DetaljiProfesor extends JDialog{
 			JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  // panel za button-e
 			
 			Profesor p= new Profesor();
-			p= BazaProfesor.getInstance().getRow(ProfesorJTable.selectedRow);
+			p= BazaProfesor.getInstance().getRow(selected);
 			
 			JLabel lblIme = new JLabel("Ime*");
 			JLabel lblPrezime = new JLabel("Prezime*");

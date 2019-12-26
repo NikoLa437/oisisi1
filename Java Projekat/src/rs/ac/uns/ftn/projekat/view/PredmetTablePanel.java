@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class PredmetTablePanel  extends JPanel{

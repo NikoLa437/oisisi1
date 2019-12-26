@@ -68,6 +68,7 @@ public class ToolBar extends JToolBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 		
+				@SuppressWarnings("unused")
 				DodajStudentaNaPredmet dpnp = new DodajStudentaNaPredmet(new JFrame());
 			}
 		});
@@ -86,9 +87,11 @@ public class ToolBar extends JToolBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			if(BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow).getProfesor().getBr_licne() != null) {
+				@SuppressWarnings("unused")
 				UklanjanjeProfesoraNaPredmetu ep = new UklanjanjeProfesoraNaPredmetu(new JFrame());
 			}				
 			else {
+				@SuppressWarnings("unused")
 				DodajProfesoraNaPredmet dpnp = new DodajProfesoraNaPredmet(new JFrame());
 			}
 			}
