@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 import rs.ac.uns.ftn.projekat.classes.Profesor;
+import rs.ac.uns.ftn.projekat.classes.Profesor.Titula;
+import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
 
 public class BazaProfesor {
 
@@ -49,9 +51,9 @@ public class BazaProfesor {
 	private void initPredmet() {
 		this.profesori = new ArrayList<Profesor>();
 		this.filter_profesor = new ArrayList<Profesor>();
-		profesori.add(new Profesor("Petar", "Peric","Novosadskog Sajma 4","+38164568745","profa1@gmail.com","Jugodrvo 1","0056984","docent","doktor",new Date(1998,04,03) ));
-		profesori.add(new Profesor("Stefan", "Maric","Maksima Gorkog 4","+38164568745","profa2@gmail.com","Jugodrvo 2","0056921","docent","magistar",new Date(1988,04,03)));
-		profesori.add(new Profesor("Petar", "Peric","Novosadskog Sajma 4","+38164568745","profa3@gmail.com","Jugodrvo 3","1003546","docent","doktor",new Date(1978,8,8)));
+		profesori.add(new Profesor("Petar", "Peric","Novosadskog Sajma 4","+38164568745","profa1@gmail.com","Jugodrvo 1","0056984",Titula.doktor,Zvanje.profesor,new Date(1998,04,03) ));
+		profesori.add(new Profesor("Stefan", "Maric","Maksima Gorkog 4","+38164568745","profa2@gmail.com","Jugodrvo 2","0056921",Titula.magistar,Zvanje.docent,new Date(1988,04,03)));
+		profesori.add(new Profesor("Petar", "Peric","Novosadskog Sajma 4","+38164568745","profa3@gmail.com","Jugodrvo 3","1003546",Titula.master,Zvanje.saradnik,new Date(1978,8,8)));
 	}
 	
 	public List<Profesor> getProfesori() {
@@ -109,7 +111,7 @@ public class BazaProfesor {
 	}
 
 	public void dodajProfesora(String ime, String prezime, String adresa_stanovanja, String br_telefona, String mail,
-			String adresa_kancelarije, String br_licne, String titula, String zvanje, Date datum_rodjenja) {
+			String adresa_kancelarije, String br_licne, Titula titula, Zvanje zvanje, Date datum_rodjenja) {
 		this.profesori.add(new Profesor(ime, prezime, adresa_stanovanja, br_telefona,mail,adresa_kancelarije,br_licne,titula,zvanje,datum_rodjenja));
 	}
 	public void izbrisiProfesoraIzPretrage(String br_licne) {
@@ -131,7 +133,7 @@ public class BazaProfesor {
 	}
 
 	public void izmeniProfesora(String ime, String prezime, String adresa_stanovanja, String br_telefona, String mail,
-			String adresa_kancelarije, String br_licne, String titula, String zvanje, Date datum_rodjenja) {
+			String adresa_kancelarije, String br_licne, Titula titula, Zvanje zvanje, Date datum_rodjenja) {
 		for (Profesor p : profesori) {
 			if (p.getBr_licne().equals(br_licne)) {
 				p.setIme(ime);

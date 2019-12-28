@@ -49,9 +49,9 @@ public class ProfesorController {
 										if(!DodajProfesora.txtEAdresa.getText().isEmpty()) {
 											p.setMail(DodajProfesora.txtEAdresa.getText());
 											if(!DodajProfesora.txtTitula.getText().isEmpty()) {
-												p.setTitula(DodajProfesora.txtTitula.getText());
+												//p.setTitula(DodajProfesora.txtTitula.getText());
 												if(!DodajProfesora.txtZvanje.getText().isEmpty()) {
-													p.setTitula(DodajProfesora.txtZvanje.getText());
+													//p.setTitula(DodajProfesora.txtZvanje.getText());
 													try {
 															SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
 															Date date = formatter.parse(DodajProfesora.txtDatumRodj.getText());

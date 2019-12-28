@@ -23,6 +23,8 @@ import javax.swing.JTextField;
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
+import rs.ac.uns.ftn.projekat.classes.Profesor.Titula;
+import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
 import rs.ac.uns.ftn.projekat.controllers.ProfesorController;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
@@ -93,8 +95,23 @@ public class IzmeniProfesora extends JDialog{
 			txteadresa.setText(p.getMail());
 			txtAdresaKanc.setText(p.getAdresa_kancelarije());
 			txtBrLicne.setText(p.getBr_licne());
-			txtTitula.setText(p.getTitula());
-			txtZvanje.setText(p.getZvanje());
+			
+			if(p.getTitula() == Titula.doktor)
+				txtTitula.setText("doktor");
+			else if(p.getTitula() == Titula.magistar)
+				txtTitula.setText("magistar");
+			else
+				txtTitula.setText("master");
+
+			if(p.getZvanje() == Zvanje.asistent)
+				txtZvanje.setText("asistent");
+			else if(p.getZvanje() == Zvanje.docent)
+				txtZvanje.setText("docent");
+			else if(p.getZvanje() == Zvanje.profesor)
+				txtZvanje.setText("profesor");
+			else
+				txtZvanje.setText("saradnik u nastavi");
+			
 			txtBrLicne.setEditable(false);
 			
 			panelC.add(lblIme, gbclbl(0,0));

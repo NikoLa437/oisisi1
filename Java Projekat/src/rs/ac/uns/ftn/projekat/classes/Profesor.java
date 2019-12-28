@@ -6,12 +6,14 @@ import java.util.Date;
 
 public class Profesor implements Serializable{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 2558848616368820819L;
-	private String ime, prezime, adresa_stanovanja, br_telefona, mail, adresa_kancelarije, br_licne, titula, zvanje;
+	public enum Titula{doktor,magistar,master}
+	public enum Zvanje{profesor,asistent,saradnik,docent}
+	private String ime, prezime, adresa_stanovanja, br_telefona, mail, adresa_kancelarije, br_licne;
 	private Date datum_rodjenja;
+	private Titula titula;
+	private Zvanje zvanje;
 	private ArrayList<Predmet> predmeti;
 	
 	public Profesor() {
@@ -20,7 +22,7 @@ public class Profesor implements Serializable{
 	}
 	
 	public Profesor(String ime, String prezime, String adresa_stanovanja, String br_telefona, String mail,
-			String adresa_kancelarije, String br_licne, String titula, String zvanje, Date datum_rodjenja) {
+			String adresa_kancelarije, String br_licne, Titula titula, Zvanje zvanje, Date datum_rodjenja) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -35,6 +37,23 @@ public class Profesor implements Serializable{
 		predmeti = new ArrayList<Predmet>();
 
 	}
+	
+	public void setTitula(Titula titula) {
+		this.titula = titula;
+	}
+
+	public void setZvanje(Zvanje zvanje) {
+		this.zvanje = zvanje;
+	}
+	
+	public Zvanje getZvanje() {
+		return this.zvanje;
+	}
+	
+	public Titula getTitula() {
+		return this.titula;
+	}
+
 	public String getIme() {
 		return ime;
 	}
@@ -76,18 +95,6 @@ public class Profesor implements Serializable{
 	}
 	public void setBr_licne(String br_licne) {
 		this.br_licne = br_licne;
-	}
-	public String getTitula() {
-		return titula;
-	}
-	public void setTitula(String titula) {
-		this.titula = titula;
-	}
-	public String getZvanje() {
-		return zvanje;
-	}
-	public void setZvanje(String zvanje) {
-		this.zvanje = zvanje;
 	}
 	public Date getDatum_rodjenja() {
 		return datum_rodjenja;
