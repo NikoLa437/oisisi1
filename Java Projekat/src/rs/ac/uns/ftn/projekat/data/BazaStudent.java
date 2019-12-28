@@ -6,9 +6,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.JOptionPane;
 
@@ -42,6 +45,11 @@ public class BazaStudent {
 		this.kolone.add("Indeks");
 		this.kolone.add("Ime");
 		this.kolone.add("Prezime");
+		this.kolone.add("Adresa stanovanja");
+		this.kolone.add("Kontakt telefon");
+		this.kolone.add("Email kontatk");
+		this.kolone.add("Datum rodjenja");
+		this.kolone.add("Datum upisa");
 		this.kolone.add("Godina studija");
 		this.kolone.add("Status");
 		this.kolone.add("Prosek");
@@ -83,7 +91,7 @@ public class BazaStudent {
 	}
 	
 	public int getColumnCount() {
-		return 6;
+		return 11;
 	}
 	
 	public String getColumnName(int index) { // vraca naziv kolone na indeksu
@@ -106,7 +114,6 @@ public class BazaStudent {
 		else
 			stud = this.pretrazeni_studenti.get(row);
 		
-		
 		switch (column) {
 		case 0:
 			return stud.getIndeks();
@@ -115,12 +122,23 @@ public class BazaStudent {
 		case 2:
 			return stud.getPrezime();
 		case 3:
-			return Integer.toString(stud.getGod_studija());
+			return stud.getAdresa_stanovanja();
 		case 4:
-			return stud.getStatus().toString();  // getovanje statusa proveriti kako
+			return stud.getKontakt_telefon();  // getovanje statusa proveriti kako
 		case 5:
+			return stud.getEmail_adresa();
+		case 6:
+			DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
+			return dateFormat.format(stud.getDatum_rodjenja());
+		case 7:
+			DateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
+			return dateFormat1.format(stud.getDatum_upisa());
+		case 8:
+			return Integer.toString(stud.getGod_studija());
+		case 9:
+			return stud.getStatus().toString();
+		case 10:
 			return Double.toString(stud.getProsecna_ocena());
-			
 		default:
 			return null;
 		}
