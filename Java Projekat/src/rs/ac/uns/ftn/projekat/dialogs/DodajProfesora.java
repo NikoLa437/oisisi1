@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.projekat.classes.Profesor;
+import rs.ac.uns.ftn.projekat.classes.Profesor.Titula;
+import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
 import rs.ac.uns.ftn.projekat.controllers.ProfesorController;
@@ -42,8 +46,8 @@ public class DodajProfesora extends JDialog{
 	public static JTextField txtEAdresa ;
 	public static JTextField txtAdresaKanc ;
 	public static JTextField txtBrojLicne ;
-	public static JTextField txtTitula ;
-	public static JTextField txtZvanje ;
+	public static JComboBox cbTitula ;
+	public static JComboBox cbZvanje ;
 	
 	public DodajProfesora(JFrame parent) {
 		super(parent,"Dodavanje novog profesora",true);
@@ -76,9 +80,14 @@ public class DodajProfesora extends JDialog{
 		 txtEAdresa = new JTextField();
 		 txtAdresaKanc = new JTextField();
 		 txtBrojLicne = new JTextField();
-		 txtTitula = new JTextField();
-		 txtZvanje = new JTextField();
+		 //String[] sTitule = { "doktor","magistar","master"};
+		 //String[] sZvanje = { "profesor","asistent","saradnik","docent" };
+		 cbTitula = new JComboBox();
+		 cbTitula.setModel(new DefaultComboBoxModel(Titula.values()));
+		 cbZvanje = new JComboBox();
+		 cbZvanje.setModel(new DefaultComboBoxModel(Zvanje.values()));
 	
+
 		panelC.add(lblIme, gbclbl(0,0));
 		panelC.add(txtIme, gbctxt(1,0));
 		panelC.add(lblPrezime,gbclbl(0,1));
@@ -96,9 +105,9 @@ public class DodajProfesora extends JDialog{
 		panelC.add(lblBrojLicne,gbclbl(0,7));
 		panelC.add(txtBrojLicne,gbctxt(1,7));
 		panelC.add(lblTitula,gbclbl(0,8));
-		panelC.add(txtTitula,gbctxt(1,8));
+		panelC.add(cbTitula,gbctxt(1,8));
 		panelC.add(lblZvanje,gbclbl(0,9));
-		panelC.add(txtZvanje,gbctxt(1,9));
+		panelC.add(cbZvanje,gbctxt(1,9));
 		
 		Button bPotvrda = new Button("Potvrda");
 		Button bOdustanak = new Button("Odustanak");
