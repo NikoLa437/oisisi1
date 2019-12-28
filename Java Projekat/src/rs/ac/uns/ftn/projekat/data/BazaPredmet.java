@@ -110,7 +110,15 @@ public class BazaPredmet {
 	public void dodajPredmet(String sifra_predmeta, String naziv, int semestar, int godina_studija) {
 		this.predmeti.add(new Predmet(sifra_predmeta, naziv, semestar, godina_studija));
 	}
-
+	public void izbrisiPredmetFilter(String sifra_pr) {
+		for (Predmet p : filter_predmet) {
+			if (p.getSifra_predmeta().equals(sifra_pr)) {
+				filter_predmet.remove(p);
+				break;
+			}
+		}
+	}
+	
 	public void izbrisiPredmet(String sifra_pr) {
 		for (Predmet p : predmeti) {
 			if (p.getSifra_predmeta().equals(sifra_pr)) {
@@ -174,4 +182,15 @@ public class BazaPredmet {
 		}
 	}
 	
+	public int getRealRowForFilter(int selectedrow) {
+		Predmet pred = filter_predmet.get(selectedrow);
+		int i = 0;
+		for(Predmet p : getPredmeti()) {
+			if(pred.getSifra_predmeta().equals(p.getSifra_predmeta())) {
+				break;
+			}
+			i++;
+		}
+		return i;
+	}
 }

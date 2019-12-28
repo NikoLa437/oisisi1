@@ -12,6 +12,8 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+
 public class ProfesorJTable extends JTable{
 
 	private static final long serialVersionUID = -4634202201266755582L;
@@ -43,8 +45,14 @@ public class ProfesorJTable extends JTable{
 		        @Override
 		        public void mouseReleased(MouseEvent e) {
 		        	JTable jt = (JTable)e.getComponent();
-		        	if (jt.getSelectedRow() != -1)
-		        		selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
+		        	if(BazaProfesor.indikator == 0) {
+			        	if (jt.getSelectedRow() != -1)
+			        		selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
+		        	}else {
+		        		if (jt.getSelectedRow() != -1)
+			        		selectedRow= BazaProfesor.getInstance().getRealRowForFilter(jt.convertRowIndexToModel(jt.getSelectedRow()));
+		        		
+		        	}
 		        }
 		    });
 	}

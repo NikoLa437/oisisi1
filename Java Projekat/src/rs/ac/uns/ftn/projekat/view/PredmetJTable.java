@@ -12,6 +12,8 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+
 
 public class PredmetJTable extends JTable {
 
@@ -33,24 +35,32 @@ public class PredmetJTable extends JTable {
 		jt=this;
 	    model = this.getModel();
 	    
+	  //sortiranje
+	  		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
+	  		this.setRowSorter(sorter);
+	  		
+	  		sorter.setSortable(6, false);
+	    
 	    this.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseReleased(MouseEvent e) {
 	        	JTable jt = (JTable)e.getComponent();
-	        	
-	            if (jt.getSelectedRow() != -1)
-	            	selectedRow = jt.getSelectedRow();
-//	            	selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
+	        	if(BazaPredmet.indikator == 0) {
+		            if (jt.getSelectedRow() != -1)
+		            	selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
+	        	}else
+	        	{
+	        		if (jt.getSelectedRow() != -1)
+		            	selectedRow= BazaPredmet.getInstance().getRealRowForFilter(jt.convertRowIndexToModel(jt.getSelectedRow()));
+	        	}
+            	//selectedRow = jt.getSelectedRow();
+
 	        	 
 	        }
 	    });
 	   
 		
-	    //sortiranje
-		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
-		this.setRowSorter(sorter);
-		
-		sorter.setSortable(6, false);
+	    
 
 	}
 

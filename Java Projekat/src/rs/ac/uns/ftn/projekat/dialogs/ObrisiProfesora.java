@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -13,11 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import rs.ac.uns.ftn.projekat.classes.Predmet;
-import rs.ac.uns.ftn.projekat.classes.Profesor;
-import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.controllers.ProfesorController;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
-import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 
 public class ObrisiProfesora extends JDialog{
@@ -52,17 +48,9 @@ public class ObrisiProfesora extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				Profesor p= BazaProfesor.getInstance().getRow(ProfesorJTable.selectedRow);
-				BazaProfesor.getInstance().izbrisiProfesora(p.getBr_licne());
-				ArrayList<Predmet> predmeti = (ArrayList<Predmet>) BazaPredmet.getInstance().getPredmeti();
-				for(Predmet pr: predmeti) {
-					if(pr.getProfesor().getBr_licne() != null)
-						if(pr.getProfesor().getBr_licne().equals(p.getBr_licne()))
-							BazaPredmet.getInstance().izmeniPredmet(pr.getSifra_predmeta(), new Profesor(), pr.getNaziv(), pr.getSemestar(), pr.getGodina_studija());
-				}
+				if(ProfesorJTable.selectedRow != -1)
+					ProfesorController.getInstance().obrisiProfesora(BazaProfesor.getInstance().getRow(ProfesorJTable.selectedRow));
 				dispose();
-				PredmetJTable.osvezi();
-				ProfesorJTable.osvezi();
 			}
 		});
 		

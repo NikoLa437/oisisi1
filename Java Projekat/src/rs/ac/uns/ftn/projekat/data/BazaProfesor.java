@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +39,7 @@ public class BazaProfesor {
 		this.kolone.add("Prezime");
 		this.kolone.add("Broj telefona");
 		this.kolone.add("Mail");
-		this.kolone.add("Adresa kancelarije");
+		this.kolone.add("Datum rodjenja");
 		this.kolone.add("Broj licne karte");
 		this.kolone.add("Detalji");
 		this.kolone.add("Predmeti");
@@ -83,6 +84,7 @@ public class BazaProfesor {
 	}
 
 	public String getValueAt(int row, int column) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy.");
 		Profesor profesor = new Profesor();
 		if(indikator == 0)
 			profesor = this.profesori.get(row);
@@ -98,7 +100,7 @@ public class BazaProfesor {
 		case 3:
 			return profesor.getMail();
 		case 4:
-			return profesor.getAdresa_kancelarije();
+			return dateFormat.format(profesor.getDatum_rodjenja());
 		case 5:
 			return profesor.getBr_licne();		
 		default:
@@ -110,7 +112,15 @@ public class BazaProfesor {
 			String adresa_kancelarije, String br_licne, String titula, String zvanje, Date datum_rodjenja) {
 		this.profesori.add(new Profesor(ime, prezime, adresa_stanovanja, br_telefona,mail,adresa_kancelarije,br_licne,titula,zvanje,datum_rodjenja));
 	}
-
+	public void izbrisiProfesoraIzPretrage(String br_licne) {
+		for (Profesor p : filter_profesor) {
+			if (p.getBr_licne().equals(br_licne)) {
+				filter_profesor.remove(p);
+				break;
+			}
+		}
+	}
+	
 	public void izbrisiProfesora(String br_licne) {
 		for (Profesor p : profesori) {
 			if (p.getBr_licne().equals(br_licne)) {
@@ -163,6 +173,18 @@ public class BazaProfesor {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public int getRealRowForFilter(int selectedrow) {
+		Profesor prof = filter_profesor.get(selectedrow);
+		int i = 0;
+		for(Profesor p : getProfesori()) {
+			if(prof.getBr_licne().equals(p.getBr_licne())) {
+				break;
+			}
+			i++;
+		}
+		return i;
 	}
 	
 }

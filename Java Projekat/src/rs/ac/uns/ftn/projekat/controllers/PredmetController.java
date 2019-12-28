@@ -105,6 +105,8 @@ public class PredmetController {
 	
 	public void obrisiPredmet(Predmet p) {
 		Profesor prof = p.getProfesor();
+		if(BazaPredmet.indikator == 1)
+			BazaPredmet.getInstance().izbrisiPredmetFilter(p.getSifra_predmeta());
 		BazaPredmet.getInstance().izbrisiPredmet(p.getSifra_predmeta());
 		prof.removePredmet(p);
 		PredmetJTable.osvezi();
@@ -125,6 +127,8 @@ public class PredmetController {
 		}
 		if(DodajProfesoraNaPredmet.txtLicna.getText().isEmpty())
 			JOptionPane.showMessageDialog(null, "Podaci se moraju uneti!", "Error", JOptionPane.ERROR_MESSAGE );
+		else if(!DodajProfesoraNaPredmet.txtLicna.getText().matches("[0-9]+"))
+			JOptionPane.showMessageDialog(null, "Broj licne karte nije validan!", "Error", JOptionPane.ERROR_MESSAGE );
 		else if(nasao == false)
 			JOptionPane.showMessageDialog(null, "Unet pogresan broj licne karte!", "Error", JOptionPane.ERROR_MESSAGE );
 		

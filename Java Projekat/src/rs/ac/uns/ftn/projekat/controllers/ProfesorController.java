@@ -7,14 +7,13 @@ import java.util.Locale;
 
 import javax.swing.JOptionPane;
 
+import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
-import rs.ac.uns.ftn.projekat.classes.Student;
-import rs.ac.uns.ftn.projekat.classes.Student.Status;
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
-import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesora;
-import rs.ac.uns.ftn.projekat.dialogs.DodajStudenta;
 import rs.ac.uns.ftn.projekat.dialogs.IzmeniProfesora;
+import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
@@ -92,6 +91,21 @@ public class ProfesorController {
 		
 		
 		return ret;	
+	}
+	public void obrisiProfesora(Profesor p) {
+		
+		if(BazaProfesor.indikator ==1)
+			BazaProfesor.getInstance().izbrisiProfesoraIzPretrage(p.getBr_licne());
+		
+		BazaProfesor.getInstance().izbrisiProfesora(p.getBr_licne());
+		ArrayList<Predmet> predmeti = (ArrayList<Predmet>) BazaPredmet.getInstance().getPredmeti();
+		for(Predmet pr: predmeti) {
+			if(pr.getProfesor().getBr_licne() != null)
+				if(pr.getProfesor().getBr_licne().equals(p.getBr_licne()))
+					BazaPredmet.getInstance().izmeniPredmet(pr.getSifra_predmeta(), new Profesor(), pr.getNaziv(), pr.getSemestar(), pr.getGodina_studija());
+		}
+		PredmetJTable.osvezi();
+		ProfesorJTable.osvezi();
 	}
 	
 	public int izmeniProfesora() {
