@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,8 +43,8 @@ public class IzmeniProfesora extends JDialog{
 	public static JTextField txteadresa ;
 	public static JTextField txtAdresaKanc ;
 	public static JTextField txtBrLicne ;
-	public static JTextField txtTitula ;
-	public static JTextField txtZvanje ;
+	public static JComboBox  cbTitula ;
+	public static JComboBox cbZvanje ;
 	
 	public IzmeniProfesora(JFrame parent) {
 		super(parent,"Izmena profesora",true);
@@ -72,6 +73,8 @@ public class IzmeniProfesora extends JDialog{
 			JLabel lblTitula = new JLabel("Titula*");
 			JLabel lblZvanje = new JLabel("Zvanje*");
 			
+			 String[] sTitule = { "doktor","magistar","master"};
+			 String[] sZvanje = { "profesor","asistent","saradnik","docent" };
 			 txtIme = new JTextField();
 			 txtPrezime = new JTextField();
 			 txtDatumRodj = new JTextField();
@@ -80,8 +83,9 @@ public class IzmeniProfesora extends JDialog{
 			 txteadresa = new JTextField();
 			 txtAdresaKanc = new JTextField();
 			 txtBrLicne = new JTextField();
-			 txtTitula = new JTextField();
-			 txtZvanje = new JTextField();
+			 cbTitula = new JComboBox(sTitule);
+			 cbZvanje = new JComboBox(sZvanje);
+			
 			
 			txtIme.setText(p.getIme());
 			txtPrezime.setText(p.getPrezime());
@@ -96,23 +100,10 @@ public class IzmeniProfesora extends JDialog{
 			txtAdresaKanc.setText(p.getAdresa_kancelarije());
 			txtBrLicne.setText(p.getBr_licne());
 			
-			if(p.getTitula() == Titula.doktor)
-				txtTitula.setText("doktor");
-			else if(p.getTitula() == Titula.magistar)
-				txtTitula.setText("magistar");
-			else
-				txtTitula.setText("master");
-
-			if(p.getZvanje() == Zvanje.asistent)
-				txtZvanje.setText("asistent");
-			else if(p.getZvanje() == Zvanje.docent)
-				txtZvanje.setText("docent");
-			else if(p.getZvanje() == Zvanje.profesor)
-				txtZvanje.setText("profesor");
-			else
-				txtZvanje.setText("saradnik u nastavi");
-			
 			txtBrLicne.setEditable(false);
+			
+			cbTitula.setSelectedItem((String) p.getTitula().toString());
+			cbZvanje.setSelectedItem((String) p.getZvanje().toString());
 			
 			panelC.add(lblIme, gbclbl(0,0));
 			panelC.add(txtIme, gbctxt(1,0));
@@ -131,9 +122,9 @@ public class IzmeniProfesora extends JDialog{
 			panelC.add(lblBrLicne,gbclbl(0,7));
 			panelC.add(txtBrLicne,gbctxt(1,7));
 			panelC.add(lblTitula,gbclbl(0,8));
-			panelC.add(txtTitula,gbctxt(1,8));
+			panelC.add(cbTitula,gbctxt(1,8));
 			panelC.add(lblZvanje,gbclbl(0,9));
-			panelC.add(txtZvanje,gbctxt(1,9));
+			panelC.add(cbZvanje,gbctxt(1,9));
 
 			Button bPotvrda = new Button("Potvrda");
 			Button bOdustanak = new Button("Odustanak");
