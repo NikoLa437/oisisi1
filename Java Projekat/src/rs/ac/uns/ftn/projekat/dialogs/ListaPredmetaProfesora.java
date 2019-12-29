@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -37,7 +37,7 @@ public class ListaPredmetaProfesora extends JDialog{
 
 		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  
 		
-		Button bIzlaz=new Button("Izlaz");
+		JButton bIzlaz=new JButton("Izlaz");
 		
 		DefaultListModel<String> listModel = new DefaultListModel<>();
 		

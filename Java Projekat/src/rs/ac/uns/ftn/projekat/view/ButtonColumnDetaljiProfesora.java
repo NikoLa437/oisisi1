@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.dialogs.DetaljiProfesor;
 
 public class ButtonColumnDetaljiProfesora extends AbstractCellEditor
@@ -57,8 +58,14 @@ public class ButtonColumnDetaljiProfesora extends AbstractCellEditor
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						fireEditingStopped();
+						int indeks = 0;
+						if(BazaProfesor.indikator == 0)
+							indeks = table.convertRowIndexToModel(table.getSelectedRow());
+						else
+							indeks = BazaProfesor.getInstance().getRealRowForFilter(table.convertRowIndexToModel(table.getSelectedRow()));
+						
 						@SuppressWarnings("unused")
-						DetaljiProfesor dp = new DetaljiProfesor(new JFrame(), table.convertRowIndexToModel(table.getSelectedRow()));
+						DetaljiProfesor dp = new DetaljiProfesor(new JFrame(), indeks);
 					}
 				});
 
@@ -106,14 +113,14 @@ public class ButtonColumnDetaljiProfesora extends AbstractCellEditor
 
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-		return new ProfesorTablePanel(this.editorButton, 50, 50);
+		return new ProfesorTablePanel(this.editorButton, 0, 0);
 
 	}
 
 	@Override
 	public Component getTableCellRendererComponent(JTable arg0, Object arg1, boolean arg2, boolean arg3, int arg4,
 			int arg5) {
-		return new ProfesorTablePanel(this.renderButton, 50, 50);
+		return new ProfesorTablePanel(this.renderButton, 0, 0);
 
 	}
 

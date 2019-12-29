@@ -13,7 +13,6 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -29,9 +28,12 @@ public class IzmeniPredmet extends JDialog{
 	
 	public static JTextField txtSifra;
 	public static JTextField txtNaziv;
+	@SuppressWarnings("rawtypes")
 	public static JComboBox cbGodStud;
+	@SuppressWarnings("rawtypes")
 	public static JComboBox cbSemestar;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public IzmeniPredmet(JFrame parent) {
 		super(parent,"Izmena predmeta",true);
 		

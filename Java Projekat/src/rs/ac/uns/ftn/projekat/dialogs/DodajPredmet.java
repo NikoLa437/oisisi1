@@ -13,14 +13,10 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.controllers.PredmetController;
-import rs.ac.uns.ftn.projekat.data.BazaPredmet;
-import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class DodajPredmet extends JDialog{
 
@@ -28,11 +24,14 @@ public class DodajPredmet extends JDialog{
 	
 	public static JTextField txtSifra;
 	public static JTextField txtNaziv;
+	@SuppressWarnings("rawtypes")
 	public static JComboBox cbGodStud;
+	@SuppressWarnings("rawtypes")
 	public static JComboBox cbSemestar;
 
 
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DodajPredmet(JFrame parent) {
 		super(parent,"Dodavanje novog predmeta",true);
 		

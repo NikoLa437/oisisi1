@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -94,20 +94,20 @@ public class DetaljiProfesor extends JDialog{
 			txtAdresaKanc.setText(p.getAdresa_kancelarije());
 			txtBrLicne.setText(p.getBr_licne());
 			if(p.getTitula() == Titula.doktor)
-				txtTitula.setText("doktor");
+				txtTitula.setText("Doktor");
 			else if(p.getTitula() == Titula.magistar)
-				txtTitula.setText("magistar");
+				txtTitula.setText("Magistar");
 			else
-				txtTitula.setText("master");
+				txtTitula.setText("Master");
 
 			if(p.getZvanje() == Zvanje.asistent)
-				txtZvanje.setText("asistent");
+				txtZvanje.setText("Asistent");
 			else if(p.getZvanje() == Zvanje.docent)
-				txtZvanje.setText("docent");
+				txtZvanje.setText("Docent");
 			else if(p.getZvanje() == Zvanje.profesor)
-				txtZvanje.setText("profesor");
+				txtZvanje.setText("Profesor");
 			else
-				txtZvanje.setText("saradnik u nastavi");
+				txtZvanje.setText("Saradnik u nastavi");
 
 			
 			txtIme.setEditable(false);
@@ -143,7 +143,7 @@ public class DetaljiProfesor extends JDialog{
 			panelC.add(lblZvanje,gbclbl(0,9));
 			panelC.add(txtZvanje,gbctxt(1,9));
 
-			Button bIzlazak = new Button("Izlaz");
+			JButton bIzlazak = new JButton("Izlaz");
 			
 			bIzlazak.addActionListener(new ActionListener(){
 				@Override

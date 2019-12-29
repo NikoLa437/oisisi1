@@ -9,7 +9,6 @@ import java.awt.event.MouseListener;
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
@@ -57,6 +56,7 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					fireEditingStopped();
+					@SuppressWarnings("unused")
 					ListaStudenataNaPredmetu lsnp = new ListaStudenataNaPredmetu(new JFrame());
 				}
 			});
@@ -104,13 +104,13 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-		return new PredmetTablePanel(this.editorButton, 50, 50);
+		return new PredmetTablePanel(this.editorButton, 0, 0);
 	}
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
-	return new PredmetTablePanel(this.renderButton, 50, 50);
+	return new PredmetTablePanel(this.renderButton, 0, 0);
 	}
 
 }
