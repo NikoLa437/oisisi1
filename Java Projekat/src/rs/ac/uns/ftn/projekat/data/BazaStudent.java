@@ -13,8 +13,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.swing.JOptionPane;
-
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
@@ -45,14 +43,11 @@ public class BazaStudent {
 		this.kolone.add("Indeks");
 		this.kolone.add("Ime");
 		this.kolone.add("Prezime");
-		this.kolone.add("Adresa stanovanja");
-		this.kolone.add("Kontakt telefon");
-		this.kolone.add("Email kontatk");
 		this.kolone.add("Datum rodjenja");
-		this.kolone.add("Datum upisa");
 		this.kolone.add("Godina studija");
 		this.kolone.add("Status");
-		this.kolone.add("Prosek");
+		this.kolone.add("Detalji");
+		this.kolone.add("Predmeti");
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -91,7 +86,7 @@ public class BazaStudent {
 	}
 	
 	public int getColumnCount() {
-		return 11;
+		return 8;
 	}
 	
 	public String getColumnName(int index) { // vraca naziv kolone na indeksu
@@ -122,23 +117,12 @@ public class BazaStudent {
 		case 2:
 			return stud.getPrezime();
 		case 3:
-			return stud.getAdresa_stanovanja();
-		case 4:
-			return stud.getKontakt_telefon();  // getovanje statusa proveriti kako
-		case 5:
-			return stud.getEmail_adresa();
-		case 6:
 			DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
 			return dateFormat.format(stud.getDatum_rodjenja());
-		case 7:
-			DateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
-			return dateFormat1.format(stud.getDatum_upisa());
-		case 8:
+		case 4:
 			return Integer.toString(stud.getGod_studija());
-		case 9:
+		case 5:
 			return stud.getStatus().toString();
-		case 10:
-			return Double.toString(stud.getProsecna_ocena());
 		default:
 			return null;
 		}
@@ -232,6 +216,18 @@ public class BazaStudent {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public int getRealRowForFilter(int selectedrow) {
+		Student stud = pretrazeni_studenti.get(selectedrow);
+		int i = 0;
+		for(Student s : getStudenti()) {
+			if(stud.getIndeks().equals(s.getIndeks())) {
+				break;
+			}
+			i++;
+		}
+		return i;
 	}
 	
 }

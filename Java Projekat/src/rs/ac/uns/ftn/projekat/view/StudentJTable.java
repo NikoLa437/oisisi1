@@ -13,6 +13,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.data.BazaStudent;
+
 
 public class StudentJTable extends JTable {
 
@@ -33,7 +36,8 @@ public class StudentJTable extends JTable {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelStudent());
 		this.getTableHeader().setReorderingAllowed(false);
-	
+		new ButtonColumnDetaljiStudent(this, 6);
+		new ButtonColumnPredmetiStudenta(this,7);
 
 		
 		// sortiranje
@@ -47,7 +51,14 @@ public class StudentJTable extends JTable {
 	        @Override
 	        public void mouseReleased(MouseEvent e) {
 	        	JTable jt = (JTable)e.getComponent();
-	            selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
+	        	if(BazaProfesor.indikator == 0) {
+		        	if (jt.getSelectedRow() != -1)
+		        		selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
+	        	}else {
+	        		if (jt.getSelectedRow() != -1)
+		        		selectedRow= BazaStudent.getInstance().getRealRowForFilter(jt.convertRowIndexToModel(jt.getSelectedRow()));
+	        		
+	        	}
 	        }
 	    });
 	    
