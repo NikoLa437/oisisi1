@@ -38,8 +38,8 @@ public class ButtonColumnPredmetiStudenta extends AbstractCellEditor	implements 
 		this.table.addMouseListener(this);
 
 		// dugme koje ce biti iscrtavanp
-		this.renderButton = new JButton("Predmeti");
-		this.editorButton = new JButton("Predmeti");
+		this.renderButton = new JButton("Prikazi");
+		this.editorButton = new JButton("Prikazi");
 				
 		this.renderButton.setToolTipText("Predmeti studenta");
 		this.renderButton.setBorder(null);
@@ -109,14 +109,14 @@ public class ButtonColumnPredmetiStudenta extends AbstractCellEditor	implements 
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
 		// TODO Auto-generated method stub
-		return new StudentTablePanel(this.editorButton, 50, 50);
+		return new StudentTablePanel(this.editorButton, 40, 40);
 	}
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
 		// TODO Auto-generated method stub
-		return new StudentTablePanel(this.renderButton, 50, 50);
+		return new StudentTablePanel(this.renderButton, 40, 40);
 	}
 
 }
