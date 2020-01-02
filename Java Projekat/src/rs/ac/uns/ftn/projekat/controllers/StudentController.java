@@ -140,6 +140,16 @@ public class StudentController {
 		StudentJTable.osvezi();
 	}
 	
+	public void obrisiPredmetStudentima(Predmet p) {
+		for(Student s : BazaStudent.getInstance().getStudenti()) {
+			for(Predmet pom : s.getPredmeti()) {
+				if(p.getSifra_predmeta().equals(pom.getSifra_predmeta())) {
+					s.getPredmeti().remove(p);
+				}
+			}
+		}
+	}
+	
 	public int dodajStudentaNaPredmet(Predmet pr) {
 		Student s= new Student();
 		int ret=0;

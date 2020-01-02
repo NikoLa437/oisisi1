@@ -105,6 +105,7 @@ public class PredmetController {
 	
 	public void obrisiPredmet(Predmet p) {
 		Profesor prof = p.getProfesor();
+		StudentController.getInstance().obrisiPredmetStudentima(p);
 		if(BazaPredmet.indikator == 1)
 			BazaPredmet.getInstance().izbrisiPredmetFilter(p.getSifra_predmeta());
 		BazaPredmet.getInstance().izbrisiPredmet(p.getSifra_predmeta());
