@@ -43,85 +43,45 @@ public class StudentController {
 	public int dodajStudenta() {
 		Student s= new Student();
 		int ret=0;
-		
-		if(!DodajStudenta.txtIme.getText().isEmpty()) {
+		if(this.proveriUnos()) {
 			s.setIme(DodajStudenta.txtIme.getText());
-			if(!DodajStudenta.txtPrezime.getText().isEmpty()) {
-				s.setPrezime(DodajStudenta.txtPrezime.getText());
-					if(!DodajStudenta.txtAdresa.getText().isEmpty()) {
-						s.setAdresa_stanovanja(DodajStudenta.txtAdresa.getText());
-						if(!DodajStudenta.txtBrojTel.getText().isEmpty()) {
-							s.setKontakt_telefon(DodajStudenta.txtBrojTel.getText());
-								if(!DodajStudenta.txtBrojInd.getText().isEmpty()&&!BazaStudent.getInstance().postoji(DodajStudenta.txtBrojInd.getText())) {
-									s.setIndeks(DodajStudenta.txtBrojInd.getText());
-									if(!DodajStudenta.txteadresa.getText().isEmpty()) {
-										s.setEmail_adresa(DodajStudenta.txteadresa.getText());
-										try {
-											double p_o= Double.parseDouble(DodajStudenta.txtprosecnaOcena.getText());
-											s.setProsecna_ocena(p_o);
-											//try catch za datum upisa 
-												try {
-													SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
-													Date date = formatter.parse(DodajStudenta.txtdatumUpisa.getText());
-													s.setDatum_upisa(date);
-													//try catch za datum studenta
-														try {
-															date = formatter.parse(DodajStudenta.txtDatumRodj.getText());
-															s.setDatum_rodjenja(date);
-															String g_s = DodajStudenta.cbGodStud.getSelectedItem().toString(); // godina studija	
-															if(g_s.equals("I (prva)")){
-																s.setGod_studija(1);
-															}else if(g_s.equals("II (druga)")){
-																s.setGod_studija(2);
-															}else if(g_s.equals("III (treca)")){
-																s.setGod_studija(3);
-															}else {
-																s.setGod_studija(4);
-															}
-															// status
-															if(DodajStudenta.rbSamof.isSelected()) {
-																s.setStatus(Status.S);
-															}else {
-																s.setStatus(Status.B);
-															}
-															//
-															// dodavanje studenta ako je proslo sve
-															BazaStudent.getInstance().dodajStudenta(s.getIme(), s.getPrezime(), s.getAdresa_stanovanja(), s.getKontakt_telefon(),s.getEmail_adresa(), s.getIndeks(), s.getDatum_rodjenja(), s.getDatum_upisa(), s.getGod_studija(), s.getProsecna_ocena(),s.getStatus());
-															ret=1;
-															StudentJTable.osvezi();	
-															return ret;
-														}catch(Exception ee) {
-															JOptionPane.showMessageDialog(null, "Pogresan format datuma(datum mora biti u formatu dd.MM.yyyy.", "Error", JOptionPane.ERROR_MESSAGE );
-														}
-														// ako prodje i ovaj try catch znaci da je sve uredu i mozemo napraviti studenta
-													
-												
-												}catch(Exception e1) {
-													JOptionPane.showMessageDialog(null, "Pogresan unos datuma upisa! ( Format : yyyy. )", "Error", JOptionPane.ERROR_MESSAGE );
-												}
-											
-										}catch(Exception e1) {
-											JOptionPane.showMessageDialog(null, "Pogresan unos prosecne ocene!", "Error", JOptionPane.ERROR_MESSAGE );
-										}
-									
-									}else {
-										JOptionPane.showMessageDialog(null, "Pogresan unos e-mail adrese!", "Error", JOptionPane.ERROR_MESSAGE );
-									}
-								}else {
-									JOptionPane.showMessageDialog(null, "Pogresan unos indeksa(indeks mora biti jedinstven)!", "Error", JOptionPane.ERROR_MESSAGE );
-								}
-						}else {
-							JOptionPane.showMessageDialog(null, "Pogresan unos broja telefona!", "Error", JOptionPane.ERROR_MESSAGE );
-						}
-					}else {
-						JOptionPane.showMessageDialog(null, "Pogresan unos adrese!", "Error", JOptionPane.ERROR_MESSAGE );
-					}
-			}else {
-				JOptionPane.showMessageDialog(null, "Pogresan unos prezimena!", "Error", JOptionPane.ERROR_MESSAGE );
+			s.setPrezime(DodajStudenta.txtPrezime.getText());
+			s.setKontakt_telefon(DodajStudenta.txtBrojTel.getText());
+			s.setIndeks(DodajStudenta.txtBrojInd.getText());
+			s.setEmail_adresa(DodajStudenta.txteadresa.getText());
+			s.setAdresa_stanovanja(DodajStudenta.txtAdresa.getText());
+			double p_o= Double.parseDouble(DodajStudenta.txtprosecnaOcena.getText());
+			s.setProsecna_ocena(p_o);
+			try {
+				SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
+				Date date = formatter.parse(DodajStudenta.txtdatumUpisa.getText());
+				s.setDatum_upisa(date);
+				date = formatter.parse(DodajStudenta.txtDatumRodj.getText());
+				s.setDatum_rodjenja(date);
+			}catch(Exception e ) {
+				System.out.println("Test");
 			}
-			
+			String g_s = DodajStudenta.cbGodStud.getSelectedItem().toString();
+			if(g_s.equals("I (prva)")){
+				s.setGod_studija(1);
+			}else if(g_s.equals("II (druga)")){
+				s.setGod_studija(2);
+			}else if(g_s.equals("III (treca)")){
+				s.setGod_studija(3);
+			}else {
+				s.setGod_studija(4);
+			}
+
+			if(DodajStudenta.rbSamof.isSelected()) {
+				s.setStatus(Status.S);
+			}else {
+				s.setStatus(Status.B);
+			}
+			BazaStudent.getInstance().dodajStudenta(s.getIme(), s.getPrezime(), s.getAdresa_stanovanja(), s.getKontakt_telefon(),s.getEmail_adresa(), s.getIndeks(), s.getDatum_rodjenja(), s.getDatum_upisa(), s.getGod_studija(), s.getProsecna_ocena(),s.getStatus());
+			ret=1;
+			StudentJTable.osvezi();	
 		}else {
-			JOptionPane.showMessageDialog(null, "Pogresan unos imena!", "Error", JOptionPane.ERROR_MESSAGE );
+			JOptionPane.showMessageDialog(null, "Pogresan unos!", "Error", JOptionPane.ERROR_MESSAGE );
 		}
 		return ret;	
 	}
@@ -129,81 +89,46 @@ public class StudentController {
 	public int izmeniStudenta() {
 		Student s= new Student();
 		int ret=0;
-		
-		if(!IzmeniStudenta.txtIme.getText().isEmpty()) {
+		if(this.proveriUnosIzmene()) {
 			s.setIme(IzmeniStudenta.txtIme.getText());
-			if(!IzmeniStudenta.txtPrezime.getText().isEmpty()) {
-				s.setPrezime(IzmeniStudenta.txtPrezime.getText());
-					if(!IzmeniStudenta.txtAdresa.getText().isEmpty()) {
-						s.setAdresa_stanovanja(IzmeniStudenta.txtAdresa.getText());
-						if(!IzmeniStudenta.txtBrojTel.getText().isEmpty()) {
-							s.setKontakt_telefon(IzmeniStudenta.txtBrojTel.getText());
-									if(!IzmeniStudenta.txteadresa.getText().isEmpty()) {
-										s.setEmail_adresa(IzmeniStudenta.txteadresa.getText());
-										s.setIndeks(IzmeniStudenta.txtBrojInd.getText());
-										try {
-											double p_o= Double.parseDouble(IzmeniStudenta.txtprosecnaOcena.getText());
-											s.setProsecna_ocena(p_o);
-											//try catch za datum upisa 
-												try {
-													SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
-													Date date = formatter.parse(IzmeniStudenta.txtdatumUpisa.getText());
-													s.setDatum_upisa(date);
-													//try catch za datum studenta
-														try {
-															date = formatter.parse(IzmeniStudenta.txtDatumRodj.getText());
-															s.setDatum_rodjenja(date);
-															String g_s = IzmeniStudenta.cbGodStud.getSelectedItem().toString(); // godina studija	
-															if(g_s.equals("I (prva)")){
-																s.setGod_studija(1);
-															}else if(g_s.equals("II (druga)")){
-																s.setGod_studija(2);
-															}else if(g_s.equals("III (treca)")){
-																s.setGod_studija(3);
-															}else {
-																s.setGod_studija(4);
-															}
-															// status
-															if(IzmeniStudenta.rbSamof.isSelected()) {
-																s.setStatus(Status.S);
-															}else {
-																s.setStatus(Status.B);
-															}
-															//
-															// dodavanje studenta ako je proslo sve
-															BazaStudent.getInstance().izmeniStudenta(s.getIndeks(),s.getIme(), s.getPrezime(), s.getAdresa_stanovanja(), s.getKontakt_telefon(), s.getEmail_adresa(), s.getDatum_rodjenja(), s.getDatum_upisa(), s.getGod_studija(), s.getProsecna_ocena(),s.getStatus());
-															StudentJTable.osvezi();
-															ret=1;
-															return ret;
-														}catch(Exception ee) {
-															JOptionPane.showMessageDialog(null, "Pogresan format datuma(datum mora biti u formatu dd.MM.yyyy.", "Error", JOptionPane.ERROR_MESSAGE );
-														}
-														// ako prodje i ovaj try catch znaci da je sve uredu i mozemo napraviti studenta
-													
-												
-												}catch(Exception e1) {
-													JOptionPane.showMessageDialog(null, "Pogresan unos datuma upisa! ( Format : yyyy. )", "Error", JOptionPane.ERROR_MESSAGE );
-												}
-											
-										}catch(Exception e1) {
-											JOptionPane.showMessageDialog(null, "Pogresan unos prosecne ocene!", "Error", JOptionPane.ERROR_MESSAGE );
-										}
-									
-									}else {
-										JOptionPane.showMessageDialog(null, "Pogresan unos e-mail adrese!", "Error", JOptionPane.ERROR_MESSAGE );
-									}
-						}else {
-							JOptionPane.showMessageDialog(null, "Pogresan unos broja telefona!", "Error", JOptionPane.ERROR_MESSAGE );
-						}
-					}else {
-						JOptionPane.showMessageDialog(null, "Pogresan unos adrese!", "Error", JOptionPane.ERROR_MESSAGE );
-					}
-			}else {
-				JOptionPane.showMessageDialog(null, "Pogresan unos prezimena!", "Error", JOptionPane.ERROR_MESSAGE );
+			s.setPrezime(IzmeniStudenta.txtPrezime.getText());
+			s.setKontakt_telefon(IzmeniStudenta.txtBrojTel.getText());
+			s.setIndeks(IzmeniStudenta.txtBrojInd.getText());
+			s.setEmail_adresa(IzmeniStudenta.txteadresa.getText());
+			s.setAdresa_stanovanja(IzmeniStudenta.txtAdresa.getText());
+			double p_o= Double.parseDouble(IzmeniStudenta.txtprosecnaOcena.getText());
+			s.setProsecna_ocena(p_o);
+			try {
+				SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
+				Date date = formatter.parse(IzmeniStudenta.txtdatumUpisa.getText());
+				s.setDatum_upisa(date);
+				date = formatter.parse(IzmeniStudenta.txtDatumRodj.getText());
+				s.setDatum_rodjenja(date);
+			}catch(Exception e ) {
+				System.out.println("Test");
 			}
-			
+
+			String g_s = IzmeniStudenta.cbGodStud.getSelectedItem().toString();
+			if(g_s.equals("I (prva)")){
+				s.setGod_studija(1);
+			}else if(g_s.equals("II (druga)")){
+				s.setGod_studija(2);
+			}else if(g_s.equals("III (treca)")){
+				s.setGod_studija(3);
+			}else {
+				s.setGod_studija(4);
+			}
+
+			if(IzmeniStudenta.rbSamof.isSelected()) {
+				s.setStatus(Status.S);
+			}else {
+				s.setStatus(Status.B);
+			}
+			BazaStudent.getInstance().izmeniStudenta(s.getIndeks(),s.getIme(), s.getPrezime(), s.getAdresa_stanovanja(), s.getKontakt_telefon(),s.getEmail_adresa(),  s.getDatum_rodjenja(), s.getDatum_upisa(), s.getGod_studija(), s.getProsecna_ocena(),s.getStatus());
+			ret=1;
+			StudentJTable.osvezi();	
 		}else {
-			JOptionPane.showMessageDialog(null, "Pogresan unos imena!", "Error", JOptionPane.ERROR_MESSAGE );
+			JOptionPane.showMessageDialog(null, "Pogresan unos!", "Error", JOptionPane.ERROR_MESSAGE );
 		}
 		return ret;
 	}
@@ -225,14 +150,15 @@ public class StudentController {
 				if(s.getGod_studija()==pr.getGodina_studija()) {
 					boolean postoji=false;
 					for(Student st : pr.getStudenti()) {
-						if(st.getIndeks()==s.getIndeks())
+						if(st.getIndeks().equals(s.getIndeks()))
 							postoji=true;
 					}
 					if(!postoji) {
-					BazaStudent.getInstance().dodajPredmet(s.getIndeks(), pr);
-					BazaPredmet.getInstance().dodajStudenta(pr.getSifra_predmeta(), s);
-					ret=1;
-					PredmetJTable.osvezi();}
+						BazaStudent.getInstance().dodajPredmet(s.getIndeks(), pr);
+						BazaPredmet.getInstance().dodajStudenta(pr.getSifra_predmeta(), s);
+						ret=1;
+						PredmetJTable.osvezi();
+					}
 					else {
 						JOptionPane.showMessageDialog(null, "Vec postoji student sa tim brojem indeksa", "Error", JOptionPane.ERROR_MESSAGE );
 					}
@@ -253,7 +179,8 @@ public class StudentController {
 	public void brisanjeStudentaSaPredmeta(Predmet pr) {
 		Student s=BazaStudent.getInstance().getStudentInd(ListaStudenataNaPredmetu.selRow);
 		BazaPredmet.getInstance().obrisiStudenta(pr.getSifra_predmeta(), s);
-		}
+		
+	}
 	
 	public void pretraziStudente(String kriterijum) {
 
@@ -265,13 +192,13 @@ public class StudentController {
 			String[] deo= kriterijum.split(";");
 			String[] kolona= new String [5];
 			String[] kolonakrit= new String[5];
-			int brojac = 0;
+			//int brojac = 0;
 			
 			for(int i=0; i<deo.length;i++) {
 				String[] pom= deo[i].split(":");
 				kolona[i]=pom[0];
 				kolonakrit[i]=pom[1];
-				brojac++;
+				//brojac++;
 			}
 			
 
@@ -338,7 +265,6 @@ public class StudentController {
 						}
 					}
 					if(za_prikazati== true) {
-						System.out.println(s.getIndeks());
 						studenti.add(s);
 					}
 				}
@@ -355,10 +281,30 @@ public class StudentController {
 			BazaStudent.indikator=0;
 			StudentJTable.osvezi();
 		}
+	}
+
+	private boolean proveriUnos() {
+		boolean ret;
+		ret = false;
 		
+		if(DodajStudenta.txtIme.getText().matches("[A-Z][a-z]+")&&DodajStudenta.txtPrezime.getText().matches("[A-Z][a-z]+")&&DodajStudenta.txtdatumUpisa.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")&&DodajStudenta.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
+				&&DodajStudenta.txtAdresa.getText().matches("[A-Za-z][A-Z a-z]+[ 0-9]*")&&!DodajStudenta.txtBrojInd.getText().isEmpty()&&DodajStudenta.txtBrojTel.getText().matches("[0-9]{8,12}") && DodajStudenta.txteadresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+				&&DodajStudenta.txtprosecnaOcena.getText().matches("[5-9 10]{1}(\\.)[0-9]{2}") && (!BazaStudent.getInstance().postoji(DodajStudenta.txtBrojInd.getText()))){
+			ret=true;
+		}
+		return ret;
+	}
+	
+	private boolean proveriUnosIzmene() {
+		boolean ret;
+		ret = false;
 		
-		
-		
+		if(IzmeniStudenta.txtIme.getText().matches("[A-Z][a-z]+")&&IzmeniStudenta.txtPrezime.getText().matches("[A-Z][a-z]+")&&IzmeniStudenta.txtdatumUpisa.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")&&IzmeniStudenta.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
+				&&IzmeniStudenta.txtAdresa.getText().matches("[A-Za-z][A-Z a-z]+[ 0-9]*")&&!IzmeniStudenta.txtBrojInd.getText().isEmpty()&&IzmeniStudenta.txtBrojTel.getText().matches("[0-9]{8,12}") && IzmeniStudenta.txteadresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+				&&IzmeniStudenta.txtprosecnaOcena.getText().matches("[5-9 10]{1}(\\.)[0-9]{2}")){
+			ret=true;
+		}
+		return ret;
 	}
 	
 }

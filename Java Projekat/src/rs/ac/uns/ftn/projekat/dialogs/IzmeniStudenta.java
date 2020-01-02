@@ -88,7 +88,7 @@ public class IzmeniStudenta extends JDialog{
 		 txtprosecnaOcena = new JTextField();
 		
 		String[] sGodStud = { "I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)" };
-		JComboBox cbGodStud = new JComboBox(sGodStud);
+	    cbGodStud = new JComboBox(sGodStud);
 	
 		 rbBudzet = new JRadioButton("Budzet");
 		 rbSamof = new JRadioButton("Samofinansiranje");
@@ -161,56 +161,7 @@ public class IzmeniStudenta extends JDialog{
 					dispose();	
 			}
 		});
-		
-		
-		/*bPotvrda.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Student s= new Student();
-
-				if(txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtAdresa.getText().isEmpty() || txtBrojTel.getText().isEmpty() || txtBrojInd.getText().isEmpty())
-					JOptionPane.showMessageDialog(null, "Pogresan unos podataka!", "Error", JOptionPane.ERROR_MESSAGE );
-				else {
-					try {
-						SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
-						Date date = formatter.parse(txtDatumRodj.getText());
-						s.setDatum_rodjenja(date);
-						
-						s.setIme(txtIme.getText());
-						s.setPrezime(txtPrezime.getText());
-						s.setAdresa_stanovanja(txtAdresa.getText());
-						s.setKontakt_telefon(txtBrojTel.getText());
-						s.setIndeks(txtBrojInd.getText());
-						String g_s = cbGodStud.getSelectedItem().toString();
-						
-						if(g_s.equals("I (prva)")){
-							s.setGod_studija(1);
-						}else if(g_s.equals("II (druga)")){
-							s.setGod_studija(2);
-						}else if(g_s.equals("III (treca)")){
-							s.setGod_studija(3);
-						}else {
-							s.setGod_studija(4);
-						}
-						
-						if(rbSamof.isSelected()) {
-							s.setStatus(Status.S);
-						}else {
-							s.setStatus(Status.B);
-						}
-						
-						
-						}catch(Exception e1) {
-							JOptionPane.showMessageDialog(null, "Datum mora biti u formatu: dd.MM.yyyy.", "Error", JOptionPane.ERROR_MESSAGE );
-						}
-				}
-				BazaStudent.getInstance().izmeniStudenta(s.getIndeks(),s.getIme(), s.getPrezime(), s.getAdresa_stanovanja(), s.getKontakt_telefon(), "e-adresa", s.getDatum_rodjenja(), s.getDatum_rodjenja(), s.getGod_studija(), 13.3,s.getStatus());
-				dispose();
-				StudentJTable.osvezi();
-			}
-		});*/
-		
+	
 		
 		
 		panelS.add(bOdustanak);
