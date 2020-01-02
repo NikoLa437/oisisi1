@@ -19,8 +19,8 @@ public class CreateEntityAction extends AbstractAction{
 
 	public CreateEntityAction() {
 
-		putValue(MNEMONIC_KEY, KeyEvent.VK_A);
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_A,KeyEvent.CTRL_MASK));
+		//putValue(MNEMONIC_KEY, KeyEvent.VK_N);
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N,KeyEvent.CTRL_MASK));
 	
 	}
 	@Override
