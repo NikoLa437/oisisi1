@@ -14,60 +14,29 @@ import javax.swing.JPanel;
 
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.controllers.StudentController;
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
-public class ObrisiStudenta extends JDialog{
+public class ObrisiStudenta extends JFrame{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public ObrisiStudenta(JFrame parent) {
-		super(parent,"Brisanje studenata",true);
-		
-		if(BazaStudent.getInstance().getStudenti().size()==0) {
-			JOptionPane.showMessageDialog(null, "Ne postoji ili nije selektovan ni jedan student", "Error", JOptionPane.ERROR_MESSAGE );
-	        dispose();
-		}else {
-		
-		this.setSize(400,200);
-		this.setLayout(new BorderLayout());
-		
-		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JLabel lblTxt = new JLabel("Da li ste sigurni da zelite da izbrisete izabranog studenta?");
-		
-		add(lblTxt,BorderLayout.CENTER);
-		
-		Button bPotvrda = new Button("Potvrda");
-		Button bOdustanak = new Button("Odustanak");
-		
-		bOdustanak.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				dispose();
-			}
-		});
-		
-		bPotvrda.addActionListener(new ActionListener() {
+	public ObrisiStudenta() {
+		 String[] options = {"Da", "Ne"};
+		    int confirmed = JOptionPane.showOptionDialog(null, 
+		        "Da li ste sigurni da zelite da obrisete studenta iz baze?", "Brisanje studenta",
+		        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				StudentController.getInstance().obrisiStudenta();
-				dispose();	
-			}
-		});
-		
-		panelS.add(bOdustanak);
-		panelS.add(bPotvrda);
-		//test
-		add(panelS,BorderLayout.SOUTH);
-		
-		this.setResizable(false);
-		this.setLocationRelativeTo(parent);
-		this.setVisible(true);
-		}
+		    if (confirmed == JOptionPane.YES_OPTION) {
+		    	StudentController.getInstance().obrisiStudenta();
+		    }
+		    else{
+		    	this.dispose();
+		    }
 	}
 }

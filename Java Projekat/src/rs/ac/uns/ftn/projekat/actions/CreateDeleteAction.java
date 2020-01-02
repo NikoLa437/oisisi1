@@ -31,7 +31,7 @@ public class CreateDeleteAction extends AbstractAction{
 			ObrisiProfesora op = new ObrisiProfesora(new JFrame());
 		}
 		if(JTabbedPaneTabele.selektovan_tab == 0) {
-			 ObrisiStudenta os= new ObrisiStudenta(new JFrame());
+			 ObrisiStudenta os= new ObrisiStudenta();
 		}
 	}
 
