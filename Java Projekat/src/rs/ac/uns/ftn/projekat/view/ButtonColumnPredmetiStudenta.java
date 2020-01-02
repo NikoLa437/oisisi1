@@ -58,7 +58,7 @@ public class ButtonColumnPredmetiStudenta extends AbstractCellEditor	implements 
 				else
 					indeks = BazaStudent.getInstance().getRealRowForFilter(table.convertRowIndexToModel(table.getSelectedRow()));
 				@SuppressWarnings("unused")
-				ListaPredmetaZaStudenta lpzs = new ListaPredmetaZaStudenta(new JFrame(), table.convertRowIndexToModel(indeks));
+				ListaPredmetaZaStudenta lpzs = new ListaPredmetaZaStudenta(new JFrame(), indeks);
 			}
 		});
 

@@ -36,7 +36,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 	private static final long serialVersionUID = 1L;
 	public static String selRow = "";
 	
-	public ListaStudenataNaPredmetu(JFrame parent) {
+	public ListaStudenataNaPredmetu(JFrame parent,int index) {
 		super(parent,"Lista studenata",true);
 		
 		//String selektovaniIndeks="";
@@ -56,7 +56,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 		///////////////////////////////////////////////////////////////
 		DefaultListModel<String> listModel = new DefaultListModel<>();
 		
-		Predmet p = BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow);
+		Predmet p = BazaPredmet.getInstance().getRow(index);
 		ArrayList<Student> listaStudenata= new ArrayList<Student>();
 		listaStudenata= p.getStudenti();
 		

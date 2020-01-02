@@ -13,6 +13,9 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.dialogs.ListaPredmetaProfesora;
 import rs.ac.uns.ftn.projekat.dialogs.ListaStudenataNaPredmetu;
 
 
@@ -56,8 +59,15 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					fireEditingStopped();
+					int indeks = 0;
+					if(BazaProfesor.indikator == 0)
+						indeks = table.convertRowIndexToModel(table.getSelectedRow());
+					else
+						indeks = BazaPredmet.getInstance().getRealRowForFilter(table.convertRowIndexToModel(table.getSelectedRow()));
+
 					@SuppressWarnings("unused")
-					ListaStudenataNaPredmetu lsnp = new ListaStudenataNaPredmetu(new JFrame());
+					ListaStudenataNaPredmetu lsnp = new ListaStudenataNaPredmetu(new JFrame(),indeks);
+					fireEditingStopped();
 				}
 			});
 

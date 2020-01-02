@@ -58,7 +58,7 @@ public class ButtonColumnDetaljiStudent extends AbstractCellEditor	implements Ta
 				else
 					indeks = BazaStudent.getInstance().getRealRowForFilter(table.convertRowIndexToModel(table.getSelectedRow()));
 				@SuppressWarnings("unused")
-				DetaljiStudenta ds = new DetaljiStudenta(new JFrame(), table.convertRowIndexToModel(indeks));
+				DetaljiStudenta ds = new DetaljiStudenta(new JFrame(), indeks);
 			}
 		});
 
