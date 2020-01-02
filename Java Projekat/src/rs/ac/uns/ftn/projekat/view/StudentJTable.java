@@ -51,7 +51,7 @@ public class StudentJTable extends JTable {
 	        @Override
 	        public void mouseReleased(MouseEvent e) {
 	        	JTable jt = (JTable)e.getComponent();
-	        	if(BazaProfesor.indikator == 0) {
+	        	if(BazaStudent.indikator == 0) {
 		        	if (jt.getSelectedRow() != -1)
 		        		selectedRow=jt.convertRowIndexToModel(jt.getSelectedRow());
 	        	}else {

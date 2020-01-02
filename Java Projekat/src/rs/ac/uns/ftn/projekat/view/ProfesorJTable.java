@@ -51,7 +51,7 @@ public class ProfesorJTable extends JTable{
 		        	}else {
 		        		if (jt.getSelectedRow() != -1)
 			        		selectedRow= BazaProfesor.getInstance().getRealRowForFilter(jt.convertRowIndexToModel(jt.getSelectedRow()));
-		        		
+		   
 		        	}
 		        }
 		    });
