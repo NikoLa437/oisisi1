@@ -3,6 +3,8 @@ package rs.ac.uns.ftn.projekat.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -55,12 +57,21 @@ public class MenuBar extends JMenuBar{
 		miDelete.setIcon(ScaleIcon.ScaleIconSize("icon/deleteicon.png"));
 		miDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		
-		
+
 		JMenuItem miHelp = new JMenuItem("Help",ScaleIcon.ScaleIconSize("icon/helpicon.jpg"));
 		miHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		JMenuItem miAbout = new JMenuItem("About",ScaleIcon.ScaleIconSize("icon/abouticon.jpg"));	
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.CTRL_MASK));
 
+		miHelp.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Help h= new Help();
+			}
+			
+		});
+		
 		miClose.addActionListener(new ActionListener() {
 
 			@Override
