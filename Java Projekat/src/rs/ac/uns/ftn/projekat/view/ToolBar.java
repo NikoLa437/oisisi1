@@ -56,7 +56,7 @@ public class ToolBar extends JToolBar {
 		addbtn.setOpaque(false);
 		
 		studbtn = new JButton();
-		studbtn.setIcon(ScaleIcon.ScaleIconSize("icon/addperson.png"));
+		studbtn.setIcon(ScaleIcon.ScaleIconSize("icon/addStudent.png"));
 		studbtn.setToolTipText("Add Student");
 		studbtn.setMargin(new Insets(0, 0, 0, 0));
 		studbtn.setBorder(null);

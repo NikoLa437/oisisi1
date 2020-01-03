@@ -2,10 +2,12 @@ package rs.ac.uns.ftn.projekat.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -42,7 +44,9 @@ public class MainFrame extends JFrame {
         
 		MenuBar myMenuBar= new MenuBar();
 		this.setJMenuBar(myMenuBar);
-		
+		ImageIcon image = new ImageIcon("icon/mainIcon.png");
+		Image i = image.getImage();
+		this.setIconImage(i);
 		
 //		JPanel jp= new JPanel();
 //		jp.setBackground(Color.white);
