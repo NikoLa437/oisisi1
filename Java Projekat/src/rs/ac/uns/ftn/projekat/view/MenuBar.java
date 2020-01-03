@@ -6,15 +6,20 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import rs.ac.uns.ftn.projekat.actions.CreateDeleteAction;
 import rs.ac.uns.ftn.projekat.actions.CreateEditAction;
 import rs.ac.uns.ftn.projekat.actions.CreateEntityAction;
 import rs.ac.uns.ftn.projekat.additionalclass.ScaleIcon;
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.data.BazaStudent;
 
 public class MenuBar extends JMenuBar{
 	
@@ -76,11 +81,19 @@ public class MenuBar extends JMenuBar{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				System.exit(1);
-			}
-			
-			
+				String[] options = {"Da", "Ne"};
+			    int confirmed = JOptionPane.showOptionDialog(null, 
+			        "Da li ste sigurni da zelite da ugasite program?", "Napustanje programa",
+			        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
+
+			    if (confirmed == JOptionPane.YES_OPTION) {
+			    	BazaPredmet.getInstance().serialize();
+			    	BazaStudent.getInstance().serialize();
+			    	BazaProfesor.getInstance().serialize();
+					System.exit(1);
+			    }
+			   
+			}			
 			
 		});
 		
