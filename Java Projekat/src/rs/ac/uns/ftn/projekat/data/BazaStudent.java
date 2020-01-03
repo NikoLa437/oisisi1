@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Locale;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
-import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
 
@@ -50,12 +49,9 @@ public class BazaStudent {
 		this.kolone.add("Predmeti");
 	}
 	
-	@SuppressWarnings("deprecation")
 	private void initStudent() { // inicijalizovace studente u listu
 		this.studenti = new ArrayList<Student>();
 		this.pretrazeni_studenti = new ArrayList<Student>();
-		studenti.add(new Student("Nikola","Kolovic","Kraljevo","062490393","nikoladskv@hotmail.rs","RA133-2017",new Date(1998,04,03),new Date(98,04,03),3,9.76,Status.B));
-		studenti.add(new Student("Dusan","Petrovic","Sabac","0624905435","dusanchinaa@hotmail.rs","RA122-2017",new Date(1998,12,12),new Date(07,04,03),3,9.76,Status.B));
 	}
 	
 	public Student getStudentInd(String idx) {

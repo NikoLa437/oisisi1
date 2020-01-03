@@ -45,9 +45,6 @@ public class BazaPredmet {
 	
 	private void initPredmet() {
 		this.predmeti = new ArrayList<Predmet>();
-		predmeti.add(new Predmet("O12-ss", "OISISI",5,3));
-		predmeti.add(new Predmet("sq654652", "SPPuRV",4,2));
-		predmeti.add(new Predmet("as87", "Baze Podataka 1",3,2));
 	}
 	
 	public List<Predmet> getPredmeti() {
