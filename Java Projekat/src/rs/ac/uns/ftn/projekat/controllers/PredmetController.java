@@ -104,14 +104,17 @@ public class PredmetController {
 	}
 	
 	public void obrisiPredmet(Predmet p) {
-		Profesor prof = p.getProfesor();
 		StudentController.getInstance().obrisiPredmetStudentima(p);
+
 		if(BazaPredmet.indikator == 1)
 			BazaPredmet.getInstance().izbrisiPredmetFilter(p.getSifra_predmeta());
+		
 		BazaPredmet.getInstance().izbrisiPredmet(p.getSifra_predmeta());
-		prof.removePredmet(p);
+		BazaProfesor.getInstance().izbrisiPredmetProfesoru(p.getSifra_predmeta());
+
 		PredmetJTable.osvezi();
 		ProfesorJTable.osvezi();
+		
 	}
 	
 	public int dodajProfesoraNaPredmet(Predmet pr) {
@@ -144,10 +147,10 @@ public class PredmetController {
 	}
 	
 	public void uklanjanjeProfesoraSaPredmet(Predmet pr) {
-		Profesor p = pr.getProfesor();
 		BazaPredmet.getInstance().izmeniPredmet(pr.getSifra_predmeta(), new Profesor(), pr.getNaziv(), pr.getSemestar(), pr.getGodina_studija());
-		p.removePredmet(pr);
+		BazaProfesor.getInstance().izbrisiPredmetProfesoru(pr.getSifra_predmeta());
 		PredmetJTable.osvezi();
+		ProfesorJTable.osvezi();
 	}
 	
 	public void PretraziPredmet(String kriterijum) {
