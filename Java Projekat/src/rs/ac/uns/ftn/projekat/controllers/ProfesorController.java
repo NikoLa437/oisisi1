@@ -197,7 +197,7 @@ public class ProfesorController {
 								}
 							}
 							if(kolone[i].equals("zvanje")) {
-								if(kriter[i].equals(p.getZvanje())) {
+								if(kriter[i].equals(p.getZvanje().toString())) {
 									za_prikazati = true;
 								}else {
 									za_prikazati = false;
