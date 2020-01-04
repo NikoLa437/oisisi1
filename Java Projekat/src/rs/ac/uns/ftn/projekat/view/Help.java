@@ -24,7 +24,7 @@ public class Help extends JFrame{
 	ImageIcon iconSearch = ScaleIcon.ScaleIconSize("icon/searchicon.png");
 	ImageIcon iconHelp = ScaleIcon.ScaleIconSize("icon/helpicon.png");
 	ImageIcon iconAbout = ScaleIcon.ScaleIconSize("icon/abouticon.png");
-	ImageIcon iconAddStudent = ScaleIcon.ScaleIconSize("icon/addperson.png"); // promeniti ikonicu
+	ImageIcon iconAddStudent = ScaleIcon.ScaleIconSize("icon/addStudent.png"); // promeniti ikonicu
 	ImageIcon iconAddDelProfesor = ScaleIcon.ScaleIconSize("icon/proficon.png");
 	ImageIcon iconClose = ScaleIcon.ScaleIconSize("icon/exit.png");
 	String[] columns={"Oznaka","Precica","Objasnjenje"};
