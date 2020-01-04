@@ -115,7 +115,7 @@ public class BazaStudent {
 			return stud.getPrezime();
 		case 3:
 			DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd.", Locale.ENGLISH);
-			return dateFormat.format(stud.getDatum_rodjenja());
+			 return dateFormat.format(stud.getDatum_rodjenja());
 		case 4:
 			return Integer.toString(stud.getGod_studija());
 		case 5:

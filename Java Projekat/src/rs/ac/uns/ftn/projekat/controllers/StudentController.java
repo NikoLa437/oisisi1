@@ -100,7 +100,7 @@ public class StudentController {
 			double p_o= Double.parseDouble(IzmeniStudenta.txtprosecnaOcena.getText());
 			s.setProsecna_ocena(p_o);
 			try {
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd.", Locale.ENGLISH);
+				 SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd.", Locale.ENGLISH);
 				Date date = formatter.parse(IzmeniStudenta.txtdatumUpisa.getText());
 				s.setDatum_upisa(date);
 				date = formatter.parse(IzmeniStudenta.txtDatumRodj.getText());
