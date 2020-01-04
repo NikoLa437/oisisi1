@@ -26,6 +26,7 @@ import rs.ac.uns.ftn.projekat.dialogs.ListaStudenataNaPredmetu;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
+import rs.ac.uns.ftn.projekat.view.ToolBar;
 
 public class StudentController {
 
@@ -137,6 +138,9 @@ public class StudentController {
 	public void obrisiStudenta() {
 		Student s= BazaStudent.getInstance().getRow(StudentJTable.selectedRow);
 		BazaStudent.getInstance().izbrisiStudenta(s.getIndeks());
+		if(BazaStudent.indikator==1) {
+			this.pretraziStudente(ToolBar.textField.getText());
+		}
 		StudentJTable.osvezi();
 	}
 	

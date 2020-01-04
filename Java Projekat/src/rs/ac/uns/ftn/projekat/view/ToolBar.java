@@ -34,7 +34,7 @@ public class ToolBar extends JToolBar {
 	private static final long serialVersionUID = 4227338301683108746L;
 	static JButton studbtn;
 	static JButton profbtn;
-	static JTextField textField;
+	public static JTextField textField;
 	ToolBar (){
 		super(SwingConstants.HORIZONTAL);
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS)); // zbog look and feel-a (menja se default layout)
