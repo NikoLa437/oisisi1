@@ -9,6 +9,7 @@ import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.dialogs.DodajPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.IzmeniPredmet;
@@ -104,13 +105,12 @@ public class PredmetController {
 	}
 	
 	public void obrisiPredmet(Predmet p) {
-		StudentController.getInstance().obrisiPredmetStudentima(p);
-
 		if(BazaPredmet.indikator == 1)
 			BazaPredmet.getInstance().izbrisiPredmetFilter(p.getSifra_predmeta());
 		
 		BazaPredmet.getInstance().izbrisiPredmet(p.getSifra_predmeta());
 		BazaProfesor.getInstance().izbrisiPredmetProfesoru(p.getSifra_predmeta());
+		BazaStudent.getInstance().izbrisiPredmetStundetima(p.getSifra_predmeta());
 
 		PredmetJTable.osvezi();
 		ProfesorJTable.osvezi();

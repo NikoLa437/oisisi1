@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Locale;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
+import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
 
@@ -146,6 +147,17 @@ public class BazaStudent {
 			if (s.getIndeks().equals(indeks_studenta)) {
 				studenti.remove(s);
 				break;
+			}
+		}
+	}
+	
+	public void izbrisiPredmetStundetima(String sifra_predmeta) {
+		for (Student s : studenti) {
+			for(Predmet pred : s.getPredmeti()) {
+				if(pred.getSifra_predmeta().equals(sifra_predmeta)) {
+					s.getPredmeti().remove(pred);
+					break;
+				}
 			}
 		}
 	}
