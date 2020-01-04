@@ -100,7 +100,7 @@ public class StudentController {
 			double p_o= Double.parseDouble(IzmeniStudenta.txtprosecnaOcena.getText());
 			s.setProsecna_ocena(p_o);
 			try {
-				SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd.", Locale.ENGLISH);
 				Date date = formatter.parse(IzmeniStudenta.txtdatumUpisa.getText());
 				s.setDatum_upisa(date);
 				date = formatter.parse(IzmeniStudenta.txtDatumRodj.getText());
@@ -303,7 +303,7 @@ public class StudentController {
 		boolean ret;
 		ret = false;
 		
-		if(IzmeniStudenta.txtIme.getText().matches("[A-Z][A-Z a-z]+")&&IzmeniStudenta.txtPrezime.getText().matches("[A-Z][A-Z a-z]+")&&IzmeniStudenta.txtdatumUpisa.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")&&IzmeniStudenta.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
+		if(IzmeniStudenta.txtIme.getText().matches("[A-Z][A-Z a-z]+")&&IzmeniStudenta.txtPrezime.getText().matches("[A-Z][A-Z a-z]+")&&IzmeniStudenta.txtdatumUpisa.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")/*&&IzmeniStudenta.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")*/
 				&&IzmeniStudenta.txtAdresa.getText().matches("[A-Za-z][A-Z a-z]+[ 0-9]*")&&!IzmeniStudenta.txtBrojInd.getText().isEmpty()&&IzmeniStudenta.txtBrojTel.getText().matches("([+]{1})?[0-9]{8,12}") && IzmeniStudenta.txteadresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
 				&&IzmeniStudenta.txtprosecnaOcena.getText().matches("([5-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})")){
 			ret=true;
