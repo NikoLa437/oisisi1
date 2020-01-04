@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -109,8 +110,8 @@ public class DodajProfesora extends JDialog{
 		panelC.add(lblZvanje,gbclbl(0,9));
 		panelC.add(cbZvanje,gbctxt(1,9));
 		
-		Button bPotvrda = new Button("Potvrda");
-		Button bOdustanak = new Button("Odustanak");
+		JButton bPotvrda = new JButton("Potvrda");
+		JButton bOdustanak = new JButton("Odustanak");
 		
 		bOdustanak.addActionListener(new ActionListener(){
 			@Override
