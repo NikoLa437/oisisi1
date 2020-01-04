@@ -13,7 +13,6 @@ import java.util.List;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
-import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Titula;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
 
@@ -111,14 +110,6 @@ public class BazaProfesor {
 	public void dodajProfesora(String ime, String prezime, String adresa_stanovanja, String br_telefona, String mail,
 			String adresa_kancelarije, String br_licne, Titula titula, Zvanje zvanje, Date datum_rodjenja) {
 		this.profesori.add(new Profesor(ime, prezime, adresa_stanovanja, br_telefona,mail,adresa_kancelarije,br_licne,titula,zvanje,datum_rodjenja));
-	}
-	public void izbrisiProfesoraIzPretrage(String br_licne) {
-		for (Profesor p : filter_profesor) {
-			if (p.getBr_licne().equals(br_licne)) {
-				filter_profesor.remove(p);
-				break;
-			}
-		}
 	}
 	
 	public void izbrisiProfesora(String br_licne) {
