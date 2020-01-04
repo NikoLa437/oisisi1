@@ -9,11 +9,15 @@ import javax.swing.JOptionPane;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
+import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Titula;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
+import rs.ac.uns.ftn.projekat.classes.Student.Status;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesora;
+import rs.ac.uns.ftn.projekat.dialogs.DodajStudenta;
 import rs.ac.uns.ftn.projekat.dialogs.IzmeniProfesora;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
@@ -33,56 +37,34 @@ public class ProfesorController {
 	private ProfesorController() {}
 	
 	public int dodajProfesora() {
-		int ret=0;
-		
 		Profesor p= new Profesor();
-		
-		
-		if(!DodajProfesora.txtIme.getText().isEmpty()) {
+		int ret=0;
+		if(this.proveriUnos()) {
 			p.setIme(DodajProfesora.txtIme.getText());
-			if(!DodajProfesora.txtPrezime.getText().isEmpty()) {
-				p.setPrezime(DodajProfesora.txtPrezime.getText());
-					if(!DodajProfesora.txtAdresaStan.getText().isEmpty()) {
-						p.setAdresa_stanovanja(DodajProfesora.txtAdresaStan.getText());
-						if(!DodajProfesora.txtKtkTel.getText().isEmpty()) {
-							p.setBr_telefona(DodajProfesora.txtKtkTel.getText());
-								if(!DodajProfesora.txtBrojLicne.getText().isEmpty() ) {//&&!BazaStudent.getInstance().postoji(txtBrojInd.getText())) {
-									p.setBr_licne(DodajProfesora.txtBrojLicne.getText());
-										if(!DodajProfesora.txtEAdresa.getText().isEmpty()) {
-											p.setMail(DodajProfesora.txtEAdresa.getText());				
-													try {
-															SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
-															Date date = formatter.parse(DodajProfesora.txtDatumRodj.getText());
-															p.setDatum_rodjenja(date);
-															p.setZvanje((Profesor.Zvanje) DodajProfesora.cbZvanje.getSelectedItem());
-															p.setTitula((Profesor.Titula) DodajProfesora.cbTitula.getSelectedItem());
-															BazaProfesor.getInstance().dodajProfesora(p.getIme(), p.getPrezime(), p.getAdresa_stanovanja(), p.getBr_telefona(), p.getMail(), p.getAdresa_kancelarije(), p.getBr_licne(), p.getTitula(), p.getZvanje(), p.getDatum_rodjenja());
-															ret=1;
-															ProfesorJTable.osvezi();	
-														
-													}catch(Exception e1) {
-														JOptionPane.showMessageDialog(null, "Pogresan unos datuma!", "Error", JOptionPane.ERROR_MESSAGE );
-													}												
-										}else {
-											JOptionPane.showMessageDialog(null, "Pogresan unos e-mail adrese!", "Error", JOptionPane.ERROR_MESSAGE );
-										}
-									}else {
-										JOptionPane.showMessageDialog(null, "Pogresan unos broja licne karte (broj licne karte mora biti jedinstven)!", "Error", JOptionPane.ERROR_MESSAGE );
-									}
-								}else {
-									JOptionPane.showMessageDialog(null, "Pogresan unos broja telefona!", "Error", JOptionPane.ERROR_MESSAGE );
-								}
-						}else {
-							JOptionPane.showMessageDialog(null, "Pogresan unos adrese stanovanja!", "Error", JOptionPane.ERROR_MESSAGE );
-						}
-					}else {
-						JOptionPane.showMessageDialog(null, "Pogresan unos prezimena!", "Error", JOptionPane.ERROR_MESSAGE );
-					}
-			}else {
-				JOptionPane.showMessageDialog(null, "Pogresan unos imena!", "Error", JOptionPane.ERROR_MESSAGE );
+			p.setPrezime(DodajProfesora.txtPrezime.getText());
+			p.setAdresa_kancelarije(DodajProfesora.txtAdresaKanc.getText());
+			p.setAdresa_stanovanja(DodajProfesora.txtAdresaStan.getText());
+			p.setBr_licne(DodajProfesora.txtBrojLicne.getText());
+			p.setBr_telefona(DodajProfesora.txtKtkTel.getText());
+			p.setMail(DodajProfesora.txtEAdresa.getText());
+
+			try {
+				SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
+				Date date= formatter.parse(DodajProfesora.txtDatumRodj.getText());
+				p.setDatum_rodjenja(date);
+			}catch(Exception e ) {
+				System.out.println("Test");
 			}
-		
-		
+			
+			p.setZvanje((Profesor.Zvanje) DodajProfesora.cbZvanje.getSelectedItem());
+			p.setTitula((Profesor.Titula) DodajProfesora.cbTitula.getSelectedItem());
+			
+			BazaProfesor.getInstance().dodajProfesora(p.getIme(), p.getPrezime(), p.getAdresa_stanovanja(), p.getBr_telefona(), p.getMail(), p.getAdresa_kancelarije(), p.getBr_licne(), p.getTitula(), p.getZvanje(), p.getDatum_rodjenja());
+			ret=1;
+			ProfesorJTable.osvezi();	
+		}else {
+			JOptionPane.showMessageDialog(null, "Pogresan unos!", "Error", JOptionPane.ERROR_MESSAGE );
+		}
 		return ret;	
 	}
 	public void obrisiProfesora(Profesor p) {
@@ -242,6 +224,17 @@ public class ProfesorController {
 			BazaProfesor.indikator = 0;
 			ProfesorJTable.osvezi();
 		}	
+	}
+	private boolean proveriUnos() {
+		boolean ret;
+		ret = false;
+		
+		if(DodajProfesora.txtIme.getText().matches("[A-Z][A-Z a-z]+")&&DodajProfesora.txtPrezime.getText().matches("[A-Z][A-Z a-z]+")&&DodajProfesora.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
+				&&DodajProfesora.txtAdresaStan.getText().matches("[A-Za-z][A-Z a-z]+[ 0-9]*")&&DodajProfesora.txtAdresaKanc.getText().matches("[A-Za-z][A-Z a-z]+[ 0-9]*")&&DodajProfesora.txtBrojLicne.getText().matches("[A-Za-z0-9]{7,13}")&&DodajProfesora.txtKtkTel.getText().matches("([+]{1})?[0-9]{8,12}") && DodajProfesora.txtEAdresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+			    && (!BazaProfesor.getInstance().postoji(DodajProfesora.txtBrojLicne.getText()))){
+			ret=true;
+		}
+		return ret;
 	}
 	
 }

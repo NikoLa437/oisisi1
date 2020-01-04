@@ -13,6 +13,7 @@ import java.util.List;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
+import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Titula;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
 
@@ -195,6 +196,15 @@ public class BazaProfesor {
 			i++;
 		}
 		return i;
+	}
+	
+	public boolean postoji(String broj_licne) {
+		boolean pronadjen=false;
+		for(Profesor p : profesori) {
+			if(p.getBr_licne().equals(broj_licne))
+				pronadjen=true;
+		}
+		return pronadjen;
 	}
 	
 }
