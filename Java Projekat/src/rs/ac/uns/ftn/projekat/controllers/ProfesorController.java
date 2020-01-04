@@ -22,6 +22,7 @@ import rs.ac.uns.ftn.projekat.dialogs.IzmeniProfesora;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
+import rs.ac.uns.ftn.projekat.view.ToolBar;
 
 public class ProfesorController {
 	
@@ -68,11 +69,11 @@ public class ProfesorController {
 		return ret;	
 	}
 	public void obrisiProfesora(Profesor p) {
-		
-		if(BazaProfesor.indikator ==1)
-			BazaProfesor.getInstance().izbrisiProfesoraIzPretrage(p.getBr_licne());
-		
+				
 		BazaProfesor.getInstance().izbrisiProfesora(p.getBr_licne());
+		if(BazaProfesor.indikator ==1)
+			this.pretraziProfesora(ToolBar.textField.getText());
+		
 		ArrayList<Predmet> predmeti = (ArrayList<Predmet>) BazaPredmet.getInstance().getPredmeti();
 		for(Predmet pr: predmeti) {
 			if(pr.getProfesor().getBr_licne() != null)

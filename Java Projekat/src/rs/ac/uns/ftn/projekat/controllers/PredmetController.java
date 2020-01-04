@@ -15,6 +15,7 @@ import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.IzmeniPredmet;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
+import rs.ac.uns.ftn.projekat.view.ToolBar;
 
 public class PredmetController {
 	
@@ -64,6 +65,8 @@ public class PredmetController {
 				p.setSemestar(DodajPredmet.cbSemestar.getSelectedIndex() + 1);
 				p.setGodina_studija(DodajPredmet.cbGodStud.getSelectedIndex()+1);
 				BazaPredmet.getInstance().dodajPredmet(p.getSifra_predmeta(), p.getNaziv(), p.getSemestar(), p.getGodina_studija());
+				if(BazaPredmet.indikator == 1)
+					this.PretraziPredmet(ToolBar.textField.getText());
 				ret = 1;
 		}
 		PredmetJTable.osvezi();
@@ -105,10 +108,10 @@ public class PredmetController {
 	}
 	
 	public void obrisiPredmet(Predmet p) {
-		if(BazaPredmet.indikator == 1)
-			BazaPredmet.getInstance().izbrisiPredmetFilter(p.getSifra_predmeta());
-		
+			
 		BazaPredmet.getInstance().izbrisiPredmet(p.getSifra_predmeta());
+		if(BazaPredmet.indikator == 1)
+			this.PretraziPredmet(ToolBar.textField.getText());
 		BazaProfesor.getInstance().izbrisiPredmetProfesoru(p.getSifra_predmeta());
 		BazaStudent.getInstance().izbrisiPredmetStundetima(p.getSifra_predmeta());
 
