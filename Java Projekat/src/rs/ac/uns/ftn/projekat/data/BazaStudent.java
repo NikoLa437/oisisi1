@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,7 +47,7 @@ public class BazaStudent {
 		this.kolone.add("Prezime");
 		this.kolone.add("Datum rodjenja");
 		this.kolone.add("Godina studija");
-		this.kolone.add("Status");
+		this.kolone.add("Datum upisa");
 		this.kolone.add("Detalji");
 		this.kolone.add("Predmeti");
 	}
@@ -98,13 +100,14 @@ public class BazaStudent {
 	}
 	
 	
-	public String getValueAt(int row, int column) {
+	public Object getValueAt(int row, int column) {
 		//StudentJTable.jt.convertRowIndexToModel(row)
 		Student stud = new Student();
 		if(indikator == 0)
 			stud = this.studenti.get(row);
 		else
 			stud = this.pretrazeni_studenti.get(row);
+		//DateFormat datum = new SimpleDateFormat("dd.MM.yyyy.",Locale.ENGLISH);
 		
 		switch (column) {
 		case 0:
@@ -114,12 +117,11 @@ public class BazaStudent {
 		case 2:
 			return stud.getPrezime();
 		case 3:
-			DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd.", Locale.ENGLISH);
-			 return dateFormat.format(stud.getDatum_rodjenja());
+			return stud.getDatum_rodjenja();
 		case 4:
 			return Integer.toString(stud.getGod_studija());
 		case 5:
-			return stud.getStatus().toString();
+			return stud.getDatum_upisa();
 		default:
 			return null;
 		}

@@ -4,15 +4,19 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import rs.ac.uns.ftn.projekat.additionalclass.DateCellRenderer;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
 
@@ -36,6 +40,8 @@ public class StudentJTable extends JTable {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelStudent());
 		this.getTableHeader().setReorderingAllowed(false);
+		this.getColumnModel().getColumn(3).setCellRenderer(new DateCellRenderer());
+		this.getColumnModel().getColumn(5).setCellRenderer(new DateCellRenderer());
 		new ButtonColumnDetaljiStudent(this, 6);
 		new ButtonColumnPredmetiStudenta(this,7);
 
@@ -68,18 +74,17 @@ public class StudentJTable extends JTable {
 		((AbstractTableModel) model).fireTableDataChanged();
 	}
 
-
-	
-	
 	
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
-		Component c = super.prepareRenderer(renderer, row, column);
-		if (isRowSelected(row)) {
-			c.setBackground(Color.LIGHT_GRAY);
-		} else {
-			c.setBackground(Color.WHITE);
-		}
-		return c;
+			Component c = super.prepareRenderer(renderer, row, column);
+			if (isRowSelected(row)) {
+				c.setBackground(Color.LIGHT_GRAY);
+			} else {
+				c.setBackground(Color.WHITE);
+			}
+			return c;
 	}
+	
+
 }

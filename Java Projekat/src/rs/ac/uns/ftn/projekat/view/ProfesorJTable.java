@@ -12,6 +12,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import rs.ac.uns.ftn.projekat.additionalclass.DateCellRenderer;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 
 public class ProfesorJTable extends JTable{
@@ -26,6 +27,7 @@ public class ProfesorJTable extends JTable{
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelProfesor());
+		this.getColumnModel().getColumn(4).setCellRenderer(new DateCellRenderer());
 		new ButtonColumnDetaljiProfesora(this, 6);
 		new ButtonColumnPredmetiProfesora(this, 7);
 

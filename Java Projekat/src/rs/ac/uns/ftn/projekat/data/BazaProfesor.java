@@ -6,7 +6,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -82,8 +88,8 @@ public class BazaProfesor {
 		return this.profesori.get(rowIndex);
 	}
 
-	public String getValueAt(int row, int column) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy.");
+	public Object getValueAt(int row, int column) {
+		//SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy.");
 		Profesor profesor = new Profesor();
 		if(indikator == 0)
 			profesor = this.profesori.get(row);
@@ -99,7 +105,7 @@ public class BazaProfesor {
 		case 3:
 			return profesor.getMail();
 		case 4:
-			return dateFormat.format(profesor.getDatum_rodjenja());
+			return profesor.getDatum_rodjenja();
 		case 5:
 			return profesor.getBr_licne();		
 		default:

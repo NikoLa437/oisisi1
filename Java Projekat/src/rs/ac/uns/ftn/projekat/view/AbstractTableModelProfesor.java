@@ -1,5 +1,8 @@
 package rs.ac.uns.ftn.projekat.view;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
@@ -54,7 +57,9 @@ public class AbstractTableModelProfesor  extends AbstractTableModel{
 		case 1:
 		case 2:
 		case 3:
+			return String.class;
 		case 4:
+			return Date.class;
 		case 5:
 			return String.class;
 		case 6:
