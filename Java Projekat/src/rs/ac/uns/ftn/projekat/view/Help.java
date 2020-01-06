@@ -28,7 +28,7 @@ public class Help extends JFrame{
 	ImageIcon iconAddDelProfesor = ScaleIcon.ScaleIconSize("icon/proficon.png");
 	ImageIcon iconClose = ScaleIcon.ScaleIconSize("icon/exit.png");
 	String[] columns={"Oznaka","Precica","Objasnjenje"};
-	Object[][] rows={{iconAdd,"CTRL+A","Dodavanje studenta/predmeta/profesora"},{iconEdit,"CTRL+E","Izmena studenta/predmeta/profesora"}
+	Object[][] rows={{iconAdd,"CTRL+N","Dodavanje studenta/predmeta/profesora"},{iconEdit,"CTRL+E","Izmena studenta/predmeta/profesora"}
 					, {iconDelete, "CTRL+D","Brisanje studenta/predmeta/profesora"},{iconSearch, "/","Pretraga studenta/predmeta/profesora"}
 					, {iconAddStudent, "/","Dodavanje studenta na predmet"},{iconAddDelProfesor, "/","Dodavanje i brisanje profesora na predmet"}
 					, {iconHelp, "CTRL+H","Pomoc u vezi koriscenja programa"},{iconAbout, "CTRL+U","Opste informacije u vezi .."}
