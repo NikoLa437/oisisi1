@@ -74,6 +74,15 @@ public class MenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				Help h= new Help();
 			}
+		});
+		
+		miAbout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				About a=new About();
+			}
 			
 		});
 		
