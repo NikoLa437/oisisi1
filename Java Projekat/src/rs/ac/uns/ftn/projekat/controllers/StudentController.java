@@ -127,6 +127,7 @@ public class StudentController {
 			}
 			BazaStudent.getInstance().izmeniStudenta(s.getIndeks(),s.getIme(), s.getPrezime(), s.getAdresa_stanovanja(), s.getKontakt_telefon(),s.getEmail_adresa(),  s.getDatum_rodjenja(), s.getDatum_upisa(), s.getGod_studija(), s.getProsecna_ocena(),s.getStatus());
 			ret=1;
+			StudentJTable.selectedRow=-1;
 			StudentJTable.osvezi();	
 		}else {
 			JOptionPane.showMessageDialog(null, "Pogresan unos!", "Error", JOptionPane.ERROR_MESSAGE );
@@ -136,12 +137,14 @@ public class StudentController {
 	
 	
 	public void obrisiStudenta() {
-		Student s= BazaStudent.getInstance().getRow(StudentJTable.selectedRow);
-		BazaStudent.getInstance().izbrisiStudenta(s.getIndeks());
-		if(BazaStudent.indikator==1) {
-			this.pretraziStudente(ToolBar.textField.getText());
-		}
-		StudentJTable.osvezi();
+			System.out.println(StudentJTable.selectedRow);
+			Student s= BazaStudent.getInstance().getRow(StudentJTable.selectedRow);
+			BazaStudent.getInstance().izbrisiStudenta(s.getIndeks());
+			if(BazaStudent.indikator==1) {
+				this.pretraziStudente(ToolBar.textField.getText());
+			}
+			StudentJTable.selectedRow=-1;
+			StudentJTable.osvezi();
 	}
 	
 	public int dodajStudentaNaPredmet(Predmet pr) {
@@ -291,8 +294,8 @@ public class StudentController {
 		boolean ret;
 		ret = false;
 		
-		if(DodajStudenta.txtIme.getText().matches("[A-Z][A-Z a-z]+")&&DodajStudenta.txtPrezime.getText().matches("[A-Z][A-Z a-z]+")&&DodajStudenta.txtdatumUpisa.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")&&DodajStudenta.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
-				&&DodajStudenta.txtAdresa.getText().matches("[A-Za-z][A-Z a-z]+[ 0-9]*")&&!DodajStudenta.txtBrojInd.getText().isEmpty()&&DodajStudenta.txtBrojTel.getText().matches("([+]{1})?[0-9]{8,12}") && DodajStudenta.txteadresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+		if(DodajStudenta.txtIme.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajStudenta.txtPrezime.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajStudenta.txtdatumUpisa.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")&&DodajStudenta.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
+				&&DodajStudenta.txtAdresa.getText().matches("[A-Za-z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+[ 0-9]*")&&!DodajStudenta.txtBrojInd.getText().isEmpty()&&DodajStudenta.txtBrojTel.getText().matches("([+]{1})?[0-9]{8,12}") && DodajStudenta.txteadresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
 				&&DodajStudenta.txtprosecnaOcena.getText().matches("([5-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})") && (!BazaStudent.getInstance().postoji(DodajStudenta.txtBrojInd.getText()))){
 			ret=true;
 		}
@@ -302,9 +305,8 @@ public class StudentController {
 	private boolean proveriUnosIzmene() {
 		boolean ret;
 		ret = false;
-		
-		if(IzmeniStudenta.txtIme.getText().matches("[A-Z][A-Z a-z]+")&&IzmeniStudenta.txtPrezime.getText().matches("[A-Z][A-Z a-z]+")&&IzmeniStudenta.txtdatumUpisa.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")&&IzmeniStudenta.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
-				&&IzmeniStudenta.txtAdresa.getText().matches("[A-Za-z][A-Z a-z]+[ 0-9]*")&&!IzmeniStudenta.txtBrojInd.getText().isEmpty()&&IzmeniStudenta.txtBrojTel.getText().matches("([+]{1})?[0-9]{8,12}") && IzmeniStudenta.txteadresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+		if(IzmeniStudenta.txtIme.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&IzmeniStudenta.txtPrezime.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&IzmeniStudenta.txtdatumUpisa.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")&&IzmeniStudenta.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
+				&&IzmeniStudenta.txtAdresa.getText().matches("[A-Za-z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+[ 0-9]*")&&!IzmeniStudenta.txtBrojInd.getText().isEmpty()&&IzmeniStudenta.txtBrojTel.getText().matches("([+]{1})?[0-9]{8,12}") && IzmeniStudenta.txteadresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
 				&&IzmeniStudenta.txtprosecnaOcena.getText().matches("([5-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})")){
 			ret=true;
 		}

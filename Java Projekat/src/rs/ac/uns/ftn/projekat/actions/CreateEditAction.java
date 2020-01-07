@@ -16,6 +16,10 @@ import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
 public class CreateEditAction extends AbstractAction {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public CreateEditAction() {
 		putValue(MNEMONIC_KEY, KeyEvent.VK_E);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_E,KeyEvent.CTRL_MASK));
