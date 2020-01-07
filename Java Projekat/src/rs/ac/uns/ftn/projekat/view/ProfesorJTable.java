@@ -18,7 +18,7 @@ import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 public class ProfesorJTable extends JTable{
 
 	private static final long serialVersionUID = -4634202201266755582L;
-	public static int selectedRow=0; // zbog izmene i sortiranja dodao Nikola
+	public static int selectedRow=-1; // zbog izmene i sortiranja dodao Nikola
 	public static JTable jt = null;
 	public static TableModel model;
 	

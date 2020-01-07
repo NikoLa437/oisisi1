@@ -130,6 +130,7 @@ public class ProfesorController {
 				p.setMail(IzmeniProfesora.txteadresa.getText());
 				BazaProfesor.getInstance().izmeniProfesora(p.getIme(), p.getPrezime(), p.getAdresa_stanovanja(), p.getBr_telefona(), p.getMail(), p.getAdresa_kancelarije(), p.getBr_licne(), p.getTitula(), p.getZvanje(), p.getDatum_rodjenja());
 				ret=1;
+				ProfesorJTable.selectedRow=-1;
 				ProfesorJTable.osvezi();
 				}catch(Exception e1) {
 					JOptionPane.showMessageDialog(null, "Datum mora biti u formatu: dd.MM.yyyy.", "Error", JOptionPane.ERROR_MESSAGE );
