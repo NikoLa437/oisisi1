@@ -60,7 +60,7 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 				public void actionPerformed(ActionEvent e) {
 					fireEditingStopped();
 					int indeks = 0;
-					if(BazaProfesor.indikator == 0)
+					if(BazaPredmet.indikator == 0)
 						indeks = table.convertRowIndexToModel(table.getSelectedRow());
 					else
 						indeks = BazaPredmet.getInstance().getRealRowForFilter(table.convertRowIndexToModel(table.getSelectedRow()));
