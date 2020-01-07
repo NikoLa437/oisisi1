@@ -61,6 +61,7 @@ public class ProfesorJTable extends JTable{
 	
 	public static void osvezi() {
 		((AbstractTableModel) model).fireTableDataChanged();
+		ProfesorJTable.selectedRow = -1;
 	}
 	
 	@Override

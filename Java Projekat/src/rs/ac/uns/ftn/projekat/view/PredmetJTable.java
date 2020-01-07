@@ -19,7 +19,7 @@ public class PredmetJTable extends JTable {
 
 	private static final long serialVersionUID = -6843496177536627282L;
 	public static TableModel model;
-	public static int selectedRow=0;
+	public static int selectedRow=-1;
 	public static JTable jt = null;
 
 
@@ -67,6 +67,7 @@ public class PredmetJTable extends JTable {
 	
 	public static void osvezi() {
 		((AbstractTableModel) model).fireTableDataChanged();
+		PredmetJTable.selectedRow = -1;
 	}
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {

@@ -5,12 +5,16 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.ObrisiPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.ObrisiProfesora;
 import rs.ac.uns.ftn.projekat.dialogs.ObrisiStudenta;
 import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
+import rs.ac.uns.ftn.projekat.view.PredmetJTable;
+import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 
 public class CreateDeleteAction extends AbstractAction{
 
@@ -22,13 +26,24 @@ public class CreateDeleteAction extends AbstractAction{
 		putValue(MNEMONIC_KEY, KeyEvent.VK_D);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D,KeyEvent.CTRL_MASK));
 	}
+	@SuppressWarnings("unused")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(JTabbedPaneTabele.selektovan_tab == 2) {
-			ObrisiPredmet op = new ObrisiPredmet(new JFrame());
+			ObrisiPredmet op;
+			if(PredmetJTable.selectedRow != -1)
+				op = new ObrisiPredmet(new JFrame());
+			else
+				JOptionPane.showMessageDialog(null, "Niste selektovali predmet za brisanje!", "Error", JOptionPane.ERROR_MESSAGE );
+
 		}
 		if(JTabbedPaneTabele.selektovan_tab == 1) {
-			ObrisiProfesora op = new ObrisiProfesora(new JFrame());
+			ObrisiProfesora op;
+			if(ProfesorJTable.selectedRow != -1)
+				op = new ObrisiProfesora(new JFrame());
+			else
+				JOptionPane.showMessageDialog(null, "Niste selektovali profesora za brisanje!", "Error", JOptionPane.ERROR_MESSAGE );
+
 		}
 		if(JTabbedPaneTabele.selektovan_tab == 0) {
 			 ObrisiStudenta os= new ObrisiStudenta();

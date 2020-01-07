@@ -74,6 +74,7 @@ public class StudentJTable extends JTable {
 	
 	public static void osvezi() {
 		((AbstractTableModel) model).fireTableDataChanged();
+		StudentJTable.selectedRow = -1;
 	}
 
 	
