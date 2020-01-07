@@ -46,8 +46,9 @@ public class BazaStudent {
 		this.kolone.add("Ime");
 		this.kolone.add("Prezime");
 		this.kolone.add("Datum rodjenja");
-		this.kolone.add("Godina studija");
+		this.kolone.add("Status");
 		this.kolone.add("Datum upisa");
+		this.kolone.add("Prosek");
 		this.kolone.add("Detalji");
 		this.kolone.add("Predmeti");
 	}
@@ -85,7 +86,7 @@ public class BazaStudent {
 	}
 	
 	public int getColumnCount() {
-		return 8;
+		return 9;
 	}
 	
 	public String getColumnName(int index) { // vraca naziv kolone na indeksu
@@ -119,9 +120,11 @@ public class BazaStudent {
 		case 3:
 			return stud.getDatum_rodjenja();
 		case 4:
-			return Integer.toString(stud.getGod_studija());
+			return stud.getStatus().toString();
 		case 5:
 			return stud.getDatum_upisa();
+		case 6:
+			return stud.getProsecna_ocena();
 		default:
 			return null;
 		}

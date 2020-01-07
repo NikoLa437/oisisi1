@@ -30,7 +30,7 @@ public class StudentJTable extends JTable {
 	private static final long serialVersionUID = 1L;
 
 	public static TableModel model;
-	public static int selectedRow=0;
+	public static int selectedRow=-1;
 	public static JTable jt = null;
 	
 	public StudentJTable() {
@@ -42,12 +42,14 @@ public class StudentJTable extends JTable {
 		this.getTableHeader().setReorderingAllowed(false);
 		this.getColumnModel().getColumn(3).setCellRenderer(new DateCellRenderer());
 		this.getColumnModel().getColumn(5).setCellRenderer(new DateCellRenderer());
-		new ButtonColumnDetaljiStudent(this, 6);
-		new ButtonColumnPredmetiStudenta(this,7);
+		new ButtonColumnDetaljiStudent(this, 7);
+		new ButtonColumnPredmetiStudenta(this,8);
 
 		
 		// sortiranje
 		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
+		sorter.setSortable(7, false);
+		sorter.setSortable(8, false);
 		this.setRowSorter(sorter);
 		
 		jt=this;
