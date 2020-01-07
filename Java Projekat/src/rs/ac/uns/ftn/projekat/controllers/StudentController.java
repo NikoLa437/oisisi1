@@ -262,8 +262,9 @@ public class StudentController {
 								break;
 							}
 						}
+						
 						if(kolona[i].equals("status")) {
-							if(kolonakrit[i] == s.getStatus().toString()) {
+							if(kolonakrit[i].toString().equals(s.getStatus().toString())) {
 								za_prikazati = true;
 							}else {
 								za_prikazati = false;
@@ -278,6 +279,7 @@ public class StudentController {
 				
 				BazaStudent.indikator=1;
 				BazaStudent.getInstance().setPretrazeni(studenti);
+				StudentJTable.selectedRow=-1;
 				StudentJTable.osvezi();
 			}
 			}catch(Exception e)
@@ -286,6 +288,7 @@ public class StudentController {
 			}
 		}else {
 			BazaStudent.indikator=0;
+			StudentJTable.selectedRow=-1;
 			StudentJTable.osvezi();
 		}
 	}
