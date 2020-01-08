@@ -244,17 +244,14 @@ public class BazaStudent {
 	}
 	
 	public void brisanjeStudentaSaPredmeta(String indexStudenta,String sifraPredmeta) {
-		System.out.println(indexStudenta+sifraPredmeta);
 		for(Student s : studenti) {
 			if(s.getIndeks().equals(indexStudenta)) {
-				System.out.println("TEST");
 				for(Predmet p : s.getPredmeti()) {
 					if(p.getSifra_predmeta().equals(sifraPredmeta)) {
 						s.getPredmeti().remove(p);
 						break;
 					}
 				}
-				System.out.println(s.getPredmeti().size());
 				break;
 
 			}

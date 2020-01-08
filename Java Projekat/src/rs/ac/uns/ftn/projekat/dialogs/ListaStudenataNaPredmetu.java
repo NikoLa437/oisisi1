@@ -106,6 +106,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 						BazaPredmet.getInstance().obrisiStudenta(selRow,p.getSifra_predmeta());
 						listModel.removeElement(selRow);
 						lista.updateUI();
+						selRow="";
 						PredmetJTable.osvezi();
 					}
 				}
