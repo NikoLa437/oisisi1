@@ -10,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
@@ -69,7 +70,11 @@ public class ToolBar extends JToolBar {
 			public void actionPerformed(ActionEvent e) {
 		
 				@SuppressWarnings("unused")
-				DodajStudentaNaPredmet dpnp = new DodajStudentaNaPredmet(new JFrame());
+				DodajStudentaNaPredmet dpnp;
+				if(PredmetJTable.selectedRow != -1)
+					dpnp= new DodajStudentaNaPredmet(new JFrame());
+				else
+					JOptionPane.showMessageDialog(null, "Niste selektovali predmet!", "Error", JOptionPane.ERROR_MESSAGE );
 			}
 		});
 		
@@ -86,14 +91,18 @@ public class ToolBar extends JToolBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			if(BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow).getProfesor().getBr_licne() != null) {
-				@SuppressWarnings("unused")
-				UklanjanjeProfesoraNaPredmetu ep = new UklanjanjeProfesoraNaPredmetu(new JFrame());
-			}				
-			else {
-				@SuppressWarnings("unused")
-				DodajProfesoraNaPredmet dpnp = new DodajProfesoraNaPredmet(new JFrame());
-			}
+				if(PredmetJTable.selectedRow != -1) {
+					if(BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow).getProfesor().getBr_licne() != null) {
+						@SuppressWarnings("unused")
+						UklanjanjeProfesoraNaPredmetu ep = new UklanjanjeProfesoraNaPredmetu(new JFrame());
+					}				
+					else {
+						@SuppressWarnings("unused")
+						DodajProfesoraNaPredmet dpnp = new DodajProfesoraNaPredmet(new JFrame());
+					}
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Niste selektovali predmet!", "Error", JOptionPane.ERROR_MESSAGE );
 			}
 		});
 		
