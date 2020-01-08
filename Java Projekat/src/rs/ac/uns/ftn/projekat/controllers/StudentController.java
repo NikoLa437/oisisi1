@@ -181,13 +181,8 @@ public class StudentController {
 			JOptionPane.showMessageDialog(null, "Podaci se moraju uneti!", "Error", JOptionPane.ERROR_MESSAGE );
 		}
 		return ret;
-	}
-	
-	public void brisanjeStudentaSaPredmeta(Predmet pr) {
-		Student s=BazaStudent.getInstance().getStudentInd(ListaStudenataNaPredmetu.selRow);
-		BazaPredmet.getInstance().obrisiStudenta(pr.getSifra_predmeta(), s);
-		
-	}
+	}	
+
 	
 	public void pretraziStudente(String kriterijum) {
 

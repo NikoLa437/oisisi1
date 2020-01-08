@@ -156,7 +156,7 @@ public class BazaStudent {
 		}
 	}
 	
-	public void izbrisiPredmetStundetima(String sifra_predmeta) {
+	public void izbrisiPredmetStudentima(String sifra_predmeta) {
 		for (Student s : studenti) {
 			for(Predmet pred : s.getPredmeti()) {
 				if(pred.getSifra_predmeta().equals(sifra_predmeta)) {
@@ -241,6 +241,24 @@ public class BazaStudent {
 			i++;
 		}
 		return i;
+	}
+	
+	public void brisanjeStudentaSaPredmeta(String indexStudenta,String sifraPredmeta) {
+		System.out.println(indexStudenta+sifraPredmeta);
+		for(Student s : studenti) {
+			if(s.getIndeks().equals(indexStudenta)) {
+				System.out.println("TEST");
+				for(Predmet p : s.getPredmeti()) {
+					if(p.getSifra_predmeta().equals(sifraPredmeta)) {
+						s.getPredmeti().remove(p);
+						break;
+					}
+				}
+				System.out.println(s.getPredmeti().size());
+				break;
+
+			}
+		}
 	}
 	
 }

@@ -80,6 +80,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 				// TODO Auto-generated method stub
 				if (!e.getValueIsAdjusting()) {
 					selRow = lista.getSelectedValue();
+					
 	             }
 			}
 			
@@ -99,14 +100,14 @@ public class ListaStudenataNaPredmetu extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				if(listModel.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Ne postoji student na predmetu kojeg mozete izbrisati", "Error", JOptionPane.ERROR_MESSAGE );
-					//dispose();
+				}else {
+					if(!selRow.equals("")){
+						BazaStudent.getInstance().brisanjeStudentaSaPredmeta(selRow,p.getSifra_predmeta());
+						BazaPredmet.getInstance().obrisiStudenta(selRow,p.getSifra_predmeta());
+						listModel.removeElement(selRow);
+						lista.updateUI();
+						PredmetJTable.osvezi();
 					}
-				else {
-					
-				StudentController.getInstance().brisanjeStudentaSaPredmeta(p);
-				listModel.removeElement(selRow);
-				lista.updateUI();
-				PredmetJTable.osvezi();
 				}
 			}
 		});

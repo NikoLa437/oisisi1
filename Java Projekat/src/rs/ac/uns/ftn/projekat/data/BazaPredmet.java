@@ -12,6 +12,7 @@ import java.util.List;
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
+import rs.ac.uns.ftn.projekat.controllers.StudentController;
 
 public class BazaPredmet {
 
@@ -136,10 +137,16 @@ public class BazaPredmet {
 		}
 	}
 	
-	public void obrisiStudenta(String sifra_predmeta, Student s) {
-		for (Predmet pr : predmeti) {
-			if (pr.getSifra_predmeta().equals(sifra_predmeta)) {
-				pr.getStudenti().remove(s);
+	public void obrisiStudenta(String indexStudenta,String sifraPredmeta ) {
+		for(Predmet p : predmeti) {
+			if(p.getSifra_predmeta().equals(sifraPredmeta)) {
+				for(Student s : p.getStudenti()) {
+					if(s.getIndeks().equals(indexStudenta)) {
+						p.getStudenti().remove(s);
+						break;
+					}
+				}
+				break;
 			}
 		}
 	}

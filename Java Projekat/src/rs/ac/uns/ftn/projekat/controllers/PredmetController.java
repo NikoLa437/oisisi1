@@ -113,7 +113,7 @@ public class PredmetController {
 		if(BazaPredmet.indikator == 1)
 			this.PretraziPredmet(ToolBar.textField.getText());
 		BazaProfesor.getInstance().izbrisiPredmetProfesoru(p.getSifra_predmeta());
-		BazaStudent.getInstance().izbrisiPredmetStundetima(p.getSifra_predmeta());
+		BazaStudent.getInstance().izbrisiPredmetStudentima(p.getSifra_predmeta());
 
 		PredmetJTable.osvezi();
 		ProfesorJTable.osvezi();
