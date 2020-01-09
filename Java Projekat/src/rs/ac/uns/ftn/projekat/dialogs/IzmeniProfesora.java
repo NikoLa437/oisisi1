@@ -73,8 +73,8 @@ public class IzmeniProfesora extends JDialog{
 				JLabel lblTitula = new JLabel("Titula*");
 				JLabel lblZvanje = new JLabel("Zvanje*");
 				
-				 String[] sTitule = { "doktor","magistar","master"};
-				 String[] sZvanje = { "profesor","asistent","saradnik","docent" };
+				String[] sTitule = { "Prof.Dr","Doktor","Magistar","Master"};
+				 String[] sZvanje = { "Redovni profesor","Vandredni profesor","Asistent","Saradnik u nastavi","Docent" };
 				 txtIme = new JTextField();
 				 txtPrezime = new JTextField();
 				 txtDatumRodj = new JTextField();
@@ -102,8 +102,26 @@ public class IzmeniProfesora extends JDialog{
 				
 				txtBrLicne.setEditable(false);
 				
-				cbTitula.setSelectedItem((String) p.getTitula().toString());
-				cbZvanje.setSelectedItem((String) p.getZvanje().toString());
+				if(p.getTitula() == Titula.doktor)
+					cbTitula.setSelectedItem("Doktor");
+				else if(p.getTitula() == Titula.magistar)
+					cbTitula.setSelectedItem("Magistar");
+				else if(p.getTitula() == Titula.prof_dr)
+					cbTitula.setSelectedItem("Prof.Dr");
+				else
+					cbTitula.setSelectedItem("Master");
+
+				if(p.getZvanje() == Zvanje.asistent)
+					cbZvanje.setSelectedItem("Asistent");
+				else if(p.getZvanje() == Zvanje.docent)
+					cbZvanje.setSelectedItem("Docent");
+				else if(p.getZvanje() == Zvanje.red_profesor)
+					cbZvanje.setSelectedItem("Redovni profesor");
+				else if(p.getZvanje() == Zvanje.van_profesor)
+					cbZvanje.setSelectedItem("Vandredni profesor");
+				else
+					cbZvanje.setSelectedItem("Saradnik u nastavi");
+
 				
 				panelC.add(lblIme, gbclbl(0,0));
 				panelC.add(txtIme, gbctxt(1,0));

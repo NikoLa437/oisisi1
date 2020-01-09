@@ -50,7 +50,7 @@ public class DetaljiProfesor extends JDialog{
 			JOptionPane.showMessageDialog(null, "Ne postoji ili nije selektovan ni jedan student", "Error", JOptionPane.ERROR_MESSAGE );
 	        dispose();
 		}else {
-			this.setSize(400,450);
+			this.setSize(500,400);
 			this.setLayout(new BorderLayout());
 			
 			JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 
@@ -97,6 +97,8 @@ public class DetaljiProfesor extends JDialog{
 				txtTitula.setText("Doktor");
 			else if(p.getTitula() == Titula.magistar)
 				txtTitula.setText("Magistar");
+			else if(p.getTitula() == Titula.prof_dr)
+				txtTitula.setText("Prof.Dr");
 			else
 				txtTitula.setText("Master");
 
@@ -104,8 +106,10 @@ public class DetaljiProfesor extends JDialog{
 				txtZvanje.setText("Asistent");
 			else if(p.getZvanje() == Zvanje.docent)
 				txtZvanje.setText("Docent");
-			else if(p.getZvanje() == Zvanje.profesor)
-				txtZvanje.setText("Profesor");
+			else if(p.getZvanje() == Zvanje.red_profesor)
+				txtZvanje.setText("Redovni profesor");
+			else if(p.getZvanje() == Zvanje.van_profesor)
+				txtZvanje.setText("Vandredni profesor");
 			else
 				txtZvanje.setText("Saradnik u nastavi");
 

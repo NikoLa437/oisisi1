@@ -1,38 +1,22 @@
 package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import javax.swing.JTextField;
 
-import rs.ac.uns.ftn.projekat.classes.Profesor;
-import rs.ac.uns.ftn.projekat.classes.Profesor.Titula;
-import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
-import rs.ac.uns.ftn.projekat.classes.Student;
-import rs.ac.uns.ftn.projekat.classes.Student.Status;
 import rs.ac.uns.ftn.projekat.controllers.ProfesorController;
-import rs.ac.uns.ftn.projekat.controllers.StudentController;
-import rs.ac.uns.ftn.projekat.data.BazaProfesor;
-import rs.ac.uns.ftn.projekat.data.BazaStudent;
-import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
 public class DodajProfesora extends JDialog{
 	/**
@@ -81,12 +65,10 @@ public class DodajProfesora extends JDialog{
 		 txtEAdresa = new JTextField();
 		 txtAdresaKanc = new JTextField();
 		 txtBrojLicne = new JTextField();
-		 //String[] sTitule = { "doktor","magistar","master"};
-		 //String[] sZvanje = { "profesor","asistent","saradnik","docent" };
-		 cbTitula = new JComboBox();
-		 cbTitula.setModel(new DefaultComboBoxModel(Titula.values()));
-		 cbZvanje = new JComboBox();
-		 cbZvanje.setModel(new DefaultComboBoxModel(Zvanje.values()));
+		 String[] sTitule = { "Prof.Dr","Doktor","Magistar","Master"};
+		 String[] sZvanje = { "Redovni profesor","Vandredni profesor","Asistent","Saradnik u nastavi","Docent" };
+		 cbTitula = new JComboBox(sTitule);
+		 cbZvanje = new JComboBox(sZvanje);
 	
 
 		panelC.add(lblIme, gbclbl(0,0));

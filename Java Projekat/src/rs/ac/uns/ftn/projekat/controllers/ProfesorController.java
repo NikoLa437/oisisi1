@@ -9,19 +9,14 @@ import javax.swing.JOptionPane;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
-import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Titula;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
-import rs.ac.uns.ftn.projekat.classes.Student.Status;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
-import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesora;
-import rs.ac.uns.ftn.projekat.dialogs.DodajStudenta;
 import rs.ac.uns.ftn.projekat.dialogs.IzmeniProfesora;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
-import rs.ac.uns.ftn.projekat.view.StudentJTable;
 import rs.ac.uns.ftn.projekat.view.ToolBar;
 
 public class ProfesorController {
@@ -57,9 +52,34 @@ public class ProfesorController {
 				System.out.println("Test");
 			}
 			
-			p.setZvanje((Profesor.Zvanje) DodajProfesora.cbZvanje.getSelectedItem());
-			p.setTitula((Profesor.Titula) DodajProfesora.cbTitula.getSelectedItem());
+			Profesor.Titula t = null;
+			if(DodajProfesora.cbTitula.getSelectedItem().toString().equals("Doktor")) {
+				t=Titula.doktor;
+			}
+			else if(DodajProfesora.cbTitula.getSelectedItem().toString().equals("Prof.Dr")) {
+				t=Titula.prof_dr;
+			}
+			else if(DodajProfesora.cbTitula.getSelectedItem().toString().equals("Magistar")) {
+				t=Titula.magistar;
+			}else {
+				t=Titula.master;
+			}
+			p.setTitula(t);
 			
+			Profesor.Zvanje z= null;
+			if(DodajProfesora.cbZvanje.getSelectedItem().toString().equals("Redovni profesor")) {
+				z= Zvanje.red_profesor;
+			}else if(DodajProfesora.cbZvanje.getSelectedItem().toString().equals("Asistent")) {
+				z= Zvanje.asistent;
+			}else if(DodajProfesora.cbZvanje.getSelectedItem().toString().equals("Vandredni profesor")) {
+					z= Zvanje.van_profesor;
+			}else if(DodajProfesora.cbZvanje.getSelectedItem().toString().equals("Saradnik u nastavi")) {
+				z= Zvanje.saradnik;
+			}else{
+				z= Zvanje.docent;
+			}
+			
+		    p.setZvanje(z);
 			BazaProfesor.getInstance().dodajProfesora(p.getIme(), p.getPrezime(), p.getAdresa_stanovanja(), p.getBr_telefona(), p.getMail(), p.getAdresa_kancelarije(), p.getBr_licne(), p.getTitula(), p.getZvanje(), p.getDatum_rodjenja());
 			ret=1;
 			ProfesorJTable.osvezi();	
@@ -106,9 +126,13 @@ public class ProfesorController {
 				p.setAdresa_kancelarije(IzmeniProfesora.txtAdresaKanc.getText());
 				
 				Profesor.Titula t = null;
-				if(IzmeniProfesora.cbTitula.getSelectedItem().toString().equals("doktor")) {
+				if(IzmeniProfesora.cbTitula.getSelectedItem().toString().equals("Doktor")) {
 					t=Titula.doktor;
-				}else if(IzmeniProfesora.cbTitula.getSelectedItem().toString().equals("magistar")) {
+				}
+				else if(IzmeniProfesora.cbTitula.getSelectedItem().toString().equals("Prof.Dr")) {
+					t=Titula.prof_dr;
+				}
+				else if(IzmeniProfesora.cbTitula.getSelectedItem().toString().equals("Magistar")) {
 					t=Titula.magistar;
 				}else {
 					t=Titula.master;
@@ -116,11 +140,13 @@ public class ProfesorController {
 				p.setTitula(t);
 				
 				Profesor.Zvanje z= null;
-				if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("profesor")) {
-					z= Zvanje.profesor;
-				}else if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("asistent")) {
+				if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Redovni profesor")) {
+					z= Zvanje.red_profesor;
+				}else if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Asistent")) {
 					z= Zvanje.asistent;
-				}else if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("saradnik")) {
+				}else if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Vandredni profesor")) {
+						z= Zvanje.van_profesor;
+				}else if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Saradnik u nastavi")) {
 					z= Zvanje.saradnik;
 				}else{
 					z= Zvanje.docent;

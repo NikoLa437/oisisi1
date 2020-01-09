@@ -8,8 +8,8 @@ public class Profesor implements Serializable{
 
 	
 	private static final long serialVersionUID = 2558848616368820819L;
-	public enum Titula{doktor,magistar,master}
-	public enum Zvanje{profesor,asistent,saradnik,docent}
+	public enum Titula{prof_dr,doktor,magistar,master}
+	public enum Zvanje{red_profesor,van_profesor,asistent,saradnik,docent}
 	private String ime, prezime, adresa_stanovanja, br_telefona, mail, adresa_kancelarije, br_licne;
 	private Date datum_rodjenja;
 	private Titula titula;
