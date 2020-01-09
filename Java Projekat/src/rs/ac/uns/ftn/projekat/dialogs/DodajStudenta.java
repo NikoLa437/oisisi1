@@ -133,7 +133,7 @@ public class DodajStudenta extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+				
 				if(StudentController.getInstance().dodajStudenta()==1)
 					dispose();	
 			}

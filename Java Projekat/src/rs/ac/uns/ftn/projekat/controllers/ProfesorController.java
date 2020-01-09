@@ -231,8 +231,8 @@ public class ProfesorController {
 		boolean ret;
 		ret = false;
 		
-		if(DodajProfesora.txtIme.getText().matches("[A-Z][A-Z a-z]+")&&DodajProfesora.txtPrezime.getText().matches("[A-Z][A-Z a-z]+")&&DodajProfesora.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
-				&&DodajProfesora.txtAdresaStan.getText().matches("[A-Za-z][A-Z a-z]+[ 0-9]*")&&DodajProfesora.txtAdresaKanc.getText().matches("[A-Za-z][A-Z a-z]+[ 0-9]*")&&DodajProfesora.txtBrojLicne.getText().matches("[A-Za-z0-9]{7,13}")&&DodajProfesora.txtKtkTel.getText().matches("([+]{1})?[0-9]{8,12}") && DodajProfesora.txtEAdresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+		if(DodajProfesora.txtIme.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajProfesora.txtPrezime.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajProfesora.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
+				&&DodajProfesora.txtAdresaStan.getText().matches("[0-9A-Z\\p{InLATIN_EXTENDED_A}][0-9A-Z, a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajProfesora.txtAdresaKanc.getText().matches("[0-9A-Z\\p{InLATIN_EXTENDED_A}][0-9A-Z, a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajProfesora.txtBrojLicne.getText().matches("[A-Za-z0-9]{7,13}")&&DodajProfesora.txtKtkTel.getText().matches("([+]{1})?[0-9-/]{8,12}") && DodajProfesora.txtEAdresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
 			    && (!BazaProfesor.getInstance().postoji(DodajProfesora.txtBrojLicne.getText()))){
 			ret=true;
 		}
