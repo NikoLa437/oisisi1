@@ -15,6 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 
@@ -65,6 +68,13 @@ public class DodajPredmet extends JDialog{
 		
 		JButton bPotvrda = new JButton("Potvrda");
 		JButton bOdustanak = new JButton("Odustanak");
+		bPotvrda.setEnabled(false);
+		
+		JButtonStateControllerDodaj jbsc = new JButtonStateControllerDodaj(bPotvrda);
+		Document textFieldDocNaziv = txtNaziv.getDocument();
+	    textFieldDocNaziv.addDocumentListener(jbsc);
+		Document textFieldDocSifra = txtSifra.getDocument();
+		textFieldDocSifra.addDocumentListener(jbsc);
 		
 		bOdustanak.addActionListener(new ActionListener(){
 			@Override
@@ -114,4 +124,30 @@ public class DodajPredmet extends JDialog{
 		gbc.insets = new Insets(10, 20, 0, 20);
 		return gbc;
 	}
+}
+class JButtonStateControllerDodaj implements DocumentListener {
+    private JButton button;
+
+    JButtonStateControllerDodaj(JButton b) {
+        button = b;
+    }
+
+    public void changedUpdate(DocumentEvent e) {
+        disableIfEmpty();
+    }
+
+    public void insertUpdate(DocumentEvent e){
+        disableIfEmpty();
+    }
+
+    public void removeUpdate(DocumentEvent e){
+        disableIfEmpty();
+    }
+
+    public void disableIfEmpty() {
+    	if(DodajPredmet.txtNaziv.getText().isEmpty() || DodajPredmet.txtSifra.getText().isEmpty())
+    		button.setEnabled(false);
+    	else
+    		button.setEnabled(true);
+    }
 }

@@ -53,9 +53,7 @@ public class PredmetController {
 		if(DodajPredmet.cbGodStud.getSelectedIndex() == 3) 
 			if(!(DodajPredmet.cbSemestar.getSelectedIndex() == 6 || DodajPredmet.cbSemestar.getSelectedIndex() == 7))
 				err = 1;
-		if(DodajPredmet.txtSifra.getText().isEmpty() || DodajPredmet.txtNaziv.getText().isEmpty())
-			JOptionPane.showMessageDialog(null, "Sifra i naziv predmeta moraju biti popunjeni!", "Error", JOptionPane.ERROR_MESSAGE );
-		else if(err == 1)
+		if(err == 1)
 			JOptionPane.showMessageDialog(null, "Neodgovarajuci semestar za izabranu godinu!", "Error", JOptionPane.ERROR_MESSAGE );
 		else if(err1 != -1)
 			JOptionPane.showMessageDialog(null, "Sifra predmeta mora biti jedinstvena!", "Error", JOptionPane.ERROR_MESSAGE );
@@ -132,9 +130,7 @@ public class PredmetController {
 				break;
 			}
 		}
-		if(DodajProfesoraNaPredmet.txtLicna.getText().isEmpty())
-			JOptionPane.showMessageDialog(null, "Podaci se moraju uneti!", "Error", JOptionPane.ERROR_MESSAGE );
-		else if(!DodajProfesoraNaPredmet.txtLicna.getText().matches("[0-9]+"))
+		if(!DodajProfesoraNaPredmet.txtLicna.getText().matches("[A-Za-z0-9]{7,13}"))
 			JOptionPane.showMessageDialog(null, "Broj licne karte nije validan!", "Error", JOptionPane.ERROR_MESSAGE );
 		else if(nasao == false)
 			JOptionPane.showMessageDialog(null, "Unet pogresan broj licne karte!", "Error", JOptionPane.ERROR_MESSAGE );
