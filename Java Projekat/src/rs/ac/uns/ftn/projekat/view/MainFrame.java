@@ -19,6 +19,8 @@ import rs.ac.uns.ftn.projekat.data.BazaStudent;
 public class MainFrame extends JFrame {
 	
 	private static MainFrame instance = null;
+	public static int sirina;
+	public static int visina;
 	
 	public static MainFrame getInstance() {
 		if (instance == null) {
@@ -36,7 +38,9 @@ public class MainFrame extends JFrame {
 		
 		Toolkit kit = Toolkit.getDefaultToolkit(); 
 		Dimension dimension = kit.getScreenSize();
-		this.setSize(dimension.width*3/4,dimension.height*3/4);
+		sirina = dimension.width*3/4;
+		visina = dimension.height*3/4;
+		this.setSize(sirina,visina);
 		this.setLocationRelativeTo(null);
 		this.setTitle("Studentska služba");
 		ToolBar toolbar = new ToolBar();

@@ -23,6 +23,7 @@ import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class IzmeniPredmet extends JDialog{
@@ -42,7 +43,7 @@ public class IzmeniPredmet extends JDialog{
 		
 		Predmet p = BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow);
 		Profesor pr = p.getProfesor();
-		this.setSize(400,250);
+		this.setSize(MainFrame.sirina*3/7,MainFrame.visina*3/7);
 		this.setLayout(new BorderLayout());
 		
 		JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 
@@ -108,7 +109,7 @@ public class IzmeniPredmet extends JDialog{
 		add(panelC,BorderLayout.NORTH);
 		add(panelS,BorderLayout.SOUTH);
 		
-		this.setResizable(false);
+		//this.setResizable(false);
 		this.setLocationRelativeTo(parent);
 		this.setVisible(true);
 

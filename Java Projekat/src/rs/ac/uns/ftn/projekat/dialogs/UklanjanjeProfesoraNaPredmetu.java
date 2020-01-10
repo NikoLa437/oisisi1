@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class UklanjanjeProfesoraNaPredmetu extends JDialog{
@@ -30,7 +31,7 @@ public class UklanjanjeProfesoraNaPredmetu extends JDialog{
 		
 		Predmet pr = BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow);
 		
-		this.setSize(400,200);
+		this.setSize(MainFrame.sirina*3/7,MainFrame.visina/3);
 		this.setLayout(new BorderLayout());
 		
 		JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 

@@ -13,6 +13,7 @@ import rs.ac.uns.ftn.projekat.dialogs.IzmeniPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.IzmeniProfesora;
 import rs.ac.uns.ftn.projekat.dialogs.IzmeniStudenta;
 import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class CreateEditAction extends AbstractAction {
@@ -32,7 +33,7 @@ public class CreateEditAction extends AbstractAction {
 			 @SuppressWarnings("unused")
 			IzmeniPredmet ip;
 			 if(PredmetJTable.selectedRow != -1)
-				 ip= new IzmeniPredmet(new JFrame());
+				 ip= new IzmeniPredmet(MainFrame.getInstance());
 			 else
 					JOptionPane.showMessageDialog(null, "Niste selektovali predmet za izmenu!", "Error", JOptionPane.ERROR_MESSAGE );
 

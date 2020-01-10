@@ -94,11 +94,11 @@ public class ToolBar extends JToolBar {
 				if(PredmetJTable.selectedRow != -1) {
 					if(BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow).getProfesor().getBr_licne() != null) {
 						@SuppressWarnings("unused")
-						UklanjanjeProfesoraNaPredmetu ep = new UklanjanjeProfesoraNaPredmetu(new JFrame());
+						UklanjanjeProfesoraNaPredmetu ep = new UklanjanjeProfesoraNaPredmetu(MainFrame.getInstance());
 					}				
 					else {
 						@SuppressWarnings("unused")
-						DodajProfesoraNaPredmet dpnp = new DodajProfesoraNaPredmet(new JFrame());
+						DodajProfesoraNaPredmet dpnp = new DodajProfesoraNaPredmet(MainFrame.getInstance());
 					}
 				}
 				else

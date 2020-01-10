@@ -11,6 +11,7 @@ import rs.ac.uns.ftn.projekat.dialogs.DodajPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.DodajProfesora;
 import rs.ac.uns.ftn.projekat.dialogs.DodajStudenta;
 import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 
 public class CreateEntityAction extends AbstractAction{
 
@@ -26,7 +27,7 @@ public class CreateEntityAction extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(JTabbedPaneTabele.selektovan_tab == 2) {
-			DodajPredmet dp = new DodajPredmet(new JFrame());
+			DodajPredmet dp = new DodajPredmet(MainFrame.getInstance());
 		}else if(JTabbedPaneTabele.selektovan_tab == 1) {
 			DodajProfesora dp = new DodajProfesora(new JFrame());
 		}else if(JTabbedPaneTabele.selektovan_tab == 0) {

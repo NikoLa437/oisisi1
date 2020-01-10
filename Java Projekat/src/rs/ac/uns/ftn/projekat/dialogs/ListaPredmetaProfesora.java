@@ -21,6 +21,7 @@ import javax.swing.ListSelectionModel;
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 
 public class ListaPredmetaProfesora extends JDialog{
 
@@ -32,7 +33,9 @@ public class ListaPredmetaProfesora extends JDialog{
 	public ListaPredmetaProfesora(JFrame parent, int selected) {
 		super(parent,"Lista studenata",true);
 		
-		this.setSize(300,200);
+		this.setSize(MainFrame.sirina/3,MainFrame.visina*3/7);
+
+		//this.setSize(300,200);
 		this.setLayout(new BorderLayout());
 
 		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  
@@ -77,8 +80,8 @@ public class ListaPredmetaProfesora extends JDialog{
 		
 		this.add(panelS,BorderLayout.SOUTH);
 		this.setTitle("Lista Predmeta");  
-		this.setResizable(false);
-		this.setLocationRelativeTo(null);
+		//this.setResizable(false);
+		this.setLocationRelativeTo(parent);
 		this.setVisible(true);
 		
 	}

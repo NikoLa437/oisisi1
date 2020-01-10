@@ -8,11 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
-import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.ObrisiPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.ObrisiProfesora;
 import rs.ac.uns.ftn.projekat.dialogs.ObrisiStudenta;
 import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 
@@ -22,6 +22,7 @@ public class CreateDeleteAction extends AbstractAction{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("deprecation")
 	public CreateDeleteAction() {
 		putValue(MNEMONIC_KEY, KeyEvent.VK_D);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D,KeyEvent.CTRL_MASK));
@@ -32,7 +33,7 @@ public class CreateDeleteAction extends AbstractAction{
 		if(JTabbedPaneTabele.selektovan_tab == 2) {
 			ObrisiPredmet op;
 			if(PredmetJTable.selectedRow != -1)
-				op = new ObrisiPredmet(new JFrame());
+				op = new ObrisiPredmet(MainFrame.getInstance());
 			else
 				JOptionPane.showMessageDialog(null, "Niste selektovali predmet za brisanje!", "Error", JOptionPane.ERROR_MESSAGE );
 
@@ -40,7 +41,7 @@ public class CreateDeleteAction extends AbstractAction{
 		if(JTabbedPaneTabele.selektovan_tab == 1) {
 			ObrisiProfesora op;
 			if(ProfesorJTable.selectedRow != -1)
-				op = new ObrisiProfesora(new JFrame());
+				op = new ObrisiProfesora(MainFrame.getInstance());
 			else
 				JOptionPane.showMessageDialog(null, "Niste selektovali profesora za brisanje!", "Error", JOptionPane.ERROR_MESSAGE );
 

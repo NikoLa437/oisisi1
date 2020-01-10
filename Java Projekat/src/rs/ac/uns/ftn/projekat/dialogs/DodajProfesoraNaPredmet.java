@@ -21,6 +21,7 @@ import javax.swing.text.Document;
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class DodajProfesoraNaPredmet extends JDialog{
@@ -34,8 +35,9 @@ public class DodajProfesoraNaPredmet extends JDialog{
 		super(parent,"Dodavanje profesora na predmet",true);
 		
 		Predmet pr = BazaPredmet.getInstance().getRow(PredmetJTable.selectedRow);
-
-		this.setSize(400,120);
+		
+		this.setSize(MainFrame.sirina*3/7,MainFrame.visina/4);
+		//this.setSize(400,120);
 		this.setLayout(new BorderLayout());
 		
 		JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 
@@ -93,7 +95,7 @@ public class DodajProfesoraNaPredmet extends JDialog{
 		add(panelC,BorderLayout.NORTH);
 		add(panelS,BorderLayout.SOUTH);
 		
-		this.setResizable(false);
+		//this.setResizable(false);
 		this.setLocationRelativeTo(parent);
 		this.setVisible(true);
 	}

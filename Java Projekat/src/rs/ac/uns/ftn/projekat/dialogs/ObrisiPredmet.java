@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class ObrisiPredmet extends JDialog{
@@ -23,7 +24,7 @@ public class ObrisiPredmet extends JDialog{
 	public ObrisiPredmet(JFrame parent) {
 		super(parent,"Brisanje predmeta",true);
 		
-		this.setSize(400,150);
+		this.setSize(MainFrame.sirina*3/7,MainFrame.visina/4);
 		this.setLayout(new BorderLayout());
 		
 		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));

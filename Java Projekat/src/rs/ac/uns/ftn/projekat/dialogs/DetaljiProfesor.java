@@ -16,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -24,6 +23,7 @@ import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Titula;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 
 public class DetaljiProfesor extends JDialog{
 
@@ -44,13 +44,8 @@ public class DetaljiProfesor extends JDialog{
 	private JTextField txtZvanje ;
 
 	public DetaljiProfesor(JFrame parent, int selected) {
-		super(parent,"Izmena profesora",true);
-		
-		if(BazaProfesor.getInstance().getProfesori().size()==0) {
-			JOptionPane.showMessageDialog(null, "Ne postoji ili nije selektovan ni jedan student", "Error", JOptionPane.ERROR_MESSAGE );
-	        dispose();
-		}else {
-			this.setSize(500,400);
+		super(parent,"Detalji profesora",true);
+			this.setSize(MainFrame.sirina/2,MainFrame.visina*3/4);
 			this.setLayout(new BorderLayout());
 			
 			JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 
@@ -163,10 +158,10 @@ public class DetaljiProfesor extends JDialog{
 			add(panelC,BorderLayout.NORTH);
 			add(panelS,BorderLayout.SOUTH);
 			
-			this.setResizable(false);
+			//this.setResizable(false);
 			this.setLocationRelativeTo(parent);
 			this.setVisible(true);
-		}
+		
 		
 	}
 	
