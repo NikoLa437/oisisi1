@@ -71,7 +71,7 @@ public class PredmetController {
 		return ret;
 	}
 	
-	public int izmeniPredmet(Profesor pr){
+	public int izmeniPredmet(Profesor pr,int godina_studija){
 		Predmet p= new Predmet();
 		int ret  = 0;
 		int err = -1;
@@ -98,6 +98,11 @@ public class PredmetController {
 				p.setSemestar(IzmeniPredmet.cbSemestar.getSelectedIndex() + 1);
 				p.setGodina_studija(IzmeniPredmet.cbGodStud.getSelectedIndex()+1);
 				BazaPredmet.getInstance().izmeniPredmet(p.getSifra_predmeta(),pr, p.getNaziv(), p.getSemestar(), p.getGodina_studija());
+				if(godina_studija != p.getGodina_studija()) {
+					BazaStudent.getInstance().izbrisiPredmetStudentima(p.getSifra_predmeta());
+					BazaPredmet.getInstance().returnPredmet(p.getSifra_predmeta()).getStudenti().clear();
+				}
+
 				ret = 1;
 		}
 		PredmetJTable.osvezi();

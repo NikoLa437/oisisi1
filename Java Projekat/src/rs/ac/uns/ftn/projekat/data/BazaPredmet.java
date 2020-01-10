@@ -109,6 +109,15 @@ public class BazaPredmet {
 		this.predmeti.add(new Predmet(sifra_predmeta, naziv, semestar, godina_studija));
 	}
 	
+	public Predmet returnPredmet(String sifra_predmeta) {
+		for(Predmet p : predmeti) {
+			if(p.getSifra_predmeta().equals(sifra_predmeta)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
 	public void izbrisiPredmet(String sifra_pr) {
 		for (Predmet p : predmeti) {
 			if (p.getSifra_predmeta().equals(sifra_pr)) {

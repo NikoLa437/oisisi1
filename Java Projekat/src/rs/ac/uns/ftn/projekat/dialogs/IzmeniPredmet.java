@@ -96,7 +96,7 @@ public class IzmeniPredmet extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(PredmetController.getInstance().izmeniPredmet(pr) == 1)
+				if(PredmetController.getInstance().izmeniPredmet(pr,p.getGodina_studija()) == 1)
 					dispose();
 			}
 		});
