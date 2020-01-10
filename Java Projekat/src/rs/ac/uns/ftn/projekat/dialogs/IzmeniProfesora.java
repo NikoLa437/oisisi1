@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -20,6 +21,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
@@ -144,9 +148,28 @@ public class IzmeniProfesora extends JDialog{
 				panelC.add(lblZvanje,gbclbl(0,9));
 				panelC.add(cbZvanje,gbctxt(1,9));
 	
-				Button bPotvrda = new Button("Potvrda");
-				Button bOdustanak = new Button("Odustanak");
+				JButton bPotvrda = new JButton("Potvrda");
+				JButton bOdustanak = new JButton("Odustanak");
 				
+				//disable dugmeta 
+				JButtonStateControllerIzmeniProfesora jbsc = new JButtonStateControllerIzmeniProfesora(bPotvrda);
+				Document textFieldDocIme = txtIme.getDocument();
+				textFieldDocIme.addDocumentListener(jbsc);
+				Document textFieldDocPrezime = txtPrezime.getDocument();
+				textFieldDocPrezime.addDocumentListener(jbsc);
+				Document textFieldDocDatumRodj = txtDatumRodj.getDocument();
+				textFieldDocDatumRodj.addDocumentListener(jbsc);
+				Document textFieldDocAdresa = txtAdresa.getDocument();
+				textFieldDocAdresa.addDocumentListener(jbsc);
+				Document textFieldDocBrojTel = txtBrojTel.getDocument();
+				textFieldDocBrojTel.addDocumentListener(jbsc);
+				Document textFieldDocEmailAdresa = txteadresa.getDocument();
+				textFieldDocEmailAdresa.addDocumentListener(jbsc);
+				Document textFieldDocAdresaKanc= txtAdresaKanc.getDocument();
+				textFieldDocAdresaKanc.addDocumentListener(jbsc);
+				Document textFieldDocBrojLicneKarte = txtBrLicne.getDocument();
+				textFieldDocBrojLicneKarte.addDocumentListener(jbsc);
+			
 				bOdustanak.addActionListener(new ActionListener(){
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -199,4 +222,34 @@ public class IzmeniProfesora extends JDialog{
 		gbc.insets = new Insets(10, 20, 0, 20);
 		return gbc;
 	}
+}
+
+class JButtonStateControllerIzmeniProfesora implements DocumentListener {
+    private JButton button;
+
+    JButtonStateControllerIzmeniProfesora(JButton bPotvrda) {
+        button = bPotvrda;
+    }
+
+    public void changedUpdate(DocumentEvent e) {
+        disableIfEmpty();
+    }
+
+    public void insertUpdate(DocumentEvent e){
+        disableIfEmpty();
+    }
+
+    public void removeUpdate(DocumentEvent e){
+        disableIfEmpty();
+    }
+
+    public void disableIfEmpty() {
+    	if(IzmeniProfesora.txtIme.getText().isEmpty() || IzmeniProfesora.txtPrezime.getText().isEmpty() || IzmeniProfesora.txtDatumRodj.getText().isEmpty()
+    			|| IzmeniProfesora.txtAdresa.getText().isEmpty() || IzmeniProfesora.txtBrojTel.getText().isEmpty() || IzmeniProfesora.txteadresa.getText().isEmpty()
+    			|| IzmeniProfesora.txtAdresaKanc.getText().isEmpty() || IzmeniProfesora.txtBrLicne.getText().isEmpty())
+    		button.setEnabled(false);
+    	else
+    		button.setEnabled(true);
+
+    } 
 }

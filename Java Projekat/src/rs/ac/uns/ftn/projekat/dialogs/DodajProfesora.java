@@ -15,6 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import rs.ac.uns.ftn.projekat.controllers.ProfesorController;
 
@@ -95,6 +98,29 @@ public class DodajProfesora extends JDialog{
 		JButton bPotvrda = new JButton("Potvrda");
 		JButton bOdustanak = new JButton("Odustanak");
 		
+		bPotvrda.setEnabled(false);
+		
+		
+		//disable dugmeta 
+		JButtonStateControllerDodajProfesora jbsc = new JButtonStateControllerDodajProfesora(bPotvrda);
+		Document textFieldDocIme = txtIme.getDocument();
+		textFieldDocIme.addDocumentListener(jbsc);
+		Document textFieldDocPrezime = txtPrezime.getDocument();
+		textFieldDocPrezime.addDocumentListener(jbsc);
+		Document textFieldDocDatumRodj = txtDatumRodj.getDocument();
+		textFieldDocDatumRodj.addDocumentListener(jbsc);
+		Document textFieldDocAdresa = txtAdresaStan.getDocument();
+		textFieldDocAdresa.addDocumentListener(jbsc);
+		Document textFieldDocBrojTel = txtKtkTel.getDocument();
+		textFieldDocBrojTel.addDocumentListener(jbsc);
+		Document textFieldDocEmailAdresa = txtEAdresa.getDocument();
+		textFieldDocEmailAdresa.addDocumentListener(jbsc);
+		Document textFieldDocAdresaKanc= txtAdresaKanc.getDocument();
+		textFieldDocAdresaKanc.addDocumentListener(jbsc);
+		Document textFieldDocBrojLicneKarte = txtBrojLicne.getDocument();
+		textFieldDocBrojLicneKarte.addDocumentListener(jbsc);
+		
+		 
 		bOdustanak.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -144,6 +170,36 @@ public class DodajProfesora extends JDialog{
 		gbc.insets = new Insets(10, 20, 0, 20);
 		return gbc;
 	}
-	
-	
 }
+
+class JButtonStateControllerDodajProfesora implements DocumentListener {
+    private JButton button;
+
+    JButtonStateControllerDodajProfesora(JButton b) {
+        button = b;
+    }
+
+    public void changedUpdate(DocumentEvent e) {
+        disableIfEmpty();
+    }
+
+    public void insertUpdate(DocumentEvent e){
+        disableIfEmpty();
+    }
+
+    public void removeUpdate(DocumentEvent e){
+        disableIfEmpty();
+    }
+
+    public void disableIfEmpty() {
+    	if(DodajProfesora.txtIme.getText().isEmpty() || DodajProfesora.txtPrezime.getText().isEmpty() || DodajProfesora.txtDatumRodj.getText().isEmpty()
+    			|| DodajProfesora.txtAdresaStan.getText().isEmpty() || DodajProfesora.txtKtkTel.getText().isEmpty() || DodajProfesora.txtEAdresa.getText().isEmpty()
+    			|| DodajProfesora.txtAdresaKanc.getText().isEmpty() || DodajProfesora.txtBrojLicne.getText().isEmpty())
+    		button.setEnabled(false);
+    	else
+    		button.setEnabled(true);
+
+    } 
+}
+
+
