@@ -23,6 +23,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
@@ -146,6 +149,27 @@ public class IzmeniStudenta extends JDialog{
 			JButton bPotvrda = new JButton("Potvrda");
 			JButton bOdustanak = new JButton("Odustanak");
 			
+			//disable dugmeta 
+			JButtonStateControllerIzmeniStudenta jbsc = new JButtonStateControllerIzmeniStudenta(bPotvrda);
+			Document textFieldDocIme = txtIme.getDocument();
+			textFieldDocIme.addDocumentListener(jbsc);
+			Document textFieldDocPrezime = txtPrezime.getDocument();
+			textFieldDocPrezime.addDocumentListener(jbsc);
+			Document textFieldDocDatumRodj = txtDatumRodj.getDocument();
+			textFieldDocDatumRodj.addDocumentListener(jbsc);
+			Document textFieldDocAdresa = txtAdresa.getDocument();
+			textFieldDocAdresa.addDocumentListener(jbsc);
+			Document textFieldDocBrojTel = txtBrojTel.getDocument();
+			textFieldDocBrojTel.addDocumentListener(jbsc);
+			Document textFieldDocBrojInd = txtBrojInd.getDocument();
+			textFieldDocBrojInd.addDocumentListener(jbsc);
+			Document textFieldDocEmailAdresa = txteadresa.getDocument();
+			textFieldDocEmailAdresa.addDocumentListener(jbsc);
+			Document textFieldDocDatumUpisa = txtdatumUpisa.getDocument();
+			textFieldDocDatumUpisa.addDocumentListener(jbsc);
+			Document textFieldDocProsecnaOcena = txtprosecnaOcena.getDocument();
+			textFieldDocProsecnaOcena.addDocumentListener(jbsc);
+			
 			bOdustanak.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -201,4 +225,34 @@ public class IzmeniStudenta extends JDialog{
 		return gbc;
 	}
 	
+}
+
+class JButtonStateControllerIzmeniStudenta implements DocumentListener {
+    private JButton button;
+
+    JButtonStateControllerIzmeniStudenta(JButton b) {
+        button = b;
+    }
+
+    public void changedUpdate(DocumentEvent e) {
+        disableIfEmpty();
+    }
+
+    public void insertUpdate(DocumentEvent e){
+        disableIfEmpty();
+    }
+
+    public void removeUpdate(DocumentEvent e){
+        disableIfEmpty();
+    }
+
+    public void disableIfEmpty() {
+    	if(IzmeniStudenta.txtIme.getText().isEmpty() || IzmeniStudenta.txtPrezime.getText().isEmpty() || IzmeniStudenta.txtDatumRodj.getText().isEmpty()
+    			|| IzmeniStudenta.txtAdresa.getText().isEmpty() || IzmeniStudenta.txtBrojTel.getText().isEmpty() || IzmeniStudenta.txtBrojInd.getText().isEmpty()
+    			|| IzmeniStudenta.txteadresa.getText().isEmpty() || IzmeniStudenta.txtdatumUpisa.getText().isEmpty() || IzmeniStudenta.txtprosecnaOcena.getText().isEmpty())
+    		button.setEnabled(false);
+    	else
+    		button.setEnabled(true);
+
+    } 
 }

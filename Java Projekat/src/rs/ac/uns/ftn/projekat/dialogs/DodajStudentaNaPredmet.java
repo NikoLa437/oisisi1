@@ -10,12 +10,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
@@ -66,8 +70,13 @@ public class DodajStudentaNaPredmet extends JDialog{
 			gbcT.insets = new Insets(10, 20, 0, 20);
 			panelC.add(txtIndeks, gbcT);
 			
-			Button bPotvrda = new Button("Potvrda");
-			Button bOdustanak = new Button("Odustanak");
+			JButton bPotvrda = new JButton("Potvrda");
+			JButton bOdustanak = new JButton("Odustanak");
+			bPotvrda.setEnabled(false);
+			
+			JButtonStateControllerDodajStudentaNaPredmet jbsc = new JButtonStateControllerDodajStudentaNaPredmet(bPotvrda);
+			Document textFieldDocIndeks = txtIndeks.getDocument();
+			textFieldDocIndeks.addDocumentListener(jbsc);
 			
 			bOdustanak.addActionListener(new ActionListener(){
 				@Override
@@ -99,4 +108,32 @@ public class DodajStudentaNaPredmet extends JDialog{
 			this.setVisible(true);
 		}
 	}
+}
+
+class JButtonStateControllerDodajStudentaNaPredmet implements DocumentListener {
+    private JButton button;
+
+    JButtonStateControllerDodajStudentaNaPredmet(JButton bPotvrda) {
+        button = bPotvrda;
+    }
+
+    public void changedUpdate(DocumentEvent e) {
+        disableIfEmpty();
+    }
+
+    public void insertUpdate(DocumentEvent e){
+        disableIfEmpty();
+    }
+
+    public void removeUpdate(DocumentEvent e){
+        disableIfEmpty();
+    }
+
+    public void disableIfEmpty() {
+    	if(DodajStudentaNaPredmet.txtIndeks.getText().isEmpty())
+    		button.setEnabled(false);
+    	else
+    		button.setEnabled(true);
+
+    } 
 }
