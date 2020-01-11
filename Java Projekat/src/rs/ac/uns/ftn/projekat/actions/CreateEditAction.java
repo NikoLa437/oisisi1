@@ -15,6 +15,8 @@ import rs.ac.uns.ftn.projekat.dialogs.IzmeniStudenta;
 import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
 import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
+import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
+import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
 public class CreateEditAction extends AbstractAction {
 
@@ -39,12 +41,20 @@ public class CreateEditAction extends AbstractAction {
 
 		}
 		if(JTabbedPaneTabele.selektovan_tab == 1) {
-			@SuppressWarnings("unused")
-			IzmeniProfesora ip= new IzmeniProfesora(new JFrame());
+			if(ProfesorJTable.selectedRow != -1) {
+				@SuppressWarnings("unused")
+				IzmeniProfesora ip= new IzmeniProfesora(new JFrame());
+			}else {
+				JOptionPane.showMessageDialog(null, "Niste selektovali profesora za izmenu!", "Error", JOptionPane.ERROR_MESSAGE );
+			}
 		}
 		if(JTabbedPaneTabele.selektovan_tab == 0) {
-			 @SuppressWarnings("unused")
-			IzmeniStudenta is = new IzmeniStudenta(new JFrame());
+			if(StudentJTable.selectedRow != -1) {
+				 @SuppressWarnings("unused")
+				IzmeniStudenta is = new IzmeniStudenta(new JFrame());
+			}else {
+				JOptionPane.showMessageDialog(null, "Niste selektovali studenta za izmenu!", "Error", JOptionPane.ERROR_MESSAGE );
+			}
 		}
 	}
 

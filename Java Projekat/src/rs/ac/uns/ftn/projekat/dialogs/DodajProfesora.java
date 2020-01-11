@@ -20,6 +20,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 
 import rs.ac.uns.ftn.projekat.controllers.ProfesorController;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 
 public class DodajProfesora extends JDialog{
 	/**
@@ -41,7 +42,7 @@ public class DodajProfesora extends JDialog{
 		super(parent,"Dodavanje novog profesora",true);
 		
 		
-		this.setSize(400,400);
+		this.setSize(MainFrame.sirina*3/7,MainFrame.visina*5/7);
 		this.setLayout(new BorderLayout());
 		
 		JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 

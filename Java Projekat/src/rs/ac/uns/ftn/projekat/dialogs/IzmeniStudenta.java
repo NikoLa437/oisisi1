@@ -31,6 +31,7 @@ import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
 import rs.ac.uns.ftn.projekat.controllers.StudentController;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
 public class IzmeniStudenta extends JDialog{
@@ -54,7 +55,6 @@ public class IzmeniStudenta extends JDialog{
 	private static final long serialVersionUID = 1L;
 	public IzmeniStudenta(JFrame parent) {
 		super(parent,"Izmena studenta",true);
-		if(StudentJTable.selectedRow!=-1) {
 			
 			if(BazaStudent.getInstance().getStudenti().size()==0) {
 				JOptionPane.showMessageDialog(null, "Ne postoji ili nije selektovan ni jedan student", "Error", JOptionPane.ERROR_MESSAGE );
@@ -64,7 +64,7 @@ public class IzmeniStudenta extends JDialog{
 			Student s= new Student();
 			s=BazaStudent.getInstance().getRow(StudentJTable.selectedRow);
 		
-			this.setSize(400,450);
+			this.setSize(MainFrame.sirina*3/7,MainFrame.visina*3/4);
 			this.setLayout(new BorderLayout());
 			
 			JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 
@@ -199,9 +199,6 @@ public class IzmeniStudenta extends JDialog{
 			this.setLocationRelativeTo(parent);
 			this.setVisible(true);
 			}
-		}else {
-			JOptionPane.showMessageDialog(null, "Niste selektovali studenta za izmenu!", "Error", JOptionPane.ERROR_MESSAGE );
-	}
 }
 	
 	

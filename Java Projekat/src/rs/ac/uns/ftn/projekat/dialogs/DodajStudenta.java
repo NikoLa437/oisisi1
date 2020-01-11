@@ -33,6 +33,7 @@ import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.controllers.StudentController;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.view.AbstractTableModelStudent;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
 public class DodajStudenta extends JDialog{
@@ -58,7 +59,7 @@ public class DodajStudenta extends JDialog{
 	public DodajStudenta(JFrame parent) {
 		super(parent,"Dodavanje novog studenta",true);
 		
-		this.setSize(400,450);
+		this.setSize(MainFrame.sirina*3/7,MainFrame.visina*3/4);
 		this.setLayout(new BorderLayout());
 		
 		JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 

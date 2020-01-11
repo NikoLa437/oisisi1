@@ -34,6 +34,7 @@ import rs.ac.uns.ftn.projekat.classes.Student.Status;
 import rs.ac.uns.ftn.projekat.controllers.ProfesorController;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
@@ -52,12 +53,11 @@ public class IzmeniProfesora extends JDialog{
 	
 	public IzmeniProfesora(JFrame parent) {
 		super(parent,"Izmena profesora",true);
-		if(ProfesorJTable.selectedRow!=-1) {
 			if(BazaProfesor.getInstance().getProfesori().size()==0) {
 				JOptionPane.showMessageDialog(null, "Ne postoji ili nije selektovan ni jedan student", "Error", JOptionPane.ERROR_MESSAGE );
 		        dispose();
 			}else {
-				this.setSize(400,450);
+				this.setSize(MainFrame.sirina*3/7,MainFrame.visina*5/7);
 				this.setLayout(new BorderLayout());
 				
 				JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 
@@ -198,9 +198,6 @@ public class IzmeniProfesora extends JDialog{
 				this.setLocationRelativeTo(parent);
 				this.setVisible(true);
 			}
-	}else {
-		JOptionPane.showMessageDialog(null, "Niste selektovali profesora za izmenu!", "Error", JOptionPane.ERROR_MESSAGE );
-	}
 }
 	
 	private GridBagConstraints gbclbl(int x,int y) {
