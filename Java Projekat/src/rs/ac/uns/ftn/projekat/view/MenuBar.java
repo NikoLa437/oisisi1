@@ -45,7 +45,7 @@ public class MenuBar extends JMenuBar{
 		miNew.setIcon(ScaleIcon.ScaleIconSize("icon/addperson.png"));
 		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		JMenuItem miClose = new JMenuItem("Close",ScaleIcon.ScaleIconSize("icon/exit.png"));
-		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 		
 		CreateEditAction ed= new CreateEditAction();
 		JMenuItem miEdit = new JMenuItem();

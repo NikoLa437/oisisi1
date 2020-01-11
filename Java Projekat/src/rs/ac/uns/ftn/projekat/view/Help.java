@@ -32,7 +32,7 @@ public class Help extends JFrame{
 					, {iconDelete, "CTRL+D","Brisanje studenta/predmeta/profesora"},{iconSearch, "/","Pretraga studenta/predmeta/profesora"}
 					, {iconAddStudent, "/","Dodavanje studenta na predmet"},{iconAddDelProfesor, "/","Dodavanje i brisanje profesora na predmet"}
 					, {iconHelp, "CTRL+H","Pomoc u vezi koriscenja programa"},{iconAbout, "CTRL+U","Opste informacije u vezi .."}
-					, {iconClose, "CTRL+ X", "Izlazak iz programa"}};
+					, {iconClose, "CTRL+ I", "Izlazak iz programa"}};
 	
 
 	public Help() {
