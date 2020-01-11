@@ -127,7 +127,6 @@ public class StudentController {
 			}
 			BazaStudent.getInstance().izmeniStudenta(s.getIndeks(),s.getIme(), s.getPrezime(), s.getAdresa_stanovanja(), s.getKontakt_telefon(),s.getEmail_adresa(),  s.getDatum_rodjenja(), s.getDatum_upisa(), s.getGod_studija(), s.getProsecna_ocena(),s.getStatus());
 			ret=1;
-			StudentJTable.selectedRow=-1;
 			StudentJTable.osvezi();	
 		}else {
 			JOptionPane.showMessageDialog(null, "Pogresan unos!", "Error", JOptionPane.ERROR_MESSAGE );
@@ -137,13 +136,11 @@ public class StudentController {
 	
 	
 	public void obrisiStudenta() {
-			System.out.println(StudentJTable.selectedRow);
 			Student s= BazaStudent.getInstance().getRow(StudentJTable.selectedRow);
 			BazaStudent.getInstance().izbrisiStudenta(s.getIndeks());
 			if(BazaStudent.indikator==1) {
 				this.pretraziStudente(ToolBar.textField.getText());
 			}
-			StudentJTable.selectedRow=-1;
 			StudentJTable.osvezi();
 	}
 	
@@ -274,7 +271,6 @@ public class StudentController {
 				
 				BazaStudent.indikator=1;
 				BazaStudent.getInstance().setPretrazeni(studenti);
-				StudentJTable.selectedRow=-1;
 				StudentJTable.osvezi();
 			}
 			}catch(Exception e)
@@ -283,7 +279,6 @@ public class StudentController {
 			}
 		}else {
 			BazaStudent.indikator=0;
-			StudentJTable.selectedRow=-1;
 			StudentJTable.osvezi();
 		}
 	}
@@ -294,7 +289,8 @@ public class StudentController {
 		
 		if(DodajStudenta.txtIme.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajStudenta.txtPrezime.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajStudenta.txtdatumUpisa.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")&&DodajStudenta.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
 				&&DodajStudenta.txtAdresa.getText().matches("[0-9A-Z\\p{InLATIN_EXTENDED_A}][0-9A-Z, a-z\\p{InLATIN_EXTENDED_A}]+")&&!DodajStudenta.txtBrojInd.getText().isEmpty()&&DodajStudenta.txtBrojTel.getText().matches("([+]{1})?[0-9-/]{8,12}") && DodajStudenta.txteadresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
-				&&DodajStudenta.txtprosecnaOcena.getText().matches("([5-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})")&& !BazaStudent.getInstance().postoji(DodajStudenta.txtBrojInd.getText())){
+				&&DodajStudenta.txtprosecnaOcena.getText().matches("([5-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})")&& !BazaStudent.getInstance().postoji(DodajStudenta.txtBrojInd.getText())
+				&&(DodajStudenta.txtDatumRodj.getText().compareTo(DodajStudenta.txtdatumUpisa.getText())<0)){
 			ret=true;
 		}
 	

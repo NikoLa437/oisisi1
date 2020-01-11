@@ -15,6 +15,7 @@ import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
 import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
+import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
 public class CreateDeleteAction extends AbstractAction{
 
@@ -47,7 +48,11 @@ public class CreateDeleteAction extends AbstractAction{
 
 		}
 		if(JTabbedPaneTabele.selektovan_tab == 0) {
-			 ObrisiStudenta os= new ObrisiStudenta();
+			if(StudentJTable.selectedRow!=-1) {
+				ObrisiStudenta os= new ObrisiStudenta();
+			}else {
+				JOptionPane.showMessageDialog(null, "Niste selektovali studenta za brisanje!", "Error", JOptionPane.ERROR_MESSAGE );
+			}
 		}
 	}
 
