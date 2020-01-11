@@ -160,6 +160,17 @@ public class BazaPredmet {
 		}
 	}
 	
+	public void obrisiStudentaSaSvihPredmeta(String indexStudenta) {
+		for(Predmet p: predmeti) {
+			for(Student s : p.getStudenti()) {
+				if(s.getIndeks().equals(indexStudenta)) {
+					p.getStudenti().remove(s);
+					break;
+				}
+			}
+		}
+	}
+	
 	public void serialize() {
 		try { ObjectOutputStream out = new ObjectOutputStream(
 		          new FileOutputStream("./datafiles/predmetiFile.txt"));

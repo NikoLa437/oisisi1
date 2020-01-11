@@ -151,6 +151,7 @@ public class BazaStudent {
 		for (Student s : studenti) {
 			if (s.getIndeks().equals(indeks_studenta)) {
 				studenti.remove(s);
+				BazaPredmet.getInstance().obrisiStudentaSaSvihPredmeta(indeks_studenta);
 				break;
 			}
 		}
