@@ -13,7 +13,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
-import rs.ac.uns.ftn.projekat.dialogs.DetaljiProfesor;
+import rs.ac.uns.ftn.projekat.view.dialogs.DetaljiProfesor;
 
 public class ButtonColumnDetaljiProfesora extends AbstractCellEditor
 											implements TableCellRenderer, TableCellEditor, MouseListener{

@@ -14,7 +14,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
-import rs.ac.uns.ftn.projekat.dialogs.DetaljiStudenta;
+import rs.ac.uns.ftn.projekat.view.dialogs.DetaljiStudenta;
 
 public class ButtonColumnDetaljiStudent extends AbstractCellEditor	implements TableCellRenderer, TableCellEditor, MouseListener{
 

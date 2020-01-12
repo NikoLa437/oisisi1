@@ -14,7 +14,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.ListaStudenataNaPredmetu;
+import rs.ac.uns.ftn.projekat.view.dialogs.ListaStudenataNaPredmetu;
 
 
 public class ButtonColumnPredmet extends AbstractCellEditor

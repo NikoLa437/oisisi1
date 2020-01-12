@@ -7,14 +7,14 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
-import rs.ac.uns.ftn.projekat.dialogs.IzmeniPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.IzmeniProfesora;
-import rs.ac.uns.ftn.projekat.dialogs.IzmeniStudenta;
 import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
 import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
+import rs.ac.uns.ftn.projekat.view.dialogs.IzmeniPredmet;
+import rs.ac.uns.ftn.projekat.view.dialogs.IzmeniProfesora;
+import rs.ac.uns.ftn.projekat.view.dialogs.IzmeniStudenta;
 
 public class CreateEditAction extends AbstractAction {
 

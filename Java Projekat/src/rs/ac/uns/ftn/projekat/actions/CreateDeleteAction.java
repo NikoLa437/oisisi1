@@ -7,14 +7,14 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
-import rs.ac.uns.ftn.projekat.dialogs.ObrisiPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.ObrisiProfesora;
-import rs.ac.uns.ftn.projekat.dialogs.ObrisiStudenta;
 import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
 import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
+import rs.ac.uns.ftn.projekat.view.dialogs.ObrisiPredmet;
+import rs.ac.uns.ftn.projekat.view.dialogs.ObrisiProfesora;
+import rs.ac.uns.ftn.projekat.view.dialogs.ObrisiStudenta;
 
 public class CreateDeleteAction extends AbstractAction{
 

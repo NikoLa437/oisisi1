@@ -12,12 +12,12 @@ import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
-import rs.ac.uns.ftn.projekat.dialogs.DodajStudenta;
-import rs.ac.uns.ftn.projekat.dialogs.DodajStudentaNaPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.IzmeniStudenta;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
 import rs.ac.uns.ftn.projekat.view.ToolBar;
+import rs.ac.uns.ftn.projekat.view.dialogs.DodajStudenta;
+import rs.ac.uns.ftn.projekat.view.dialogs.DodajStudentaNaPredmet;
+import rs.ac.uns.ftn.projekat.view.dialogs.IzmeniStudenta;
 
 public class StudentController {
 

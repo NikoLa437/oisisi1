@@ -10,12 +10,12 @@ import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
-import rs.ac.uns.ftn.projekat.dialogs.DodajPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.IzmeniPredmet;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 import rs.ac.uns.ftn.projekat.view.ToolBar;
+import rs.ac.uns.ftn.projekat.view.dialogs.DodajPredmet;
+import rs.ac.uns.ftn.projekat.view.dialogs.DodajProfesoraNaPredmet;
+import rs.ac.uns.ftn.projekat.view.dialogs.IzmeniPredmet;
 
 public class PredmetController {
 	

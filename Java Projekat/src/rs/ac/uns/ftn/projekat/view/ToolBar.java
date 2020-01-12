@@ -22,9 +22,9 @@ import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.controllers.ProfesorController;
 import rs.ac.uns.ftn.projekat.controllers.StudentController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.DodajStudentaNaPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.UklanjanjeProfesoraNaPredmetu;
+import rs.ac.uns.ftn.projekat.view.dialogs.DodajProfesoraNaPredmet;
+import rs.ac.uns.ftn.projekat.view.dialogs.DodajStudentaNaPredmet;
+import rs.ac.uns.ftn.projekat.view.dialogs.UklanjanjeProfesoraNaPredmetu;
 
 public class ToolBar extends JToolBar {
 

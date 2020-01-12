@@ -13,11 +13,11 @@ import rs.ac.uns.ftn.projekat.classes.Profesor.Titula;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
-import rs.ac.uns.ftn.projekat.dialogs.DodajProfesora;
-import rs.ac.uns.ftn.projekat.dialogs.IzmeniProfesora;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 import rs.ac.uns.ftn.projekat.view.ToolBar;
+import rs.ac.uns.ftn.projekat.view.dialogs.DodajProfesora;
+import rs.ac.uns.ftn.projekat.view.dialogs.IzmeniProfesora;
 
 public class ProfesorController {
 	

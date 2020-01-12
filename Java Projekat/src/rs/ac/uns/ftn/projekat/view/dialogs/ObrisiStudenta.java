@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.projekat.dialogs;
+package rs.ac.uns.ftn.projekat.view.dialogs;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

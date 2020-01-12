@@ -6,11 +6,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
-import rs.ac.uns.ftn.projekat.dialogs.DodajPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.DodajProfesora;
-import rs.ac.uns.ftn.projekat.dialogs.DodajStudenta;
 import rs.ac.uns.ftn.projekat.view.JTabbedPaneTabele;
 import rs.ac.uns.ftn.projekat.view.MainFrame;
+import rs.ac.uns.ftn.projekat.view.dialogs.DodajPredmet;
+import rs.ac.uns.ftn.projekat.view.dialogs.DodajProfesora;
+import rs.ac.uns.ftn.projekat.view.dialogs.DodajStudenta;
 
 public class CreateEntityAction extends AbstractAction{
 
