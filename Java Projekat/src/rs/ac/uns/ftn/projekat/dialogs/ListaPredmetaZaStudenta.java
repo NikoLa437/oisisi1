@@ -2,7 +2,6 @@ package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,12 +34,6 @@ public class ListaPredmetaZaStudenta extends JDialog{
 		
 		this.setSize(MainFrame.sirina*2/7,MainFrame.visina*3/7);
 		this.setLayout(new BorderLayout());
-		//paneli p1 i p2 da naprave razmak
-		JPanel p1= new JPanel();
-		p1.setPreferredSize(new Dimension(30,20));
-		JPanel p2= new JPanel();
-		p2.setPreferredSize(new Dimension(30,20));
-		JPanel panelC = new JPanel(new FlowLayout(FlowLayout.CENTER));  // panel za unos 
 		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  // panel za button-e
 		
 		JButton bOdustani=new JButton("Odustani");
@@ -59,7 +52,7 @@ public class ListaPredmetaZaStudenta extends JDialog{
 		lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		lista.setBorder(BorderFactory.createLineBorder(Color.black));
 		
-		lista.setVisibleRowCount(8);
+		lista.setVisibleRowCount(7);
 		
 		bOdustani.addActionListener(new ActionListener(){
 			@Override
@@ -68,20 +61,16 @@ public class ListaPredmetaZaStudenta extends JDialog{
 			}
 		});
 		
-		panelC.add(new JScrollPane(lista));
-		panelC.add(lista);
 		
-		panelC.add(new JScrollPane(lista));
-		
+		JScrollPane sp = new JScrollPane(lista);
+
 		panelS.add(bOdustani);
-		
-		this.add(p1,BorderLayout.NORTH);
-		this.add(panelC,BorderLayout.CENTER);
+		this.add(sp,BorderLayout.CENTER);
 		
 		this.add(panelS,BorderLayout.SOUTH);
 		this.setTitle("Lista predmeta");  
-		this.setResizable(false);
-		this.setLocationRelativeTo(null);
+		this.setResizable(true);
+		this.setLocationRelativeTo(parent);
 		this.setVisible(true);
 	}
 }
