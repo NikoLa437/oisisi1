@@ -35,7 +35,6 @@ public class MainFrame extends JFrame {
 
 	private MainFrame() {
 		super();
-		
 		Toolkit kit = Toolkit.getDefaultToolkit(); 
 		Dimension dimension = kit.getScreenSize();
 		sirina = dimension.width*3/4;

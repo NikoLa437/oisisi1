@@ -9,14 +9,14 @@ public class myapp {
 
 	public static void main(String[] args) {
 		
-//		try {
-//            // Set cross-platform Java L&F (also called "Metal")
-//        UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+//	try {
+//           // Set cross-platform Java L&F (also called "Metal")
+//		//UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");     
 //    } 
-//    catch (Exception e) {
-//       // handle exception
+//   catch (Exception e) {
+//      // handle exception
 //    }
-//		
+		
 		BazaStudent.getInstance().deserialize();
 		BazaProfesor.getInstance().deserialize();
 		BazaPredmet.getInstance().deserialize();
