@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -25,21 +24,20 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 
-import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
-import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Titula;
 import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
-import rs.ac.uns.ftn.projekat.classes.Student.Status;
 import rs.ac.uns.ftn.projekat.controllers.ProfesorController;
 import rs.ac.uns.ftn.projekat.data.BazaProfesor;
-import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
-import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
 public class IzmeniProfesora extends JDialog{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9097209350598743027L;
 	public static JTextField txtIme;
 	public static JTextField txtPrezime ;
 	public static JTextField txtDatumRodj ;
@@ -48,9 +46,12 @@ public class IzmeniProfesora extends JDialog{
 	public static JTextField txteadresa ;
 	public static JTextField txtAdresaKanc ;
 	public static JTextField txtBrLicne ;
+	@SuppressWarnings("rawtypes")
 	public static JComboBox  cbTitula ;
+	@SuppressWarnings("rawtypes")
 	public static JComboBox cbZvanje ;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public IzmeniProfesora(JFrame parent) {
 		super(parent,"Izmena profesora",true);
 			if(BazaProfesor.getInstance().getProfesori().size()==0) {

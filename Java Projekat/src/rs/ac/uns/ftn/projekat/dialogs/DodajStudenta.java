@@ -1,18 +1,12 @@
 package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -20,7 +14,6 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -28,14 +21,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 
-import rs.ac.uns.ftn.projekat.classes.Student;
-import rs.ac.uns.ftn.projekat.classes.Student.Status;
-import rs.ac.uns.ftn.projekat.controllers.PredmetController;
 import rs.ac.uns.ftn.projekat.controllers.StudentController;
-import rs.ac.uns.ftn.projekat.data.BazaStudent;
-import rs.ac.uns.ftn.projekat.view.AbstractTableModelStudent;
 import rs.ac.uns.ftn.projekat.view.MainFrame;
-import rs.ac.uns.ftn.projekat.view.StudentJTable;
 
 public class DodajStudenta extends JDialog{
 	
@@ -52,11 +39,13 @@ public class DodajStudenta extends JDialog{
 	public static JTextField txteadresa;
 	public static JTextField txtdatumUpisa;
 	public static JTextField txtprosecnaOcena;
+	@SuppressWarnings("rawtypes")
 	public static JComboBox cbGodStud;
 	public static JRadioButton rbBudzet;
 	public static JRadioButton rbSamof;
 	
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DodajStudenta(JFrame parent) {
 		super(parent,"Dodavanje novog studenta",true);
 		

@@ -126,6 +126,8 @@ public class DodajPredmet extends JDialog{
 		return gbc;
 	}
 }
+
+//klasa za osluskivanje praznih polja
 class JButtonStateControllerDodaj implements DocumentListener {
     private JButton button;
 
@@ -144,7 +146,7 @@ class JButtonStateControllerDodaj implements DocumentListener {
     public void removeUpdate(DocumentEvent e){
         disableIfEmpty();
     }
-
+    //ako je prazno polje onemoguciti pritisak na dugme
     public void disableIfEmpty() {
     	if(DodajPredmet.txtNaziv.getText().isEmpty() || DodajPredmet.txtSifra.getText().isEmpty())
     		button.setEnabled(false);

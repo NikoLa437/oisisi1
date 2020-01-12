@@ -100,6 +100,7 @@ public class DodajProfesoraNaPredmet extends JDialog{
 		this.setVisible(true);
 	}
 }
+//klasa za osluskivanje praznog polja
 class JButtonStateControllerDPNP implements DocumentListener {
     private JButton button;
 

@@ -35,9 +35,12 @@ public class DodajProfesora extends JDialog{
 	public static JTextField txtEAdresa ;
 	public static JTextField txtAdresaKanc ;
 	public static JTextField txtBrojLicne ;
+	@SuppressWarnings("rawtypes")
 	public static JComboBox cbTitula ;
+	@SuppressWarnings("rawtypes")
 	public static JComboBox cbZvanje ;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DodajProfesora(JFrame parent) {
 		super(parent,"Dodavanje novog profesora",true);
 		

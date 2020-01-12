@@ -12,7 +12,6 @@ import java.util.List;
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
-import rs.ac.uns.ftn.projekat.controllers.StudentController;
 
 public class BazaPredmet {
 
@@ -28,7 +27,7 @@ public class BazaPredmet {
 	private List<Predmet> predmeti;
 	private List<Predmet> filter_predmet;
 	private List<String> kolone;
-	public static int indikator = 0;
+	public static int indikator = 0; //indikator pretrage
 	
 	private BazaPredmet() {
 	
@@ -108,7 +107,7 @@ public class BazaPredmet {
 	public void dodajPredmet(String sifra_predmeta, String naziv, int semestar, int godina_studija) {
 		this.predmeti.add(new Predmet(sifra_predmeta, naziv, semestar, godina_studija));
 	}
-	
+	//vraca predmet za zadatu sifru
 	public Predmet returnPredmet(String sifra_predmeta) {
 		for(Predmet p : predmeti) {
 			if(p.getSifra_predmeta().equals(sifra_predmeta)) {
@@ -117,7 +116,7 @@ public class BazaPredmet {
 		}
 		return null;
 	}
-	
+	//promena profesora na predmetima
 	public void setIzmenaProfesora(Profesor prof) {
 		for(Predmet p : predmeti) {
 			if(p.getProfesor().getBr_licne() != null) {
@@ -147,7 +146,7 @@ public class BazaPredmet {
 			}
 		}
 	}
-
+	//dodavanje studenta da predmet
 	public void dodajStudenta(String sifra_predmeta, Student s) {
 		for (Predmet pr : predmeti) {
 			if (pr.getSifra_predmeta().equals(sifra_predmeta)) {

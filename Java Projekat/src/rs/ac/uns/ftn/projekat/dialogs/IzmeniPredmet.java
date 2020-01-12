@@ -135,6 +135,8 @@ public class IzmeniPredmet extends JDialog{
 		return gbc;
 	}
 }
+
+//osluskivac za prazna polja
 class JButtonStateControllerIzmeni implements DocumentListener {
     private JButton button;
 

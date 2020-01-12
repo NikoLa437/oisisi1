@@ -41,6 +41,7 @@ public class DetaljiStudenta extends JDialog{
 	public JTextField txteadresa;
 	public JTextField txtdatumUpisa;
 	public JTextField txtprosecnaOcena;
+	@SuppressWarnings("rawtypes")
 	public JComboBox cbGodStud;
 	public JRadioButton rbBudzet;
 	public JRadioButton rbSamof;
@@ -84,6 +85,7 @@ public class DetaljiStudenta extends JDialog{
 	 txtprosecnaOcena = new JTextField();
 	
 	String[] sGodStud = { "I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)" };
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	JComboBox cbGodStud = new JComboBox(sGodStud);
 
 	 rbBudzet = new JRadioButton("Budzet");

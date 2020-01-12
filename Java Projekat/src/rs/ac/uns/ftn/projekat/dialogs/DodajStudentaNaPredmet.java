@@ -1,20 +1,17 @@
 package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -22,12 +19,8 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
-import rs.ac.uns.ftn.projekat.classes.Profesor;
-import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.controllers.StudentController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
-import rs.ac.uns.ftn.projekat.data.BazaProfesor;
-import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class DodajStudentaNaPredmet extends JDialog{
@@ -40,7 +33,6 @@ public class DodajStudentaNaPredmet extends JDialog{
 
 	public DodajStudentaNaPredmet(JFrame parent) {
 		super(parent,"Dodavanje studenta na predmet",true);
-		if(PredmetJTable.selectedRow!=-1) {
 			//super(parent,"Dodavanje studenta na predmet",true);
 			
 			this.setSize(400,120);
@@ -107,7 +99,6 @@ public class DodajStudentaNaPredmet extends JDialog{
 			this.setLocationRelativeTo(parent);
 			this.setVisible(true);
 		}
-	}
 }
 
 class JButtonStateControllerDodajStudentaNaPredmet implements DocumentListener {

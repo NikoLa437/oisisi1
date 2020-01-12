@@ -9,7 +9,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -72,7 +71,7 @@ public class ToolBar extends JToolBar {
 				@SuppressWarnings("unused")
 				DodajStudentaNaPredmet dpnp;
 				if(PredmetJTable.selectedRow != -1)
-					dpnp= new DodajStudentaNaPredmet(new JFrame());
+					dpnp= new DodajStudentaNaPredmet(MainFrame.getInstance());
 				else
 					JOptionPane.showMessageDialog(null, "Niste selektovali predmet!", "Error", JOptionPane.ERROR_MESSAGE );
 			}
