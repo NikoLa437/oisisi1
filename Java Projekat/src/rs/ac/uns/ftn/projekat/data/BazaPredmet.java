@@ -118,6 +118,16 @@ public class BazaPredmet {
 		return null;
 	}
 	
+	public void setIzmenaProfesora(Profesor prof) {
+		for(Predmet p : predmeti) {
+			if(p.getProfesor().getBr_licne() != null) {
+				if(p.getProfesor().getBr_licne().equals(prof.getBr_licne())) {
+					p.setProfesor(prof);
+				}
+			}
+		}
+	}
+	
 	public void izbrisiPredmet(String sifra_pr) {
 		for (Predmet p : predmeti) {
 			if (p.getSifra_predmeta().equals(sifra_pr)) {

@@ -156,6 +156,7 @@ public class ProfesorController {
 				p.setMail(IzmeniProfesora.txteadresa.getText());
 				BazaProfesor.getInstance().izmeniProfesora(p.getIme(), p.getPrezime(), p.getAdresa_stanovanja(), p.getBr_telefona(), p.getMail(), p.getAdresa_kancelarije(), p.getBr_licne(), p.getTitula(), p.getZvanje(), p.getDatum_rodjenja());
 				ret=1;
+				BazaPredmet.getInstance().setIzmenaProfesora(p);
 				ProfesorJTable.selectedRow=-1;
 				ProfesorJTable.osvezi();
 				}catch(Exception e1) {
