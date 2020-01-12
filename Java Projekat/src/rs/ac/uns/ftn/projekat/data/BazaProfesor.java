@@ -25,7 +25,7 @@ import rs.ac.uns.ftn.projekat.classes.Profesor.Zvanje;
 public class BazaProfesor {
 
 	private static BazaProfesor instance = null;
-	//singleton?
+	
 	public static BazaProfesor getInstance() {
 		if (instance == null) {
 			instance = new BazaProfesor();
@@ -89,7 +89,6 @@ public class BazaProfesor {
 	}
 
 	public Object getValueAt(int row, int column) {
-		//SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy.");
 		Profesor profesor = new Profesor();
 		if(indikator == 0)
 			profesor = this.profesori.get(row);
@@ -126,7 +125,7 @@ public class BazaProfesor {
 			}
 		}
 	}
-	
+	//brise predmet profesoru kada se izbrise predmet
 	public void izbrisiPredmetProfesoru(String sifra_predmeta) {
 		for (Profesor p : profesori) {
 			for(Predmet pred : p.getPredmeti()) {
@@ -137,7 +136,7 @@ public class BazaProfesor {
 			}
 		}
 	}
-	
+	//brise predmet profesoru kada se izmeni predmet
 	public void izmenaPredmetaProfesora(Predmet predmet) {
 		for(Profesor p : profesori) {
 			for(Predmet pred : p.getPredmeti()) {
@@ -195,7 +194,7 @@ public class BazaProfesor {
 			e.printStackTrace();
 		}
 	}
-	
+	//vraca pravi indeks iz filtrirane liste
 	public int getRealRowForFilter(int selectedrow) {
 		Profesor prof = filter_profesor.get(selectedrow);
 		int i = 0;
@@ -207,7 +206,7 @@ public class BazaProfesor {
 		}
 		return i;
 	}
-	
+	// ispituje da li postoji profesor sa zadatim brojem licne karte
 	public boolean postoji(String broj_licne) {
 		boolean pronadjen=false;
 		for(Profesor p : profesori) {
