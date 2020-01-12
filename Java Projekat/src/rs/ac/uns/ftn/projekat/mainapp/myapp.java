@@ -22,10 +22,6 @@ public class myapp {
 		BazaPredmet.getInstance().deserialize();
 		MainFrame.getInstance();
 	
-		
-	//	IzmeniStudenta is=new IzmeniStudenta(mf);
-		
-	
 	}
 
 }
