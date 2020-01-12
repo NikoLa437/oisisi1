@@ -32,7 +32,7 @@ public class ListaPredmetaZaStudenta extends JDialog{
 	public ListaPredmetaZaStudenta(JFrame parent,int selrow) {
 		super(parent,"Lista studenata",true);
 		
-		this.setSize(MainFrame.sirina*2/7,MainFrame.visina*3/7);
+		this.setSize(MainFrame.sirina/3,MainFrame.visina*3/7);
 		this.setLayout(new BorderLayout());
 		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  // panel za button-e
 		

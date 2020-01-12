@@ -65,7 +65,7 @@ public class IzmeniStudenta extends JDialog{
 			Student s= new Student();
 			s=BazaStudent.getInstance().getRow(StudentJTable.selectedRow);
 		
-			this.setSize(MainFrame.sirina*3/7,MainFrame.visina*3/4);
+			this.setSize(MainFrame.sirina*3/7,MainFrame.visina*6/7);
 			this.setLayout(new BorderLayout());
 			
 			JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 
@@ -196,7 +196,7 @@ public class IzmeniStudenta extends JDialog{
 			add(panelC,BorderLayout.NORTH);
 			add(panelS,BorderLayout.SOUTH);
 			
-			this.setResizable(false);
+			//this.setResizable(false);
 			this.setLocationRelativeTo(parent);
 			this.setVisible(true);
 			}

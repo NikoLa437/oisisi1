@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 
 public class DetaljiStudenta extends JDialog{
 	/**
@@ -57,7 +58,7 @@ public class DetaljiStudenta extends JDialog{
 	Student s= new Student();
 	s=BazaStudent.getInstance().getRow(selected);
 
-	this.setSize(400,450);
+	this.setSize(MainFrame.sirina*3/7,MainFrame.visina*6/7);
 	this.setLayout(new BorderLayout());
 	
 	JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 
@@ -165,7 +166,7 @@ public class DetaljiStudenta extends JDialog{
 	add(panelC,BorderLayout.NORTH);
 	add(panelS,BorderLayout.SOUTH);
 	
-	this.setResizable(false);
+	//this.setResizable(false);
 	this.setLocationRelativeTo(parent);
 	this.setVisible(true);
 }

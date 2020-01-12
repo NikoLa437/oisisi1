@@ -45,7 +45,8 @@ public class DetaljiProfesor extends JDialog{
 
 	public DetaljiProfesor(JFrame parent, int selected) {
 		super(parent,"Detalji profesora",true);
-			this.setSize(MainFrame.sirina/2,MainFrame.visina*3/4);
+		
+			this.setSize(MainFrame.sirina*3/7,MainFrame.visina*6/8);
 			this.setLayout(new BorderLayout());
 			
 			JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 

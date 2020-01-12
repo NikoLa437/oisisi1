@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.projekat.view.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -38,7 +38,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 	public ListaStudenataNaPredmetu(JFrame parent,int index) {
 		super(parent,"Lista studenata",true);
 		
-		this.setSize(MainFrame.sirina*2/7,MainFrame.visina*3/7);
+		this.setSize(MainFrame.sirina/3,MainFrame.visina*3/7);
 		this.setLayout(new BorderLayout());
 
 		JPanel p1= new JPanel();
@@ -48,8 +48,8 @@ public class ListaStudenataNaPredmetu extends JDialog{
 		JPanel panelC = new JPanel(new FlowLayout(FlowLayout.CENTER));  // panel za unos 
 		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  // panel za button-e
 		
-		Button bObrisi=new Button("Obrisi");
-		Button bOdustani=new Button("Odustani");
+		JButton bObrisi=new JButton("Obrisi");
+		JButton bOdustani=new JButton("Odustani");
 		
 		///////////////////////////////////////////////////////////////
 		DefaultListModel<String> listModel = new DefaultListModel<>();

@@ -58,7 +58,7 @@ public class IzmeniProfesora extends JDialog{
 				JOptionPane.showMessageDialog(null, "Ne postoji ili nije selektovan ni jedan student", "Error", JOptionPane.ERROR_MESSAGE );
 		        dispose();
 			}else {
-				this.setSize(MainFrame.sirina*3/7,MainFrame.visina*5/7);
+				this.setSize(MainFrame.sirina*3/7,MainFrame.visina*6/8);
 				this.setLayout(new BorderLayout());
 				
 				JPanel panelC = new JPanel(new GridBagLayout());  // panel za unos 
@@ -195,7 +195,7 @@ public class IzmeniProfesora extends JDialog{
 				add(panelC,BorderLayout.NORTH);
 				add(panelS,BorderLayout.SOUTH);
 				
-				this.setResizable(false);
+				//this.setResizable(false);
 				this.setLocationRelativeTo(parent);
 				this.setVisible(true);
 			}
