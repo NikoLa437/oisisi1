@@ -35,12 +35,14 @@ public class PredmetController {
 		int err = -1;
 		int ret = 0;
 		int err1 = -1;
+		//provera da li postoji predmet sa istom sifrom
 		for(Predmet prr: BazaPredmet.getInstance().getPredmeti()) {
 			if(prr.getSifra_predmeta().equals(DodajPredmet.txtSifra.getText())) {
 				err1=1;
 				break;
 			}
 		}
+		//provera da li semestar odgovara godini (npr. prva godina I i II semestar)
 		if(DodajPredmet.cbGodStud.getSelectedIndex() == 0) 
 			if(!(DodajPredmet.cbSemestar.getSelectedIndex() == 0 || DodajPredmet.cbSemestar.getSelectedIndex() == 1))
 				err = 1;
@@ -63,6 +65,7 @@ public class PredmetController {
 				p.setSemestar(DodajPredmet.cbSemestar.getSelectedIndex() + 1);
 				p.setGodina_studija(DodajPredmet.cbGodStud.getSelectedIndex()+1);
 				BazaPredmet.getInstance().dodajPredmet(p.getSifra_predmeta(), p.getNaziv(), p.getSemestar(), p.getGodina_studija());
+				//ako novi predmet odgovara kriterijumu pretrage, prikazati ga u pretrazi
 				if(BazaPredmet.indikator == 1)
 					this.PretraziPredmet(ToolBar.textField.getText());
 				ret = 1;
@@ -76,6 +79,7 @@ public class PredmetController {
 		int ret  = 0;
 		int err = -1;
 
+		//provera da li semestar odgovara godini (npr. prva godina I i II semestar)
 		if(IzmeniPredmet.cbGodStud.getSelectedIndex() == 0) 
 			if(!(IzmeniPredmet.cbSemestar.getSelectedIndex() == 0 || IzmeniPredmet.cbSemestar.getSelectedIndex() == 1))
 				err = 1;
@@ -98,10 +102,16 @@ public class PredmetController {
 				p.setSemestar(IzmeniPredmet.cbSemestar.getSelectedIndex() + 1);
 				p.setGodina_studija(IzmeniPredmet.cbGodStud.getSelectedIndex()+1);
 				BazaPredmet.getInstance().izmeniPredmet(p.getSifra_predmeta(),pr, p.getNaziv(), p.getSemestar(), p.getGodina_studija());
+				//ako se promeni godina studija na predmetu, obrisu se studenti sa predmeta (jer bi u suprotnom, npr student prve godine
+				// ostao na predmetu koji je iz prve promenjen u drugu godinu)
 				if(godina_studija != p.getGodina_studija()) {
 					BazaStudent.getInstance().izbrisiPredmetStudentima(p.getSifra_predmeta());
 					BazaPredmet.getInstance().returnPredmet(p.getSifra_predmeta()).getStudenti().clear();
 				}
+				//ako je kriterijum pretrage godina:2, promenom godine na 1 ce izbaciti predmet iz prikazanih
+				if(BazaPredmet.indikator == 1)
+					this.PretraziPredmet(ToolBar.textField.getText());
+				
 				BazaProfesor.getInstance().izmenaPredmetaProfesora(p);
 				BazaStudent.getInstance().izmenaPredmetaStudentima(p);
 				ret = 1;
@@ -129,6 +139,7 @@ public class PredmetController {
 		int ret = 0;
 		Profesor prof = new Profesor();
 		boolean nasao = false;
+		//provera da li postoji uneti broj licne karte
 		for(Profesor p1: profesori) {
 			if(DodajProfesoraNaPredmet.txtLicna.getText().equals(p1.getBr_licne())) {
 				prof = p1;
@@ -136,6 +147,7 @@ public class PredmetController {
 				break;
 			}
 		}
+		//provera validnosti broja licne karte
 		if(!DodajProfesoraNaPredmet.txtLicna.getText().matches("[A-Za-z0-9]{7,13}"))
 			JOptionPane.showMessageDialog(null, "Broj licne karte nije validan!", "Error", JOptionPane.ERROR_MESSAGE );
 		else if(nasao == false)

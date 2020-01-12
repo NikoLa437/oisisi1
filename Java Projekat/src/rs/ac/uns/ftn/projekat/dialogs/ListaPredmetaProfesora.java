@@ -70,7 +70,7 @@ public class ListaPredmetaProfesora extends JDialog{
 		
 		//lista.setPreferredSize(new Dimension(280, 180));
 		JScrollPane sp = new JScrollPane(lista);
-		sp.setPreferredSize(new Dimension(280, 180));
+		//sp.setPreferredSize(new Dimension(MainFrame.sirina/4,MainFrame.visina*1/7));
 		
 		
 		panelS.add(bIzlaz);
