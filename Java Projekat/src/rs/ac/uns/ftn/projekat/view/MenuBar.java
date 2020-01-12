@@ -3,10 +3,7 @@ package rs.ac.uns.ftn.projekat.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -72,6 +69,7 @@ public class MenuBar extends JMenuBar{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
 				Help h= new Help();
 			}
 		});
@@ -81,6 +79,7 @@ public class MenuBar extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				@SuppressWarnings("unused")
 				About a=new About();
 			}
 			

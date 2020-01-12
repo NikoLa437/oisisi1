@@ -4,20 +4,15 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
-
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import rs.ac.uns.ftn.projekat.additionalclass.DateCellRenderer;
-import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
 
 

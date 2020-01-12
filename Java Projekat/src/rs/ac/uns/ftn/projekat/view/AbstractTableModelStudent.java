@@ -1,12 +1,10 @@
 package rs.ac.uns.ftn.projekat.view;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
-import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
 
 public class AbstractTableModelStudent extends AbstractTableModel{

@@ -13,7 +13,6 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
 import rs.ac.uns.ftn.projekat.dialogs.DetaljiStudenta;
 

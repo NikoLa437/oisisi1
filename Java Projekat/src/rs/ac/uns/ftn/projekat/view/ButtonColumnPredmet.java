@@ -14,8 +14,6 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
-import rs.ac.uns.ftn.projekat.data.BazaProfesor;
-import rs.ac.uns.ftn.projekat.dialogs.ListaPredmetaProfesora;
 import rs.ac.uns.ftn.projekat.dialogs.ListaStudenataNaPredmetu;
 
 

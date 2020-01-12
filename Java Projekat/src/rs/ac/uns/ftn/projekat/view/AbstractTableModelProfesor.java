@@ -1,6 +1,5 @@
 package rs.ac.uns.ftn.projekat.view;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.swing.JButton;
