@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -48,11 +47,13 @@ public class IzmeniStudenta extends JDialog{
 	public static JTextField txteadresa;
 	public static JTextField txtdatumUpisa;
 	public static JTextField txtprosecnaOcena;
+	@SuppressWarnings("rawtypes")
 	public static JComboBox cbGodStud;
 	public static JRadioButton rbBudzet;
 	public static JRadioButton rbSamof;
 	
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public IzmeniStudenta(JFrame parent) {
 		super(parent,"Izmena studenta",true);
 			

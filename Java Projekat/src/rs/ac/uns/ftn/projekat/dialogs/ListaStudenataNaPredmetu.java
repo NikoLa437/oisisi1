@@ -5,7 +5,6 @@ import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -24,9 +23,9 @@ import javax.swing.event.ListSelectionListener;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
 import rs.ac.uns.ftn.projekat.classes.Student;
-import rs.ac.uns.ftn.projekat.controllers.StudentController;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
+import rs.ac.uns.ftn.projekat.view.MainFrame;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
 
 public class ListaStudenataNaPredmetu extends JDialog{
@@ -39,8 +38,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 	public ListaStudenataNaPredmetu(JFrame parent,int index) {
 		super(parent,"Lista studenata",true);
 		
-		//String selektovaniIndeks="";
-		this.setSize(300,200);
+		this.setSize(MainFrame.sirina*2/7,MainFrame.visina*3/7);
 		this.setLayout(new BorderLayout());
 
 		JPanel p1= new JPanel();
@@ -98,23 +96,20 @@ public class ListaStudenataNaPredmetu extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(listModel.isEmpty()) {
+				if(listModel.isEmpty()) { // provera da li ima neki student
 					JOptionPane.showMessageDialog(null, "Ne postoji student na predmetu kojeg mozete izbrisati", "Error", JOptionPane.ERROR_MESSAGE );
 				}else {
-					if(!selRow.equals("")){
-						BazaStudent.getInstance().brisanjeStudentaSaPredmeta(selRow,p.getSifra_predmeta());
-						BazaPredmet.getInstance().obrisiStudenta(selRow,p.getSifra_predmeta());
+					if(!selRow.equals("")){ // provera da li je selektovan neki indeks 
+						BazaStudent.getInstance().brisanjeStudentaSaPredmeta(selRow,p.getSifra_predmeta()); // brise studentima predmet
+						BazaPredmet.getInstance().obrisiStudenta(selRow,p.getSifra_predmeta()); // brise predmetu studenta
 						listModel.removeElement(selRow);
 						lista.updateUI();
-						selRow="";
-						PredmetJTable.osvezi();
+						selRow=""; // vraca selrow na defualt
+						PredmetJTable.osvezi(); // osvezava predmetjtable zbog broja studenata
 					}
 				}
 			}
 		});
-		
-		panelC.add(new JScrollPane(lista));
-		panelC.add(lista);
 		
 		panelC.add(new JScrollPane(lista));
 		

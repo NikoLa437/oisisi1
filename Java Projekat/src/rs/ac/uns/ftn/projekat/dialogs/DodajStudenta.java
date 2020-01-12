@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -147,6 +148,7 @@ public class DodajStudenta extends JDialog{
 		Document textFieldDocProsecnaOcena = txtprosecnaOcena.getDocument();
 		textFieldDocProsecnaOcena.addDocumentListener(jbsc);
 		
+		
 		bOdustanak.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -225,7 +227,8 @@ class JButtonStateControllerDodajStudenta implements DocumentListener {
     public void disableIfEmpty() {
     	if(DodajStudenta.txtIme.getText().isEmpty() || DodajStudenta.txtPrezime.getText().isEmpty() || DodajStudenta.txtDatumRodj.getText().isEmpty()
     			|| DodajStudenta.txtAdresa.getText().isEmpty() || DodajStudenta.txtBrojTel.getText().isEmpty() || DodajStudenta.txtBrojInd.getText().isEmpty()
-    			|| DodajStudenta.txteadresa.getText().isEmpty() || DodajStudenta.txtdatumUpisa.getText().isEmpty() || DodajStudenta.txtprosecnaOcena.getText().isEmpty())
+    			|| DodajStudenta.txteadresa.getText().isEmpty() || DodajStudenta.txtdatumUpisa.getText().isEmpty() 
+    			|| DodajStudenta.txtprosecnaOcena.getText().isEmpty())
     		button.setEnabled(false);
     	else
     		button.setEnabled(true);

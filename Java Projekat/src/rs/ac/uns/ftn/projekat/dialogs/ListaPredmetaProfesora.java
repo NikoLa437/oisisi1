@@ -2,7 +2,6 @@ package rs.ac.uns.ftn.projekat.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +34,6 @@ public class ListaPredmetaProfesora extends JDialog{
 		
 		this.setSize(MainFrame.sirina/3,MainFrame.visina*3/7);
 
-		//this.setSize(300,200);
 		this.setLayout(new BorderLayout());
 
 		JPanel panelS = new JPanel(new FlowLayout(FlowLayout.RIGHT));  
@@ -68,19 +66,14 @@ public class ListaPredmetaProfesora extends JDialog{
 			}
 		});
 		
-		//lista.setPreferredSize(new Dimension(280, 180));
 		JScrollPane sp = new JScrollPane(lista);
-		//sp.setPreferredSize(new Dimension(MainFrame.sirina/4,MainFrame.visina*1/7));
-		
 		
 		panelS.add(bIzlaz);
 		
-		//this.add(p1,BorderLayout.NORTH);
 		this.add(sp,BorderLayout.CENTER);
 		
 		this.add(panelS,BorderLayout.SOUTH);
 		this.setTitle("Lista Predmeta");  
-		//this.setResizable(false);
 		this.setLocationRelativeTo(parent);
 		this.setVisible(true);
 		
