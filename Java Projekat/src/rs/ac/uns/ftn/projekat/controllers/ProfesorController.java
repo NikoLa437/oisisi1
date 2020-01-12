@@ -81,6 +81,8 @@ public class ProfesorController {
 			
 		    p.setZvanje(z);
 			BazaProfesor.getInstance().dodajProfesora(p.getIme(), p.getPrezime(), p.getAdresa_stanovanja(), p.getBr_telefona(), p.getMail(), p.getAdresa_kancelarije(), p.getBr_licne(), p.getTitula(), p.getZvanje(), p.getDatum_rodjenja());
+			if(BazaProfesor.indikator ==1)
+				this.pretraziProfesora(ToolBar.textField.getText());
 			ret=1;
 			ProfesorJTable.osvezi();	
 		}else {
@@ -108,62 +110,65 @@ public class ProfesorController {
 		int ret=0;
 		
 		Profesor p= new Profesor();
-
+		if(this.proveriUnosIzmena()) {
 		
-		if(IzmeniProfesora.txteadresa.getText().isEmpty() || IzmeniProfesora.txtBrLicne.getText().isEmpty() || IzmeniProfesora.txtIme.getText().isEmpty() || IzmeniProfesora.txtPrezime.getText().isEmpty() || IzmeniProfesora.txtAdresa.getText().isEmpty() || IzmeniProfesora.txtBrojTel.getText().isEmpty() || IzmeniProfesora.txtAdresaKanc.getText().isEmpty())
-			JOptionPane.showMessageDialog(null, "Pogresan unos podataka!", "Error", JOptionPane.ERROR_MESSAGE );
-		else {
-			try {
-				SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
-				Date date = formatter.parse(IzmeniProfesora.txtDatumRodj.getText());
-				
-				p.setBr_licne(IzmeniProfesora.txtBrLicne.getText());
-				p.setDatum_rodjenja(date);
-				p.setIme(IzmeniProfesora.txtIme.getText());
-				p.setPrezime(IzmeniProfesora.txtPrezime.getText());
-				p.setAdresa_stanovanja(IzmeniProfesora.txtAdresa.getText());
-				p.setBr_telefona(IzmeniProfesora.txtBrojTel.getText());
-				p.setAdresa_kancelarije(IzmeniProfesora.txtAdresaKanc.getText());
-				
-				Profesor.Titula t = null;
-				if(IzmeniProfesora.cbTitula.getSelectedItem().toString().equals("Doktor")) {
-					t=Titula.doktor;
-				}
-				else if(IzmeniProfesora.cbTitula.getSelectedItem().toString().equals("Prof.Dr")) {
-					t=Titula.prof_dr;
-				}
-				else if(IzmeniProfesora.cbTitula.getSelectedItem().toString().equals("Magistar")) {
-					t=Titula.magistar;
-				}else {
-					t=Titula.master;
-				}
-				p.setTitula(t);
-				
-				Profesor.Zvanje z= null;
-				if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Redovni profesor")) {
-					z= Zvanje.red_profesor;
-				}else if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Asistent")) {
-					z= Zvanje.asistent;
-				}else if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Vandredni profesor")) {
-						z= Zvanje.van_profesor;
-				}else if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Saradnik u nastavi")) {
-					z= Zvanje.saradnik;
-				}else{
-					z= Zvanje.docent;
-				}
-				
-			    p.setZvanje(z);
-				p.setMail(IzmeniProfesora.txteadresa.getText());
-				BazaProfesor.getInstance().izmeniProfesora(p.getIme(), p.getPrezime(), p.getAdresa_stanovanja(), p.getBr_telefona(), p.getMail(), p.getAdresa_kancelarije(), p.getBr_licne(), p.getTitula(), p.getZvanje(), p.getDatum_rodjenja());
-				ret=1;
-				BazaPredmet.getInstance().setIzmenaProfesora(p);
-				ProfesorJTable.selectedRow=-1;
-				ProfesorJTable.osvezi();
-				}catch(Exception e1) {
-					JOptionPane.showMessageDialog(null, "Datum mora biti u formatu: dd.MM.yyyy.", "Error", JOptionPane.ERROR_MESSAGE );
-				}
+			if(IzmeniProfesora.txteadresa.getText().isEmpty() || IzmeniProfesora.txtBrLicne.getText().isEmpty() || IzmeniProfesora.txtIme.getText().isEmpty() || IzmeniProfesora.txtPrezime.getText().isEmpty() || IzmeniProfesora.txtAdresa.getText().isEmpty() || IzmeniProfesora.txtBrojTel.getText().isEmpty() || IzmeniProfesora.txtAdresaKanc.getText().isEmpty())
+				JOptionPane.showMessageDialog(null, "Pogresan unos podataka!", "Error", JOptionPane.ERROR_MESSAGE );
+			else {
+				try {
+					SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
+					Date date = formatter.parse(IzmeniProfesora.txtDatumRodj.getText());
+					
+					p.setBr_licne(IzmeniProfesora.txtBrLicne.getText());
+					p.setDatum_rodjenja(date);
+					p.setIme(IzmeniProfesora.txtIme.getText());
+					p.setPrezime(IzmeniProfesora.txtPrezime.getText());
+					p.setAdresa_stanovanja(IzmeniProfesora.txtAdresa.getText());
+					p.setBr_telefona(IzmeniProfesora.txtBrojTel.getText());
+					p.setAdresa_kancelarije(IzmeniProfesora.txtAdresaKanc.getText());
+					
+					Profesor.Titula t = null;
+					if(IzmeniProfesora.cbTitula.getSelectedItem().toString().equals("Doktor")) {
+						t=Titula.doktor;
+					}
+					else if(IzmeniProfesora.cbTitula.getSelectedItem().toString().equals("Prof.Dr")) {
+						t=Titula.prof_dr;
+					}
+					else if(IzmeniProfesora.cbTitula.getSelectedItem().toString().equals("Magistar")) {
+						t=Titula.magistar;
+					}else {
+						t=Titula.master;
+					}
+					p.setTitula(t);
+					
+					Profesor.Zvanje z= null;
+					if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Redovni profesor")) {
+						z= Zvanje.red_profesor;
+					}else if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Asistent")) {
+						z= Zvanje.asistent;
+					}else if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Vandredni profesor")) {
+							z= Zvanje.van_profesor;
+					}else if(IzmeniProfesora.cbZvanje.getSelectedItem().toString().equals("Saradnik u nastavi")) {
+						z= Zvanje.saradnik;
+					}else{
+						z= Zvanje.docent;
+					}
+					
+				    p.setZvanje(z);
+					p.setMail(IzmeniProfesora.txteadresa.getText());
+					BazaProfesor.getInstance().izmeniProfesora(p.getIme(), p.getPrezime(), p.getAdresa_stanovanja(), p.getBr_telefona(), p.getMail(), p.getAdresa_kancelarije(), p.getBr_licne(), p.getTitula(), p.getZvanje(), p.getDatum_rodjenja());
+					ret=1;
+					BazaPredmet.getInstance().setIzmenaProfesora(p);
+					if(BazaProfesor.indikator ==1)
+						this.pretraziProfesora(ToolBar.textField.getText());
+					ProfesorJTable.osvezi();
+					}catch(Exception e1) {
+						JOptionPane.showMessageDialog(null, "Datum mora biti u formatu: dd.MM.yyyy.", "Error", JOptionPane.ERROR_MESSAGE );
+					}
+			}
+		}else {
+			JOptionPane.showMessageDialog(null, "Pogresan unos!", "Error", JOptionPane.ERROR_MESSAGE );
 		}
-		
 		return ret;	
 	}
 	
@@ -254,6 +259,7 @@ public class ProfesorController {
 			ProfesorJTable.osvezi();
 		}	
 	}
+	
 	private boolean proveriUnos() {
 		boolean ret;
 		ret = false;
@@ -261,6 +267,17 @@ public class ProfesorController {
 		if(DodajProfesora.txtIme.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajProfesora.txtPrezime.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajProfesora.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
 				&&DodajProfesora.txtAdresaStan.getText().matches("[0-9A-Z\\p{InLATIN_EXTENDED_A}][0-9A-Z, a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajProfesora.txtAdresaKanc.getText().matches("[0-9A-Z\\p{InLATIN_EXTENDED_A}][0-9A-Z, a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajProfesora.txtBrojLicne.getText().matches("[A-Za-z0-9]{7,13}")&&DodajProfesora.txtKtkTel.getText().matches("([+]{1})?[0-9-/]{8,12}") && DodajProfesora.txtEAdresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
 			    && (!BazaProfesor.getInstance().postoji(DodajProfesora.txtBrojLicne.getText()))){
+			ret=true;
+		}
+		return ret;
+	}
+	
+	private boolean proveriUnosIzmena() {
+		boolean ret;
+		ret = false;
+		
+		if(IzmeniProfesora.txtIme.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&IzmeniProfesora.txtPrezime.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&IzmeniProfesora.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
+				&&IzmeniProfesora.txtAdresa.getText().matches("[0-9A-Z\\p{InLATIN_EXTENDED_A}][0-9A-Z, a-z\\p{InLATIN_EXTENDED_A}]+")&&IzmeniProfesora.txtAdresaKanc.getText().matches("[0-9A-Z\\p{InLATIN_EXTENDED_A}][0-9A-Z, a-z\\p{InLATIN_EXTENDED_A}]+")&&IzmeniProfesora.txtBrojTel.getText().matches("([+]{1})?[0-9-/]{8,12}") && IzmeniProfesora.txteadresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")){
 			ret=true;
 		}
 		return ret;

@@ -51,9 +51,10 @@ public class StudentController {
 				date = formatter.parse(DodajStudenta.txtDatumRodj.getText());
 				s.setDatum_rodjenja(date);
 			}catch(Exception e ) {
-				System.out.println("Test");
+				System.out.println(e.getMessage());
 			}
 			String g_s = DodajStudenta.cbGodStud.getSelectedItem().toString();
+			
 			if(g_s.equals("I (prva)")){
 				s.setGod_studija(1);
 			}else if(g_s.equals("II (druga)")){
@@ -70,6 +71,9 @@ public class StudentController {
 				s.setStatus(Status.B);
 			}
 			BazaStudent.getInstance().dodajStudenta(s.getIme(), s.getPrezime(), s.getAdresa_stanovanja(), s.getKontakt_telefon(),s.getEmail_adresa(), s.getIndeks(), s.getDatum_rodjenja(), s.getDatum_upisa(), s.getGod_studija(), s.getProsecna_ocena(),s.getStatus());
+			if(BazaStudent.indikator==1) {
+				this.pretraziStudente(ToolBar.textField.getText());
+			}
 			ret=1;
 			StudentJTable.osvezi();	
 		}else {
@@ -117,6 +121,9 @@ public class StudentController {
 				s.setStatus(Status.B);
 			}
 			BazaStudent.getInstance().izmeniStudenta(s.getIndeks(),s.getIme(), s.getPrezime(), s.getAdresa_stanovanja(), s.getKontakt_telefon(),s.getEmail_adresa(),  s.getDatum_rodjenja(), s.getDatum_upisa(), s.getGod_studija(), s.getProsecna_ocena(),s.getStatus());
+			if(BazaStudent.indikator==1) {
+				this.pretraziStudente(ToolBar.textField.getText());
+			}
 			ret=1;
 			StudentJTable.osvezi();	
 		}else {
@@ -138,12 +145,15 @@ public class StudentController {
 	public int dodajStudentaNaPredmet(Predmet pr) {
 		Student s= new Student();
 		int ret=0;
+		// if da li je unet tekst
 		if(!DodajStudentaNaPredmet.txtIndeks.getText().isEmpty()) {
 			String idx= DodajStudentaNaPredmet.txtIndeks.getText();
 			// provera da li postoji student sa tim indeksom
 			if((s= BazaStudent.getInstance().getStudentInd(idx)) != null) {
+				// provera da li se godine poklapaju
 				if(s.getGod_studija()==pr.getGodina_studija()) {
 					boolean postoji=false;
+					// provera da li postoji vec student na tom predmetu
 					for(Student st : pr.getStudenti()) {
 						if(st.getIndeks().equals(s.getIndeks()))
 							postoji=true;
@@ -182,13 +192,11 @@ public class StudentController {
 			String[] deo= kriterijum.split(";");
 			String[] kolona= new String [5];
 			String[] kolonakrit= new String[5];
-			//int brojac = 0;
 			
 			for(int i=0; i<deo.length;i++) {
 				String[] pom= deo[i].split(":");
 				kolona[i]=pom[0];
 				kolonakrit[i]=pom[1];
-				//brojac++;
 			}
 			
 
