@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.projekat.controllers;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -293,11 +292,6 @@ public class StudentController {
 			
 				if((DodajStudenta.cbGodStud.getSelectedItem().toString().equals("I (prva)")&&DodajStudenta.txtprosecnaOcena.getText().matches("([0])|([6-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})"))||DodajStudenta.txtprosecnaOcena.getText().matches("([6-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})"))
 					ret=true;
-				//SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.", Locale.ENGLISH);
-				//if(LocalDate.parse(DodajStudenta.txtDatumRodj,formatter).compareTO(LocalDate.parse(DodajStudenta.txtdatumUpisa, formatter))>0) {
-				//	
-				//}
-				
 		}
 	
 		return ret;
