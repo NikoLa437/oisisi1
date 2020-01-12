@@ -13,12 +13,12 @@ public class ObrisiStudenta extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public ObrisiStudenta() {
+	public ObrisiStudenta(JFrame parent) {
 			 	
 				this.setSize(MainFrame.sirina*3/7,MainFrame.visina/4);
 			
 				String[] options = {"Da", "Ne"};
-			    int confirmed = JOptionPane.showOptionDialog(null, 
+			    int confirmed = JOptionPane.showOptionDialog(parent, 
 			        "Da li ste sigurni da zelite da obrisete studenta iz baze?", "Brisanje studenta",
 			        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
 	

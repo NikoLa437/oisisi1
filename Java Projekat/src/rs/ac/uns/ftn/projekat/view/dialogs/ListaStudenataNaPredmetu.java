@@ -122,7 +122,7 @@ public class ListaStudenataNaPredmetu extends JDialog{
 		this.add(panelS,BorderLayout.SOUTH);
 		this.setTitle("Lista studenata");  
 		this.setResizable(false);
-		this.setLocationRelativeTo(null);
+		this.setLocationRelativeTo(parent);
 		this.setVisible(true);
 		
 		

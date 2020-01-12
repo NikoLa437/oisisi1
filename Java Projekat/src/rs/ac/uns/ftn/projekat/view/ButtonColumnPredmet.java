@@ -64,7 +64,7 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 						indeks = BazaPredmet.getInstance().getRealRowForFilter(table.convertRowIndexToModel(table.getSelectedRow()));
 
 					@SuppressWarnings("unused")
-					ListaStudenataNaPredmetu lsnp = new ListaStudenataNaPredmetu(new JFrame(),indeks);
+					ListaStudenataNaPredmetu lsnp = new ListaStudenataNaPredmetu(MainFrame.getInstance(),indeks);
 					fireEditingStopped();
 				}
 			});

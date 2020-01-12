@@ -48,7 +48,7 @@ public class CreateDeleteAction extends AbstractAction{
 		}
 		if(JTabbedPaneTabele.selektovan_tab == 0) {
 			if(StudentJTable.selectedRow!=-1) {
-				ObrisiStudenta os= new ObrisiStudenta();
+				ObrisiStudenta os= new ObrisiStudenta(MainFrame.getInstance());
 			}else {
 				JOptionPane.showMessageDialog(null, "Niste selektovali studenta za brisanje!", "Error", JOptionPane.ERROR_MESSAGE );
 			}
