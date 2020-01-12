@@ -3,28 +3,19 @@ package rs.ac.uns.ftn.projekat.controllers;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
-import java.util.Vector;
 
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 import rs.ac.uns.ftn.projekat.classes.Predmet;
-import rs.ac.uns.ftn.projekat.classes.Profesor;
 import rs.ac.uns.ftn.projekat.classes.Student;
 import rs.ac.uns.ftn.projekat.classes.Student.Status;
 import rs.ac.uns.ftn.projekat.data.BazaPredmet;
-import rs.ac.uns.ftn.projekat.data.BazaProfesor;
 import rs.ac.uns.ftn.projekat.data.BazaStudent;
-import rs.ac.uns.ftn.projekat.dialogs.DodajPredmet;
-import rs.ac.uns.ftn.projekat.dialogs.DodajProfesoraNaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.DodajStudenta;
 import rs.ac.uns.ftn.projekat.dialogs.DodajStudentaNaPredmet;
 import rs.ac.uns.ftn.projekat.dialogs.IzmeniStudenta;
-import rs.ac.uns.ftn.projekat.dialogs.ListaStudenataNaPredmetu;
 import rs.ac.uns.ftn.projekat.view.PredmetJTable;
-import rs.ac.uns.ftn.projekat.view.ProfesorJTable;
 import rs.ac.uns.ftn.projekat.view.StudentJTable;
 import rs.ac.uns.ftn.projekat.view.ToolBar;
 
@@ -289,9 +280,10 @@ public class StudentController {
 		
 		if(DodajStudenta.txtIme.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajStudenta.txtPrezime.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&DodajStudenta.txtdatumUpisa.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")&&DodajStudenta.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
 				&&DodajStudenta.txtAdresa.getText().matches("[0-9A-Z\\p{InLATIN_EXTENDED_A}][0-9A-Z, a-z\\p{InLATIN_EXTENDED_A}]+")&&!DodajStudenta.txtBrojInd.getText().isEmpty()&&DodajStudenta.txtBrojTel.getText().matches("([+]{1})?[0-9-/]{8,12}") && DodajStudenta.txteadresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
-				&&DodajStudenta.txtprosecnaOcena.getText().matches("([5-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})")&& !BazaStudent.getInstance().postoji(DodajStudenta.txtBrojInd.getText())
-				&&(DodajStudenta.txtDatumRodj.getText().compareTo(DodajStudenta.txtdatumUpisa.getText())<0)){
-			ret=true;
+				&& !BazaStudent.getInstance().postoji(DodajStudenta.txtBrojInd.getText())){
+			
+				if((DodajStudenta.cbGodStud.getSelectedItem().toString().equals("I (prva)")&&DodajStudenta.txtprosecnaOcena.getText().matches("([0])|([6-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})"))||DodajStudenta.txtprosecnaOcena.getText().matches("([6-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})"))
+					ret=true;
 		}
 	
 		return ret;
@@ -302,8 +294,9 @@ public class StudentController {
 		ret = false;
 		if(IzmeniStudenta.txtIme.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&IzmeniStudenta.txtPrezime.getText().matches("[A-Z\\p{InLATIN_EXTENDED_A}][A-Z a-z\\p{InLATIN_EXTENDED_A}]+")&&IzmeniStudenta.txtdatumUpisa.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")&&IzmeniStudenta.txtDatumRodj.getText().matches("([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}(\\.)")
 				&&IzmeniStudenta.txtAdresa.getText().matches("[0-9A-Z\\p{InLATIN_EXTENDED_A}][0-9A-Z, a-z\\p{InLATIN_EXTENDED_A}]+")&&!IzmeniStudenta.txtBrojInd.getText().isEmpty()&&IzmeniStudenta.txtBrojTel.getText().matches("([+]{1})?[0-9-/]{8,12}") && IzmeniStudenta.txteadresa.getText().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
-				&&IzmeniStudenta.txtprosecnaOcena.getText().matches("([5-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})")){
-			ret=true;
+				){
+			if((IzmeniStudenta.cbGodStud.getSelectedItem().toString().equals("I (prva)")&&IzmeniStudenta.txtprosecnaOcena.getText().matches("([0])|([6-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})"))||IzmeniStudenta.txtprosecnaOcena.getText().matches("([6-9]{1}(\\.)[0-9]{1,2})|((10)(\\.)[0]{1,2})"))
+				ret=true;
 		}
 		return ret;
 	}
@@ -311,5 +304,4 @@ public class StudentController {
 }
 
 
-	
 
