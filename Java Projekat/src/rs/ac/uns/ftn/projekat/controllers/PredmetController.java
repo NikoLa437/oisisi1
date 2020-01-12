@@ -103,6 +103,7 @@ public class PredmetController {
 					BazaPredmet.getInstance().returnPredmet(p.getSifra_predmeta()).getStudenti().clear();
 				}
 				BazaProfesor.getInstance().izmenaPredmetaProfesora(p);
+				BazaStudent.getInstance().izmenaPredmetaStudentima(p);
 				ret = 1;
 		}
 		PredmetJTable.osvezi();
