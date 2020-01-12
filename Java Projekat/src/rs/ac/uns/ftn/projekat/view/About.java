@@ -56,7 +56,7 @@ public class About extends JFrame{
 		bLayout1= new BoxLayout(p2,BoxLayout.Y_AXIS);
 		p2.setLayout(bLayout1);
 
-		title = BorderFactory.createTitledBorder("ABOUT AUTORS");
+		title = BorderFactory.createTitledBorder("ABOUT AUTHORS");
 		title.setTitleJustification(TitledBorder.CENTER);
 		p2.setBorder(title);
 		JLabel imgLabel = new JLabel(new ImageIcon("icon/resized.jpg"),JLabel.CENTER);
