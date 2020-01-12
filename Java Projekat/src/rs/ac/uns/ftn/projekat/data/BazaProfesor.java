@@ -137,6 +137,19 @@ public class BazaProfesor {
 			}
 		}
 	}
+	
+	public void izmenaPredmetaProfesora(Predmet predmet) {
+		for(Profesor p : profesori) {
+			for(Predmet pred : p.getPredmeti()) {
+				if(pred.getSifra_predmeta().equals(predmet.getSifra_predmeta())) {
+					pred.setGodina_studija(predmet.getGodina_studija());
+					pred.setNaziv(predmet.getNaziv());
+					pred.setSemestar(predmet.getSemestar());
+					break;
+				}
+			}
+		}
+	}
 
 	public void izmeniProfesora(String ime, String prezime, String adresa_stanovanja, String br_telefona, String mail,
 			String adresa_kancelarije, String br_licne, Titula titula, Zvanje zvanje, Date datum_rodjenja) {
